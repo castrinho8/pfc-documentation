@@ -7,63 +7,189 @@
 % Objetivo:                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \lettrine{E}{n} este capítulo...
-
-  Neste capítulo exporemos o proceso de análise de requisitos para o desenvolvemento do 
-proxecto.
+  \lettrine{N}{este} capítulo exporemos o proceso de análise de requisitos 
+para o desenvolvemento do proxecto, explicando as diversas visitas que se 
+realizaron para comprobar as necesidades das federacións.
 
   \section{Consultas a xestores de federacións}
   Para a realización deste apartado decidíuse consultar con diversas asociacións 
-deportivas e federacións das que obter feedback acerca das necesidades que 
-actualmente están a demandar co fin de obter certas funcionalidades a implementar e 
-obtendo incluso a priorización segundo as necesidades máis urxentes.
+deportivas e federacións das que obter suxerencias e peticións acerca das 
+necesidades que actualmente están a demandar co fin de obter certas 
+funcionalidades a implementar e obtendo incluso a priorización segundo as 
+necesidades máis urxentes.
 
+  \subsection{Asociacións consultadas}
+
+  \begin{description}
+
+  \item [Asociación de peñas de fútbol de A Coruña]
+  É a asociación máis interesada polo proxecto e coa que se leva colaborando 
+dende o primeiro momento, aportando suxerencias y incluso novos colaboradores 
+para poder desenvolver un producto de calidade.
+
+  Realizáronse ata 5 visitas a federación co fin de mostrarlles a evolución do 
+proxecto e comprobar a usabilidade da aplicación e o estado das funcionalidades.
+
+  \item [UPOFU]
+  A Asociación de peñas ten boa relación coa UPOFU polo que nos facilitóu o seu 
+contacto e ofrecéronse da mesma maneira a colaborar co proxecto, interesados 
+tamén en incorporalo na súa xestión.
+
+  \item [Torneo VACmatch]
+  Organizóuse un torneo de fútbol sala co fin de testear o primeiro prototipo 
+do proxecto con usuarios reais, tanto árbitros como xogadores e no que se 
+comprobou as necesidades dos usuarios e as súas necesidade de dispor deste tipo 
+de ferramentas.
+
+  \item [Outras]
+  Tamén se realizaron visitas a outras federacións incluso de outros deportes 
+como o voleibol para comprobar os seus problemas na xestión e verificar a 
+importancia de que o proxecto sexa facilmente adaptable a outros deportes.
+  
+  \end{description}
 
   \section{Peticións obtidas}
   
   \paragraph{Cubrir acta en tempo real}
+  A aplicación móbil debe permitir cubrir as actas e actualizar os resultados 
+en tempo real co fin de manter a web da federación actualizada en todo momento.
+
   \paragraph{Permisos}
-  \paragraph{Sincronización} Coa web da federación
+  Débese dispor dun sistema de permisos para diferenciar a árbitros e outros 
+xestores da competición.
+
+  \paragraph{Sincronización}
+  A aplicación móbil debe sincronizar os datos coa plataforma central onde se 
+atopa o sistema de xestión da federación e a súa web.
+
   \paragraph{Persoas convocadas}
-  \paragraph{Eventos} Mostralos e engadilos
-  \paragraph{Motivación dun evento} Por exemplo, unha tarxeta amarella. Incluso motivos 
-por defecto
+  É preciso poder dispor de todas as persoas inscritas nun equipo e poder 
+indicar de xeito sinxelo si esas persoas están ou non no encontro.
+  
+  \paragraph{Eventos}
+  A aplicación debe poder crear novos eventos, borralos e mostralos de xeito 
+sinxelo e ao mesmo tempo xenérico para calquera deporte.
+  
+  \paragraph{Motivación dun evento}
+  Debe poderse incluir en certos eventos un motivo polo que se creou ese 
+evento, dispoñendo dunha lista de motivos por defecto e incluso permitindo ao 
+xestor da federación, engadir novos motivos personalizados para a súa 
+federación.
+
   \paragraph{Editar dorsal dun xogador}
-  \paragraph{Persoa con varios roles} Xogador + entrenador
+  Xa que en moitas competicións un xogador pode xogar cada partido con un 
+dorsal diferente, debe poder cambiarse o dorsal por defecto dende a aplicación 
+móbil.
+
+  \paragraph{Persoa con varios roles}
+  Debe terse en conta a posibilidade de que unha persoa poida ter varios roles, 
+tanto de xogador como de entrenador dentro de un equipo.
   
   \clearpage
 
   \section{Requisitos fináis}
-
   
   \subsection{Usuarios}
-    \paragraph{Facer login e logout} OAuth
-    \paragraph{Permisos para edición de actas}
-    \paragraph{Mostrar perfil do usuario}
+
+    \begin{itemize}
+
+    \item \textbf{Facer login e logout}
+    A aplicación móbil debe permitir iniciar e pechar sesión para os árbitros.
+
+    \item \textbf{Permisos para edición de actas}
+    A aplicación de xestión disporá de permisos diferenciados para editar as 
+actas xa que os árbitros únicamente poden editar as actas que teñen asignadas.
+
+    \end{itemize}
 
   \subsection{Listar actas}
-    \paragraph{Visualizar próximas actas a cubrir dun árbitro}
-    \paragraph{Visualizar actas cubertas dun árbitro}
-    \paragraph{Actualización automática de actas descargadas ante modificacións}
+
+    \begin{itemize}
+
+    \item \textbf{Visualizar próximas actas a cubrir dun árbitro}
+    Mostrar a lista de próximas actas que ten para cubrir un árbitro, mostrando 
+o lugar e a data do mesmo para facilitar o traballo dos árbitros.
+
+    \item \textbf{Visualizar actas cubertas dun árbitro}
+    Debe mostrar as actas cubertas anteriormente e todos os seus datos pero non 
+modificalas.
+
+    \item \textbf{Actualización automática de actas descargadas ante 
+modificacións}
+    As actas deben actualizarse de forma automática na aplicación do árbitro 
+unha vez o xestor da federación realiza a asignación dun partido a un colexiado.
+
+    \end{itemize}
 
   \subsection{Visualizar actas}
-    \paragraph{Listar o personal dun equipo}
-    \paragraph{Listar os xogadores dun equipo}
-    \paragraph{Visualizar datos xeneráis dun acta} (resultados, faltas, etc)
-    \paragraph{Visualizar eventos dun acta} (dúas vistas)
 
-  \subsection{Xeración de actas}
-    \paragraph{Xeración automática}
-    \paragraph{Xeración de actas offline}
+    \begin{itemize}
+
+    \item \textbf{Listar o personal e xogadores dun equipo}
+    Móstrase o personal e os xogadores do equipo na aplicación móbil.
+    
+    \item \textbf{Visualizar datos xeráis dun acta}
+    Débese mostrar do xeito máis simplificado posible os datos xeráis da acta 
+nunha pantalla inicial para facilitar que sexa cuberta interactivamente durante 
+o desenvolvemento do encontro.
+
+    \item \textbf{Visualizar eventos dun acta}
+    Permitirase visualizar os eventos ordenados cronolóxicamente para facilitar 
+a súa consulta.
+
+    \end{itemize}
+
+  \subsection{Xeración de actas offline}
+  A aplicación debe permitir a creación de actas de forma offline xa que pódese 
+dar o caso de que a aplicación móbil non actualice as novas actas e o árbitro 
+se vexa na obriga de crear unha acta de forma manual.
 
   \subsection{Modificación de actas}
-    \paragraph{Modificación de propiedades da acta} (Federación)
-    \paragraph{Convocar un xogador}
-    \paragraph{Engadir un xogador que non está no equipo}
-    \paragraph{Editar o dorsal dun xogador}
-    \paragraph{Engadir eventos deportivos}
-    \paragraph{Poder engadir motivos dun evento xerado}
-    \paragraph{Cambiar de parte}
-    \paragraph{Modificar o tempo}
-    \paragraph{Engadir observacións na acta}
-    \paragraph{Asinar a acta} (árbitro e xogadores)
+
+    \begin{itemize}
+
+    \item \textbf{Modificación de propiedades da acta}
+    Tanto a aplicación de xestión como a aplicación móbil deben permitir 
+modificar propiedades da acta tales como a localización do encontro ou a data 
+do mesmo.
+
+    \item \textbf{Convocar un xogador ou entrenador}
+    A aplicación móbil permitirá indicar qué personal dos equipos que están 
+presentes no encontro así como editar certos datos dos mesmos como o seu dorsal.
+
+    \item \textbf{Engadir un xogador que non está no equipo}
+    Pode darse o caso de que a un xogador débeselle permitir xogar un encontro 
+aínda que non fose dado de alta na federación correspondente polo que é preciso 
+poder engadir novos xogadores.
+
+    \item \textbf{Editar datos de persoal creado}
+    Débese permitir editar certos datos dun xogador que foi creado dende 
+a aplicación móbil como o nome, o dorsal ou o equipo o que pertencen.
+
+    \item \textbf{Poder engadir motivos dun evento xerado}
+    A federación debe poder engadir novos motivos personalizados para poder 
+engadir a un evento dende a aplicación de xestión.
+
+    \item \textbf{Cambiar de parte}
+    A aplicación móbil debe permitir cambiar de parte no encontro.
+
+    \item \textbf{Modificar o tempo}
+    A aplicación móbil disporá dun cronómetro que permita seguir o tempo do 
+encontro así como permitirá modificalo manualmente por si hay algún desaxuste 
+durante o encontro.
+
+    \item \textbf{Engadir observacións na acta}
+    O árbitro debe poder engadir observacións as actas dos encontros.
+
+    \item \textbf{Asinar a acta}
+    Tanto persoal do equipo como árbitros deben poder asinar as actas con un 
+código PIN do que disporá cada un.
+
+    \item \textbf{Engadir eventos deportivos}
+    A aplicación debe facilitar a adaptación de novos deportes e a posibilidade 
+de engadir de xeito sinxelo novos eventos.
+    
+    \end{itemize}
+
+    
+    
