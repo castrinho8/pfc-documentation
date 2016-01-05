@@ -11,37 +11,156 @@
 xestión do proxecto e explicar a adaptación das mesmas que finalmente se utilizóu.
 
   \section{Lean Startup}
+  Lean Startup é unha metodoloxía para abordar o lanzamento de negocios e 
+produtos a través da validación, a experimentación e a iteración no lanzamento 
+dos mesmos para acortar o ciclo de desenvolvemento.
 
+  É unha metodoloxía de traballo moi habitual nas startups que se centra na 
+idea de \emph{Crear - Medir - Aprender}, desenvolvendo pequenos produtos e 
+realizando tests de mercado reais con verdadeiros clientes co fin de medir o 
+seu grao de satisfación e aprender para mellorar o produto en seguintes 
+iteracións.
+  
+  Habitualmente céntrase na idea de crear un MPV (Mínimo Producto Viable), unha 
+versión do producto que permite os desenvolvedores recoller co mínimo esforzo a 
+máxima cantidade de coñecemento validado por parte dos clientes, evaluando as 
+hipóteses de se os clientes realmente estarían dispostos a pagar polo 
+producto e implicando a dito cliente no desenvolvemento de dito produto.
+  
   \section{eXtreme Programming}
+  eXtreme Programming é unha metodoloxia de desenvolvemento áxil e incremental 
+baseada na integración do cliente no desenvolvemento así como na simplicidade 
+do código, apostando por facer cousas sinxelas e ter que facer un pequeno 
+traballo por modificalo se é preciso, fronte a facer un gran traballo para 
+quizáis nunca utilizalo.
+
+  As entregas funcionáis son frecuentes e outras características como a 
+importancia de introducir a programación en parellas para reducir o número de 
+erros que se producen ao programar.
+
+  Por último aboga por introducir o TDD (Test Driven Development), 
+implementando primeiro os tests, verificar que fallan e a continuación 
+implementar o código que fai que pasen os tests.
+  A idea é que os requisitos sexan convertidos a probas e de este modo cando os 
+tests se pasen, poderemos garantizar que o código cumple os requisitos.
 
   \section{Scrum}
+  Scrum tamén é unha metodoloxía incremental de desenvolvemento cunha serie de 
+roles definidos para o proceso, cada un coas súas responsabilidades e que divide 
+o proxecto en varios \emph{Sprints} que son ciclos de desenvolvemento.
+
+  Cada un de eles ten unha duración de entre unha e catro semanas e que é 
+definida polo equipo e cada unha das cales proporciona un incremento de 
+software entregable.
+
+  A totalidade das tarefas do proxecto atópanse definidas e priorizadas no 
+\emph{Product Backlog} e para cada sprint selecciónanse aquelas que determinarán 
+o \emph{Sprint Backlog}, que serán implementadas durante dito sprint e que non 
+poden variar ata rematar.
+
+  Durante todo o ciclo de traballo realízanse reunións diarias para comprobar o 
+estado do proxecto así como outras ao fin e ao comezo dos sprints co fin de 
+analizar o anterior e planificar o seguinte.
 
   \section{Adaptación da metodoloxía}
+
     \subsection{Desenvolvemento orientado ao cliente}
-      Testeos con clientes reais, analisis das súas necesidades, priorización por parte 
-do cliente, MVP.
+      O proxecto ten lugar dentro dunha iniciativa empresarial polo que se 
+decidíu utilizar un modelo de desenvolvemento orientado ao cliente en todo 
+momento, baseandose no pilar central da metodoloxia \emph{Lean Startup}.
 
-    \subsection{Sprints}
-    Cada dúas semanas con entregas funcionáis.
+    Para isto realizáronse diversas visitas as federacións para comprobar as 
+súas necesidades a través dunha serie de entrevistas estructuradas para 
+coñecer os problemas e a súa prioridade a hora de resolvelos.
 
+    Do mesmo modo realizáronse dous prototipos, un primeiro únicamente 
+con plantillas HTML para testear a organización da interfaz de usuario e un 
+segundo xa funcional para comprobar a resposta dos usuarios reais ante o seu 
+funcionamento.
+
+    \subsection{Sprints con backlog adaptable}
+    A organización do desenvolvemento organizouse de xeito moi similar a idea 
+proposta en \emph{Scrum}, dividindo o proceso en sprints, pequenas iteracións 
+de dúas semanas de duración e que cada unha proporciona unha serie de novas 
+funcións totalmente .
+
+    Cada sprint comeza con unha reunión de aproximadamente 30/45 minutos de 
+duración na que realizar a planificación do mesmo en función do 
+traballo realizado no sprint anterior o que permite realizar melloras nas 
+previsións según o aprendido nos anteriores.
+
+  \todo{falar do backlog que se adapta durante o sprint, non como en scrum que 
+é fixo}
     \subsection{Reunións semanáis}
-    Análise da semana anterior e comprobación do seguimento da iteración.
-    Se rematóu un sprint, esta reunión serve de planificación do seguinte.
+    Todas as semanas faise unha reunión de 30/45 minutos de duración na que 
+analizar o realizado na semana anterior e comprobar o seguimento da iteración 
+co fin de atopar desviacións e correxilas.
 
-    \subsection{Reunións diaria}
-    Análise 10 minutos do día anterior y do que se vai a facer no presente.
+    Cando unha reunión semanal coincide co fin de un sprint, dita reunión 
+sirve para realizar a planificación do seguinte sprint de xeito moi similiar as 
+reunións de sprint que se realizan en \emph{Scrum}.
+
+    \subsection{Reunións diarias}
+    Ao comezar o día realízase unha análise de uns 10 minutos de duración para 
+revisar o realizado no día anterior e planificar de forma máis concreta o que 
+se vai facer ese mesmo día.
 
     \subsection{Releases}
-    2 entregas 100 \% funcionais.
+    Durante o desenvolvemento do proxecto trátase de aplicar a idea de realizar 
+unha serie de pequenos entregables en cada iteración.
+    
+    Todas as entregas ao finalizar unha iteración son totalmente funcionais 
+pero non todas son versións entregables reais para ser postos en producción.
+
+    Durante o desenvolvemento producíronse 3 entregas (\emph{releases}) 
+totalmente funcionáis, a primeira foi un prototipo, a segunda foi a versión 
+real do proxecto e a terceira incorporóu tests e diversas características para 
+asegurar unha primeira versión estable.
 
     \subsection{Simplicidade}
-    Para manter a simplicidade é precisa a refactorización de código. Facer únicamente o 
-imprescindible en cada momento.
-    Programar para hoxe e non para mañá
+    Utilizouse o principio de simplicidade que promove \emph{eXtreme 
+Programming} durante todo o desenvolvemento baixo a máxima de implementar 
+únicamente o imprescindible en cada momento, sempre pensando en programar para 
+hoxe e non para mañá.
+
+    A idea fundamentase en realizar refactorizacións de código para engadir 
+novas funcionalidades a medida que son necesarias en lugar de invertir 
+demasiado tempo na planificación e implementación de funcións que se supoñen 
+necesarias e, algunhas das cales, é probable que non sexan necesarias 
+finalmente.
 
     \subsection{Tests}
-    Probas unitarias (neste caso solo de servicios).
+    A importancia de creación de tests automatizados está totalmente 
+demostrada, atopándose en auxe metodoloxías como \emph{TDD (Test Driven 
+Development)} ou \emph{BDD (Behaviour Driven Development)} que tratan de 
+dirixir o desenvolvemento a través dos tests, que son realizados antes do mesmo.
+    
+    Durante a primeira parte do desenvolvemento non se aplicóu ningunha de 
+estas metodoloxías pero a partir da primeira \emph{release} e da integración 
+dos primeiros tests, decidíuse optar por aplicar TDD no desenvolvemento 
+realizando probas unitarias nos servicios utilizados.
 
     \subsection{Fluxo de traballo}
-    PR en github con code review e integración continua
+    O fluxo de traballo utilizado dende o primeiro día trata de simular o 
+traballo diario de equipo y permite controlar a evolución do código de xeito 
+máis ordenado.
+    
+    Unha nova funcionalidade ou erro son resoltos nunha nova rama 
+independente e creada a partir de \emph{master}, tratando que todas estas novas 
+funcionalidades sexan independentes entre si.
 
+    Así mesmo tratase de que todos os \emph{commits} sexan o máis independentes 
+posibles e todos funcionáis, evitando ter algún que non compile ou que non pase 
+os tests.
+
+    Posteriormente realizase unha \emph{Pull Request} a través do mecanismo que 
+proporciona o repositorio de código Github, esperando a unha revisión de código 
+para ser integrado na rama principal do proxecto.
+
+    Cada certo tempo revísase as \emph{Pull Requests} abertas, analízase o 
+codigo e se todo é correcto, aceptase para integrar na rama principal.
+
+    Dende a introducción de tests no proxecto, todo código subido ao 
+repositorio é analizado a través dun sistema de integración continua que 
+comproba se os cambios engadidos pasan os tests ou non, e avisan por correo 
+electrónico do resultado.
