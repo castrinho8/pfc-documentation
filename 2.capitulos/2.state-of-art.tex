@@ -11,18 +11,56 @@
 xestión de competicións así como se fará unha análise do software libre neste campo e do 
 proceso de estandarización que se busca con este proxecto.
 
+\santiagosays[]{Continúa decindo que algo tipo falarse dos
+  competidores, para a continuación destacar blabla} %
+\santiagosays{Por outra parte, o \emph{estado da arte} (que por certo
+  é un anglicismo) non son só outras cousas que fagan o mesmo, senón
+  todo o que hai por ahí do que aprender e tal. Pensa que isto non é
+  un plan de empresa para ver cal é a diferencia cos teus
+  competidores: é unha introducción para comprender porqué se tomaron
+  aquí as decisións que se tomaron, en consonancia co que xa hai dispoñible. \\
+  Eu creo que nese proxecto tamén forma parte disto o tema de HTML5,
+  Web semántica, RDF, e todo iso. O sea, en xeral é todo o tecnolóxico
+  relacionado que sirve para fundamentarse para non cometer os mesmos
+  erros ca os demais. Aquí é donde ten máis sentido recopilar e
+  introducir todas as ferramentas e cousas das que se fala despois.
+  Tanto \emph{ideas} de alto nivel (Single-Page Applications), como
+  tecnoloxías (a alto nivel tamén, pero non tanto), como igual incluso
+  o tema de bases de datos non relacionais (e incluso ao mellor contar
+  a diferencia entre orientadas a documentos, a columnas e a grafos,
+  se merece a pena). Despois xa xustificaremos en detalle as decisións
+  tomadas por aló polo deseño/implementación.}
+
 \clearpage
 
   \section{Competidores no mercado}
+  \santiagosays{Esto necesita unha introducción}
 
     \subsection{Follas de cálculo}
-    As follas de cálculo é o sistema utilizado por excelencia para xestionar competicións.
+    As follas de cálculo son o sistema utilizado por excelencia para xestionar competicións.
     
     Un sistema rudimentario pero funcional, algunas federacións combinan en certa medida 
 follas de cálculo e bases de datos sinxelas para crear as táboas das 
 clasificacións e dos resultados, utilizando funcións que permiten automatizar algunhas 
 tarefas como por exemplo o cálculo da clasificación dos equipos en función dos 
 seus resultados ao longo da competición.
+
+\santiagosays{Se é o sistema por excelencia igual merece a pena contar o que fai ben e o
+  non; cales son os inconvenientes e vantaxes:
+  \begin{itemize}
+  \item Pro: É relativamente sinxelo cambiar como se calculan as puntuacións, para
+    resolver desempates ou o que sexa
+  \item Pro: Non necesita ningunha dependencia máis ca unha suite ofimática que
+    probablemente xa teñan instalada
+  \item ??: Necesita coñecementos de Excel, que se pode ver como pro ou con; dependendo de
+    se che parece que pode ser máis fácil ou dificil ca outras cousas. Máis fácil ca
+    programar en Scala, máis dificil ca ter botóns cos que cambiar cousas (pero máis
+    versátil ca os botóns). Igual esto é un bo punto de discusión para razonar máis
+    adiante, nalgun capítulo posterior.
+  \item Con: Non ten información en tempo real
+  \item Con: Bla bla
+  \end{itemize}
+}
 
     \begin{figure}[h!]
 	  \begin{center}
@@ -43,6 +81,17 @@ habituáis.
 \clearpage
 
     \subsection{Novanet}
+    \santiagosays{Eu fusionaría todos estes competidores dentro dun mesmo paraguas, de
+      aplicacións web xa existentes, e dentro desa sección enumeralas e contar pros e
+      contras de cada unha; ou incluso distinguir simplemente entre ``old-schoool''
+      (federatio/novanet) (aínda que novanet está mellorando a interface, parece) e cousas
+      novas tipo miLeyenda. Eu creo que non hai moita diferencia entre cada unha delas en
+      particular, pero que si que forman conxuntos distintos de funcionalidades que é
+      interesante distinguir no state of the art}
+
+    \ProTip{Podes utilizar subfigures para agrupar as capturas de algunhas das aplicacións
+      web para empregar menos espacio vertical e maximizar o ancho que ocupan as túas
+      figuras sen que sexan moi grandes no papel.}
 
       Novanet é unha empresa especializada na xestión de competicións de fútbol 
 e o seu producto componse únicamente dunha aplicación web dende a que crear as 
@@ -123,9 +172,10 @@ falta de cobertura nos diversos pavillóns e campos deportivos.
 
     \subsection{Esportics}
 
-    Esportics é unha startup española centrada na xestión de competicións 
-deportivas e enfocada tremendamente cara o tenis e o paddel así como os deportes 
-electrónicos.
+    Esportics é unha startup%
+    \santiagosays[]{Pero o competidor é a startup ou o software? ;-)}%
+    española centrada na xestión de competicións deportivas e enfocada tremendamente cara
+    o tenis e o paddel así como os deportes electrónicos.
 
 A pesar de que a aplicación funciona para diversos deportes, a súa adaptación é bastante 
 forzada en certos menús e a hora de estructurar as competicións.
@@ -149,7 +199,9 @@ tamén pouco intuitivo.
 
     \subsection{Sportngin}
 
-      \todo{citar desde o texto as figuras}
+    \todo{citar desde o texto as figuras} \santiagosays{Presta
+      atención á capitalización. Estou voando e non sei cal é, pero
+      creo recordar que tiña outra letra maiúscula polo medio. Está ben poñerlla. Igual era a \textbf{n}?}
       
     Sportngin é unha solución integral para a xestión deportiva, probablemente un dos 
 proxectos de referencia xa que dispón de aplicacións web e móbil para a xestión e a 
@@ -192,22 +244,45 @@ facilita nin elimina o traballo dos xestores de competicións.
 
   \section{Aplicacións libres no mercado}
   
-    O software libre é un sector en alza na actualidade, os proxectos colaborativos que 
-forman o mundo \emph{Open Source} estanse a impor en múltiples mercados fronte as 
-correspondentes alternativas privativas que adoitan a ser tremendamente costosas.
+  O software libre é un sector en alza na actualidade%
+  \santiagosays[]{Que significa isto? Eu esta frase só a oigo nos telexornais e nunca a
+    entendín XD}, %
+  os proxectos colaborativos que forman o mundo \emph{Open Source} estanse a impor en
+  múltiples mercados fronte as correspondentes alternativas privativas que adoitan a ser
+  tremendamente costosas.%
+  \santiagosays[]{É polo custe? Éo tamén adí noutros mercados? Hai outros factores?}
 
     Mesmo as grandes compañías TIC están a apostar por liberar parcial ou totalmente as 
 súas tecnoloxías e productos, favorecendo un desenvolvemento colaborativo fronte a idea 
-atrasada de secretismo e individualismo do modelo productivo habitual.
+atrasada de secretismo e individualismo do modelo productivo habitual.%
 
-    Concretamente no mundo do deporte é tremendamente complicado atopar algún 
-exemplo de aplicación baseada en software libre e as poucas existentes como 
-\emph{zuluru} ou \emph{phpmysport} atópanse tremendamente atrasadas tanto en 
-funcionalidades como no aspecto visual e por suposto sen ningún tipo de aplicación móbil 
-para facilitar a xestión das actas polo que é importante propor unha alternativa 
-ás aplicacións privativas habituais como é VACmatch Mobile.
+\santiagosays{Eu non estou dacordo con esta frase, pero non sei se é porque opinamos
+  distinto ou porque non a esté entendendo. A miña opinión é que as grandes (Google,
+  Apple) liberan o código do que non é relevante dende o punto de vista diferenciador,
+  pero non comparto a idea de que o secretismo sexa cousa atrasada e do pasado: non vexo
+  a Google liberando o algoritmo do seu motor de busca, nin a Netflix, Apple ou Google
+  liberando os seus respectivos datasets de recomendacións, Siri ou \emph{calquera
+    cousa}, respectivamente. Google liberou o toolkit de Deep Learning (pero non os
+  datos cos que o usan) porque precisamente se outros lles axudan coa base, seguirán
+  sendo os mellores no mercado, porque teñen os mellores segredos igualmente.}
+
+Concretamente no mundo do deporte é tremendamente complicado atopar algún exemplo de
+aplicación baseada en software libre e as poucas existentes como \emph{zuluru} ou
+\emph{phpmysport} atópanse tremendamente atrasadas, tanto en funcionalidades como no
+aspecto visual e por suposto sen ningún tipo de aplicación móbil para facilitar a
+xestión das actas polo que é importante propor unha alternativa ás aplicacións
+privativas habituais como é VACmatch Mobile.
+
+\santiagosays{Tremendamente atrasadas é unha expresión que usas ao longo da memoria
+  bastante, e non é moi formal que digamos. Ademais de que é un xuízo de valor: un texto
+  expositivo desta natureza debería de enfocarse en feitos contrastables todo o posible} %
 
   \section{Solución aberta e adaptable}
+  \santiagosays{Céntraste moito na gratuidade da cousa, cando o interseante do software
+    libre é máis a capacidade de personalización: a alguén vas a ter que pagarlle igual
+    para que o faga, pero se xa hai algo de base, pois tes máis independencia respecto a
+    a quen lle pagas e podes aproveitar o innovado polos demais.}%
+
   Os xestores de competicións habitualmente realizan unha considerable inversión 
 económica para que unha empresa de consultoría lles cree unha aplicación web ou de 
 escritorio a medida para a súa xestión. Algunhas mesmo dispoñen de aplicacións móbiles 
@@ -226,3 +301,7 @@ noutros sistemas de xestión entre os cales se atopa o sistema de VACmatch, unha
 implementación libre para a xestión de competicións.
 
   
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../root"
+%%% End:
