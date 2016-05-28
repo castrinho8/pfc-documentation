@@ -7,121 +7,175 @@
 % Objetivo:                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \lettrine{N}{este} capítulo mostraranse as diversas tecnoloxías que foron empregadas 
-durante o desenvolvemento do proxecto así como ferramentas de xestión e documentáis, 
+  \lettrine{N}{este} capítulo mostraranse as diversas tecnoloxías que foron empregadas
+durante o desenvolvemento do proxecto así como ferramentas de xestión e documentais,
 todas, tecnoloxías Software Libre.
 
+\santiagosays{Confundiume que vai primeiro a metodoloxía pero sin embargo están
+  numerados os ficheiros fonte \texttt{.tex} ao revés}
+
   \section{Linguaxes e frameworks empregados}
-  
-  \todo{Añadir página web de cada tecnología: EJ: ReactJS ([1]) y el link en la 
+
+  \todo[inline]{Añadir página web de cada tecnología: EJ: ReactJS ([1]) y el link en la
 bibliografía}
+\santiagosays{Idealmente, a referencia sería a un libro. Se hai algún
+  libro ou libros que sexan boas referencias, teñen máis relevancia as
+  publicacións formais ca as páxinas web. Salvo que queiras ser un
+  radical que vai contra corrente no asunto, e defender a capa e
+  espada que as autopublicacións no século 21 son publicacións. Se
+  queres facer iso podes incluso poñer unha sección ao respecto
+  explicando que é unha decisión editorial :-)}
+
+\santiagosays{En xeral, partes desta sección deberían de trasladarse
+  ao state of the art, onde se explicarían \emph{que} son, e aquí
+  habería que mencionar \emph{porqué} se empregan as que se decidiron
+  utilizar, porqué teñen sentido e coherencia xuntas, e todo iso. En
+  breve: un capítulo para decir qué hai no mercado; e outro para
+  decir, do que hai, que se escolleu como fundamento, e porqué. Se
+  queres mais interacción sobre isto podemos falalo, claro}
+
+  \santiagosays{Introduce a sección cun miniparágrafo}
 
   \begin{description}
-   \item [ReactJS] React é unha librería de Javascript para a creación de Single Page 
-Aplications (SPAs), permitindo crear aplicacións no frontend de forma sinxela a través de 
+   \item [ReactJS] React\santiagosays[]{Cita requerida} é unha librería de Javascript\santiagosays{Non falas de Javascript ata agora; pode ser que se entenda que é ``coñecemento común'', pero aínda así eu engadiría cita ao estándar (ECMA)} para a creación de Single Page
+Aplications (SPAs), permitindo crear aplicacións no frontend\santiagosays[]{Unha aplicación non ten sempre frontend e backend?} de forma sinxela a través de
 diversos compoñentes que se agrupan e que permiten crear aplicacións multiplataforma.
-   
-   \item [Reflux] É unha implementación da arquitectura Flux impulsada por Facebook e que 
-permite un fío de datos unidireccional, en lugar do bidireccional que é habitual nas 
+
+   \item [Reflux] É unha implementación da arquitectura Flux impulsada por Facebook\santiagosays[]{Impulsada a arquitectura ou Reflux?} e que
+permite un fluxo de datos unidireccional, en lugar do bidireccional que é habitual nas
 aplicacións web.
-    Permite tamén a creación de Stores nas que se mantén o estado das aplicacións e que 
-permite compartir dito estado entra os diversos compoñentes da aplicación.
-   
-   \item [Jest] É unha ferramente sinxela creada sobre o framework de testing 
-para Jasvascript, Jasmine, que facilita a utilización de mocks e a creación de 
+    Permite tamén a creación de Stores nas que se mantén o estado das aplicacións e que
+permite compartir dito estado entra os diversos compoñentes da aplicación.\santiagosays{Non contas moita cousa aquí, para ser un paradigma tan pouco usual hoxe en día, eu creo}
+
+   \item [Jest] É unha ferramente sinxela creada sobre o framework de testing
+para Jasvascript, Jasmine, que facilita a utilización de mocks e a creación de
 tests unitarios.
 
-   \item [Jed (i18n)] Jed é unha ferramenta para facilitar a internacionalización de 
+   \item [Jed (i18n)] Jed é unha ferramenta para facilitar a internacionalización de
 aplicacións Javascript utilizando o estándar Gettext e utilizando unha API moi sinxela.
-   
-   \item [React Router] Unha librería para o enrutado de aplicacións baseadas en ReactJS 
-proveendo unha API sinxela con funcionalidades de gran potencia como a carga preguiceira 
+
+   \item [React Router] Unha librería para o enrutado de aplicacións baseadas en ReactJS
+proveendo unha API sinxela con funcionalidades de gran potencia como a carga preguiceira
 de código ou o enrutado dinámico.
-   
-   \item [Material UI] Un conxunto de compoñentes para React que implementan o Material 
-Design impulsado por Google, unha nova linguaxe visual baseada na representación en 3D 
-dos obxectos que non deben intersecarse se non que a través de sombras para simular 
+
+   \item [Material UI] Un conxunto de compoñentes para React que implementan o Material
+Design impulsado por Google, unha nova linguaxe visual baseada na representación en 3D
+dos obxectos que non deben intersecarse se non que a través de sombras para simular
 diferentes profundidades, os obxectos debe superpoñerse uns sobre os outros.
-   
+
   \end{description}
 
   \section{Bases de datos}
 
+  \santiagosays{Introduce a sección cun miniparágrafo}
+
   \begin{description}
-     \item [PouchDB] Unha base de datos NoSQL baseada en Javascript e inspirada 
-en CouchDB, pensada para facilitar o funcionamento de aplicacións web de forma 
+     \item [PouchDB] Unha base de datos NoSQL baseada en Javascript e inspirada
+en CouchDB, pensada para facilitar o funcionamento de aplicacións web de forma
 offline.
 
-PouchDB permite almacenar os datos localmente no navegador web cando non 
-hay conexión a internet e sincronizar de forma sinxela ditos datos en remoto con 
-CouchDB e outros servidores compatibles.
+PouchDB permite almacenar os datos localmente no navegador web cando non hai
+conexión a internet e sincronizar de forma sinxela ditos datos en remoto con
+CouchDB e outros servidores compatibles.%
+\santiagosays{PouchDB é unha base de datos non relacional \emph{implementada} en
+  Javascript, pero porque non hai outro xeito. Implementa o esquema de
+  replicación de CouchDB, o que a fai moi conveniente para ter unha copia local
+  dos datos remotos, de xeito que permita unha experiencia máis fluida e
+  \emph{seamlessly offline}. Como CouchDB emprega un paradigma distribuido,
+  sincronizar datos dende ou cara unha implementación PouchDB resulta sinxelo.}
 
-   \item [CouchDB] É unha base de datos pensada para web que permite almacenar 
-os datos en formato JSON e acceder aos mesmos a través dun navegador via HTTP, 
-funcionando como unha API Rest.
+\item [CouchDB] \santiagosays[]{Cita requerida} É unha base de datos
+  pensada para web que permite almacenar os datos en formato JSON e
+  acceder aos mesmos a través dun navegador via HTTP, funcionando como
+  unha API REST.\santiagosays{Que é REST? Eso é parte das tecnoloxías.
+    Ademais, non é simplemente unha base de datos pensada para web: é
+    unha base de datos non relacional, orientada a documentos, que
+    implementa o paradigma Map-Reduce para a busca de elementos, dun
+    xeito eficiente para a distribución en cluster/cloud/como lle
+    queiras chamar.}
 
-    Permite gran cantidade de funcionalidades como servir aplicacións 
-directamente desde CouchDB así como un sistema de replicación incremental e de 
-detección de conflictos.
+  Permite gran cantidade\santiagosays[]{Xuízo de valor} de funcionalidades como
+  servir aplicacións directamente desde CouchDB así como un sistema de
+  replicación incremental e de detección de conflictos. \ProTip{En lugar de
+    calificar de ``gran cantidade'' e nomear algunha; cabe describilo como que
+    \emph{ten funcionalidades \textbf{que habitualmente non forman parte dos
+        sistemas de xestión de bases de datos}, como a replicación incremental,
+      a detección de conflitos, ou o acceso mediante unha interface REST aos
+      datos}.}
 
   \end{description}
 
   \section{Estándares de comunicación}
 
+  \santiagosays{Introduce a sección cun miniparágrafo}
+
   \begin{description}
-   \item [JSON] É un formato estándar para o intercambio de datos e que pola súa 
-simplicidade estase a impoñer como formato habitual por exemplo, para a comunicación con 
-APIs Rest e debido a súa similitude coa definición de obxectos en Javascript, permite que 
+   \item [JSON] É un formato estándar\santiagosays[]{Cita requerida} para o intercambio de datos e que pola súa
+simplicidade estase a impoñer como formato habitual por exemplo, para a comunicación con
+APIs Rest e debido a súa similitude coa definición de obxectos en Javascript, permite que
 sexa tremendamente sinxelo traballar con él dende esta linguaxe.
   \end{description}
 
   \section{Repositorios de código}
 
+  \santiagosays{Introduce a sección cun miniparágrafo}
+
   \begin{description}
-   \item [Github] Github é un repositorio de código que se está a convertir no lugar máis 
-importante de publicación de aplicacións Software Libre e que permite aloxar proxectos 
-como o presente, de forma totalmente gratuita.
-  Cómpre destacar que esta é a única ferramenta utilizada para o desenvolvemento do 
-proxecto que non é software libre pero si proporciona unha visibilidade de cara a 
+   \item [GitHub] Github é un repositorio de código que se está a convertir no lugar máis
+importante de publicación de aplicacións Software Libre\santiagosays{En realidade, de código aberto; hai moito software libre en SourceForge aínda, e tamén moito en gitlab; e ten sentido porque estes últimos, ao igual que gitorious, son software libre tamén o propio servidor do servizo}
+como o presente, sen ningún custe.
+  Cómpre destacar que esta é a única ferramenta utilizada para o desenvolvemento do
+proxecto que non é software libre pero si proporciona unha visibilidade de cara a
 comunidade de gran importancia neste tipo de proxectos.
   \end{description}
 
   \section{Ferramentas de xestión}
 
+  \santiagosays{Introduce a sección cun miniparágrafo}
+
   \begin{description}
-   \item [OpenShift] É a plataforma na nube da empresa Red Hat que permite 
-realizar despregamentos de aplicacións de forma sinxela e basada nunha solución software 
-libre.
-   \item [Git] É un sistema de control de versións software libre de gran potencia e 
-utilizado en millóns de proxectos que aporta unha versatilidade enorme ao ser 
+   \item [OpenShift] É a plataforma na nube da empresa Red Hat que permite
+realizar despregamentos de aplicacións de forma sinxela e basada nunha solución software
+libre.\santiagosays[]{E porqué mola? (Engade esto ao final de cada item}
+   \item [Git] \santiagosays[]{Cita requerida} É un sistema de control de versións software libre de gran potencia\santiagosays[]{Que significa potencia?} e
+utilizado en millóns de proxectos que aporta unha versatilidade enorme ao ser
 distribuida, permitindo traballar incluso de forma offline.
-   \item [Gulp] Un sistema que permite a automatización de tarefas durante o 
-desenvolvemento de aplicacións como por exemplo compilar automáticamente o código 
-Javascript escrito na súa última versión á versión máis antiga para que poida ser 
+   \item [Gulp] Un sistema que permite a automatización de tarefas durante o
+desenvolvemento de aplicacións como por exemplo compilar automáticamente o código
+Javascript escrito na súa última versión á versión máis antiga para que poida ser
 executada por calquera navegador web.
-   \item [Redmine] É unha ferramenta de xestión de proxectos flexible, multiplataforma e 
-software libre con diversos plugins para facilitar a planificación de iteracións e 
+   \item [Redmine] É unha ferramenta de xestión de proxectos flexible, multiplataforma e
+software libre con diversos plugins para facilitar a planificación de iteracións e
 traballar con metodoloxías áxiles de desenvolvemento.
-   \item [Travis CI] É unha ferramenta de integración continua que permite automatizar a 
-execución de tests ou o despregamento automático de código. Ademáis dispón dunha 
-integración con Github polo que resulta moi sinxelo automatizar estas tarefas.
-   \item [Atom] Un editor de texto software libre deseñado inicialmente por Github de 
-gran potencia e extensibilidade gracias a un sinxelo sistema de plugins. Ademáis é un 
-editor impulsado por Facebook (creadores de ReactJS) para facilitar o traballo con esta 
-tecnoloxía.
+   \item [Travis CI] É unha ferramenta de integración continua que permite automatizar a
+execución de tests e o despregamento automático de código. Ademais intégrase con GitHub de xeito que pode executarse automaticamente ao se subiren cambios novos, polo que resulta moi sinxelo automatizar estas tarefas.
+   \item [Atom] Un editor de texto software libre deseñado inicialmente por GitHub de
+gran\santiagosays[]{Xuízo de valor} potencia\santiagosays[]{De novo, que é potencia?} e extensibilidade gracias a un sinxelo sistema de plugins. Ademáis é un
+editor impulsado por Facebook (creadores de ReactJS) para facilitar o traballo con esta
+tecnoloxía.\santiagosays{Ademais, no ecosistema ReactJS, existen componentes para facilitar a edición, elaboradas polos mesmos autores ca o propio React}
 
   \end{description}
 
   \section{Ferramentas documentáis}
 
+  \santiagosays{Introduce a sección cun miniparágrafo}
+
   \begin{description}
-   \item [LaTeX] Un sistema para a composición de documentos que inclúe todo tipo de 
-funcionalidades para a edición de textos científicos ou técnicos, moi adecuado para este 
-proxecto e que xenera documentos de gran calidade.
-   \item [Dia] É unha aplicación para a creación de diagramas entre os que se atopan os 
-diagramas UML e que permite a exportación dos mesmos a imáxenes vectoriais.
+  \item [LaTeX] Un sistema para a composición de documentos que inclúe
+    diversas funcionalidades para a edición de textos científicos
+    ou técnicos, moi adecuado para este proxecto e que xenera
+    documentos de gran calidade.\santiagosays[]{De novo, gran calidade
+      é un xuízo de valor.}%
+    \santiagosays{Para que se usou? Para a elaboración desta memoria? Escríbeo ;-) \\
+      Nun futuro se queres ter manual de usuario da aplicación, en que
+      se vai a facer, en LaTeX? Texinfo? Comentarios no código? :-)}
+   \item [Dia] É unha aplicación para a creación de diagramas entre os que se atopan os
+diagramas UML e que permite a exportación dos mesmos a imaxes vectoriais.
   \end{description}
 
-  
-  
-  
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../root"
+%%% End:
