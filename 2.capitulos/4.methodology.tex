@@ -10,8 +10,32 @@
   \lettrine{N}{este} capítulo imos analizar as diversas metodoloxías utilizadas para a 
 xestión do proxecto e explicar a adaptación das mesmas que finalmente se utilizóu.
 
+\santiagosays{Tes que introducir o capítulo con \emph{moooarrr} cousas. (E.g.,
+  neste capítulo falaremos de X na sección Y, onde se introduce bla bla e porque
+  nos resulta relevante. A continuación, na sección Z falaremos de X+1, outra
+  cousa interesante para os nosos propósitos. Déixoche un esbozo, a ver que che parece.}
+
+O proceso de enxeñería comeza coa elección dunha metodoloxía de traballo que
+guíe o proceso de desenvolvemento. Ademais, dentro da iniciativa empresarial da
+que forma parte o proxecto, ten sentido falar tamén de metodoloxías ao respecto,
+e tratamos de seguir a filosofía de Lean Startup, que introduce este capítulo.
+Respecto á parte máis técnica de Enxeñería do Software, existen diversas
+metodoloxías ampliamente probadas e das que se demostrou a súa eficacia. Para a
+elaboración deste proxecto tivéronse en conta diversas metodoloxías: pola parte
+do desenvolvemento software tívose especial consideración nas propostas pola
+vertente áxil de desenvolvemento \santiagosays[]{Referencia a algún libro de
+  aglie programming}, e centrámonos nas indicacións para Extreme Programming,
+que introducimos na Sección~\ref{todo}, e Scrum, que se expón na
+Sección~\ref{todo}. Despois de introducir brevemente cada unha destas,
+concluímos o capítulo cunha exposición da nosa interpretación sobre as mesmas, e
+que corresponde á metodoloxía que se seguiu para o desenvolvemento do proxecto.
+
+\ProTip{Cando referencies unha sección en \LaTeX, faino escribindo explicitamente %
+  Sección\~{~}\textbackslash ref\{blah\} (ver ficheiro tex). %% <<-- Sección~\ref{blah}
+  Se non o fas así, \LaTeX pode romper o parágrafo entre Sección e o número, e eso non queda nada ben estilísticamente.}
+
   \section{Lean Startup}
-  Lean Startup é unha metodoloxía para abordar o lanzamento de negocios e 
+  Lean Startup \santiagosays[]{cita requerida} é unha metodoloxía para abordar o lanzamento de negocios e 
 produtos a través da validación, a experimentación e a iteración no lanzamento 
 dos mesmos para acortar o ciclo de desenvolvemento.
 
@@ -32,31 +56,33 @@ producto e implicando a dito cliente no desenvolvemento de dito produto.
 baseada na integración do cliente no desenvolvemento así como na simplicidade 
 do código, apostando por facer cousas sinxelas e ter que facer un pequeno 
 traballo por modificalo se é preciso, fronte a facer un gran traballo para 
-quizáis nunca utilizalo.
+quizáis nunca utilizalo.\santiagosays{Frase demasiado longa como introducción. Esto tes que partilo en dúas, machiño; e a primeira desas frases, ponlle unha cita a un libro, anda ;-)}
 
   As entregas funcionáis son frecuentes e outras características como a 
 importancia de introducir a programación en parellas para reducir o número de 
 erros que se producen ao programar.
 
-  Por último aboga por introducir o TDD (Test Driven Development), 
+  Por último aboga por introducir o TDD (Test Driven Development) \santiagosays[]{Seguro que hai libros escritos sobre isto que hai que citar}, 
 implementando primeiro os tests, verificar que fallan e a continuación 
 implementar o código que fai que pasen os tests.
   A idea é que os requisitos sexan convertidos a probas e de este modo cando os 
 tests se pasen, poderemos garantizar que o código cumple os requisitos.
 
   \section{Scrum}
-  Scrum tamén é unha metodoloxía incremental de desenvolvemento cunha serie de 
+  Scrum\santiagosays[]{Cita requerida} tamén é unha metodoloxía incremental de desenvolvemento cunha serie de 
 roles definidos para o proceso, cada un coas súas responsabilidades e que divide 
 o proxecto en varios \emph{Sprints} que son ciclos de desenvolvemento.
 
-  Cada un de eles ten unha duración de entre unha e catro semanas e que é 
+  Cada un de eles ten unha duración de entre unha e catro semanas\santiagosays[]{\scriptsize Eu creo que esto é totalmente personalizable; igual mellor dicir que ``suele ser'', ou que esta plantexada para ciclos curtos, sen especificar duración, ou entre parénteses} e que é 
 definida polo equipo e cada unha das cales proporciona un incremento de 
 software entregable.
 
   A totalidade das tarefas do proxecto atópanse definidas e priorizadas no 
-\emph{Product Backlog} e para cada sprint selecciónanse aquelas que determinarán 
+\emph{Product Backlog}\santiagosays[]{Definir con máis precisión} e para cada sprint selecciónanse aquelas que determinarán 
 o \emph{Sprint Backlog}, que serán implementadas durante dito sprint e que non 
 poden variar ata rematar.
+
+\santiagosays{Xa sei que é o que queres contar, pero es que contalo dun xeito no que esteas definindo as cousas, non introducir \emph{keywords} que hai que entender por contexto. O lector que non saiba o que é Scrum ten que quedar cunha idea razoable do que é para entender porqué che interesa.}
 
   Durante todo o ciclo de traballo realízanse reunións diarias para comprobar o 
 estado do proxecto así como outras ao fin e ao comezo dos sprints co fin de 
@@ -75,8 +101,10 @@ coñecer os problemas e a súa prioridade a hora de resolvelos.
 
     Do mesmo modo realizáronse dous prototipos, un primeiro únicamente 
 con plantillas HTML para testear a organización da interfaz de usuario e un 
-segundo xa funcional para comprobar a resposta dos usuarios reais ante o seu 
-funcionamento.
+segundo xa funcional para comprobar a resposta dos usuarios reais %
+\santiagosays[]{Se hai usuarios reais, ¿hai tamén usuarios que non o
+  son? Que quere dicir usuarios reais?} %
+ante o seu funcionamento.
 
     \subsection{Sprints con backlog adaptable}
     A organización do desenvolvemento organizouse de xeito moi similar a idea 
@@ -91,17 +119,17 @@ previsións según o aprendido nos anteriores.
 
   \todo{falar do backlog que se adapta durante o sprint, non como en scrum que 
 é fixo}
-    \subsection{Reunións semanáis}
+    \subsection{Reunións semanais}
     Todas as semanas faise unha reunión de 30/45 minutos de duración na que 
 analizar o realizado na semana anterior e comprobar o seguimento da iteración 
-co fin de atopar desviacións e correxilas.
+co fin de atopar desviacións e corrixilas.
 
     Cando unha reunión semanal coincide co fin de un sprint, dita reunión 
 sirve para realizar a planificación do seguinte sprint de xeito moi similiar as 
 reunións de sprint que se realizan en \emph{Scrum}.
 
     \subsection{Reunións diarias}
-    Ao comezar o día realízase unha análise de uns 10 minutos de duración para 
+    Ao comezar o día realízase unha análise duns 10 minutos de duración para 
 revisar o realizado no día anterior e planificar de forma máis concreta o que 
 se vai facer ese mesmo día.
 
@@ -113,21 +141,23 @@ unha serie de pequenos entregables en cada iteración.
 pero non todas son versións entregables reais para ser postos en producción.
 
     Durante o desenvolvemento producíronse 3 entregas (\emph{releases}) 
-totalmente funcionáis, a primeira foi un prototipo, a segunda foi a versión 
+totalmente\santiagosays[]{Totalmente todas? Entón porqué houbo tres?} %
+ funcionais, a primeira foi un prototipo, a segunda foi a versión 
 real do proxecto e a terceira incorporóu tests e diversas características para 
 asegurar unha primeira versión estable.
 
     \subsection{Simplicidade}
-    Utilizouse o principio de simplicidade que promove \emph{eXtreme 
-Programming} durante todo o desenvolvemento baixo a máxima de implementar 
-únicamente o imprescindible en cada momento, sempre pensando en programar para 
-hoxe e non para mañá.
+    Utilizouse o principio de simplicidade que promove \emph{eXtreme Programming}
+    durante todo o desenvolvemento baixo a máxima de implementar únicamente o
+    imprescindible en cada momento, sempre pensando en programar para hoxe e non para
+    mañá.%
+    \santiagosays[]{Jajaja, gústame a frase (borra este comentario cando o leas)}
 
     A idea fundamentase en realizar refactorizacións de código para engadir 
 novas funcionalidades a medida que son necesarias en lugar de invertir 
 demasiado tempo na planificación e implementación de funcións que se supoñen 
 necesarias e, algunhas das cales, é probable que non sexan necesarias 
-finalmente.
+finalmente.\santiagosays{Hei, esto deberías de argumentalo con algo máis de detalle. Pensa en quen o vai a ler!}
 
     \subsection{Tests}
     A importancia de creación de tests automatizados está totalmente 
@@ -143,24 +173,34 @@ realizando probas unitarias nos servicios utilizados.
     \subsection{Fluxo de traballo}
     O fluxo de traballo utilizado dende o primeiro día trata de simular o 
 traballo diario de equipo y permite controlar a evolución do código de xeito 
-máis ordenado.
+máis ordenado.\santiagosays{Non dis nada de como se xestiona o deseño vs. implementación. Non houbo deseño? Foi todo anterior á implementación? É interesante decilo, porque aquí dis como se implementa unha funcionalidade, pero non como se deseñou nin que pasou para chegar á implementación. Code \& Fix? :P}
     
     Unha nova funcionalidade ou erro son resoltos nunha nova rama 
-independente e creada a partir de \emph{master}, tratando que todas estas novas 
+independente e creada a partir de \emph{master},\santiagosays[]{\footnotesize, que é a rama principal/na que están as versión estables/as de desnvolvemento..?} tratando que todas estas novas 
 funcionalidades sexan independentes entre si.
 
-    Así mesmo tratase de que todos os \emph{commits} sexan o máis independentes 
-posibles e todos funcionáis, evitando ter algún que non compile ou que non pase 
-os tests.
+Así mesmo tratase de que todos os \emph{commits} sexan o máis
+independentes~\santiagosays[fancyline]{queres dicir autocontidos?} posible e todos
+funcionais\santiagosays{Os commits non son funcionais. Se o que queres dicir é que
+  non rompen funcionalidades, ou que se tratan de evitar regresións, e que tras cada
+  un o código siga sendo entregable... podes dicir iso, ou ``de xeito que ningún
+  cambio depende doutro cambio \emph{futuro}''}, evitando ter algún que non compile
+ou que non pase os tests.
 
-    Posteriormente realizase unha \emph{Pull Request} a través do mecanismo que 
-proporciona o repositorio de código Github, esperando a unha revisión de código 
-para ser integrado na rama principal do proxecto.
+Posteriormente realizase unha \emph{Pull Request}\santiagosays[]{Define brevemente} a
+través do mecanismo que proporciona o repositorio de código GitHub, esperando a unha
+revisión de código para ser integrado na rama principal do proxecto.
 
-    Cada certo tempo revísase as \emph{Pull Requests} abertas, analízase o 
-codigo e se todo é correcto, aceptase para integrar na rama principal.
+    Cada certo tempo revísanse as \emph{Pull Requests} abertas, analízase o 
+codigo e se todo é correcto, acéptase para integrar na rama principal.
 
     Dende a introducción de tests no proxecto, todo código subido ao 
-repositorio é analizado a través dun sistema de integración continua que 
+repositorio é analizado a través dun sistema de integración continua\santiagosays[]{Oh, non contas nada de Travis?} que 
 comproba se os cambios engadidos pasan os tests ou non, e avisan por correo 
 electrónico do resultado.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../root"
+%%% End:
