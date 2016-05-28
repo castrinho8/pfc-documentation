@@ -1,7 +1,7 @@
 \chapter{Planificación e seguimento}
 \minitoc
-\label{chap:Planificacioneseguimento}
-\vspace{0.5cm}
+% \label{chap:Planificacioneseguimento}
+% \vspace{0.5cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Objetivo:                        %
@@ -9,36 +9,65 @@
 
   \lettrine{E}{n} este capítulo...
 
-  \section{MVP}
-  Validación de usuario con tests de laboratorio sobre versión sin funcionalidade
-  1 mes
+  \section{VACmatch validación de negocio. Agosto 2015 - Outubro 2015}
+  blabla empresa, clientes, GOF y Yuzz, torneo de testing
 
-  \section{MVP funcional}
-  Creación de APP sinxela para tests de campo reais.
-  1 mes
-    \paragraph{Planificación temporal}
-    \paragraph{Definición da iteración}
-    \paragraph{Feedback}
-    \paragraph{Tarefas e seguimento}
-  
-  \section{1ª iteración. Creación do proxecto}
-  Aprender PouchDB, deseño da estructura e arquitectura, deseño modelo de datos, listar 
-actas.
-  
-  \section{2ª iteración. Xestión de actas}
-  Ver o resumo dun acta xenérica, cronómetro e control do tempo 
-  
-  \section{3ª iteración. Eventos}
-  Xestión de eventos xenérica, sport events e control events, actualizar resultados na 
-acta, listar e borrar eventos
-  Comezo da memoria
-  
-  \section{4ª iteración. Xestión de usuarios e creación e sinatura de actas}
-  Engádense primeros test de servicios
-  Memoria, 3 primeros apartados
-  
-  \section{5ª iteración. Internacionalización e usabilidade}
-  Finalización da memoria, revisión dos menús, i18n e corrección de erros.
+    \subsection{MVP}
+    Validación de usuario con tests de laboratorio sobre versión sin funcionalidade
+    1 mes
 
-  \section{6ª iteración. Backend remoto e corrección de erros}
-  
+    \subsection{MVP funcional}
+    Creación de APP sinxela para tests de campo reais.
+    2 mes
+      \paragraph{Planificación temporal}
+      \paragraph{Definición da iteración}
+      \paragraph{Feedback}
+      \paragraph{Tarefas e seguimento}
+
+  \section{VACmatch desenvolvemento de produto. Outubro 2015 - Xaneiro 2016}
+  Ronda de inversión, incrición cusl, blog vacmach
+
+    \subsection{1ª iteración. Creación do proxecto}
+    Aprender PouchDB, deseño da estructura e arquitectura, deseño modelo de datos, listar 
+  actas.
+
+    \subsection{2ª iteración. Xestión de actas}
+    Ver o resumo dun acta xenérica, cronómetro e control do tempo 
+
+    \subsection{3ª iteración. Eventos}
+    Xestión de eventos xenérica, sport events e control events, actualizar resultados na 
+  acta, listar e borrar eventos, convocar xogadores,, listar eventos
+
+    \subsection{4ª iteración. Xestión de usuarios e creación offline de actas}
+    login, logout, metese staff, crear actas offline
+    Memoria, 3 primeros apartados
+
+    \subsection{5ª iteración. Sinaturase}
+    Sinaturas con PIN, engadir incidencias
+    do sprint anterior: crear usuario, crear árbitro ao crear user
+
+  \section{VACmatch de empresa a comunidade. Xaneiro 2016 - Maio 2016}
+    \subsection{6ª e 7ª iteración. Optimización e melloras}
+    Refactor de servizos creando un xenérico, crear clases para cada entidade e simplificar o código
+    creación aleatoria de ids
+
+    \subsection{8ª iteración. Testing e integración continua}
+    Tests servicios, travis e confirmar contrasinal e PIN
+
+    \subsection{9ª e 10ª iteración. Inxección de dependencias}
+    Corrección de erros na CI, engadir textos de error, creación de snackbar para erros e comunicacións
+    Inxección de dependencias -> motivo dependencias circulares
+    Estados no report: pasar de isFinished -> Ready, Started e Finished
+
+    \subsection{Release 0.2.0: Usabilidade en menús}
+    Links en menus e engadir información e documentación en github (instalación, DB, etc)
+
+    \subsection{Release 0.2.1: I18n e app híbrida}
+    React intl, cordova, documentación instalación en Android
+
+    \subsection{Release 0.2.2: Imáxe corporativa e revisión de erros}
+    Imaxe corporativa VACmatch, bugfix
+    Memoria a saco
+
+    \subsection{Release 0.3.0: Usabilidade móbil e entrega continua}
+    Por cordova: dialogos -> ventás, transición carga, migrar taiga.io, Travis + Docker

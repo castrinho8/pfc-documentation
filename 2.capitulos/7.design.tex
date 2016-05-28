@@ -1,7 +1,7 @@
 \chapter{Deseño e implementación}
 \minitoc
-\label{chap:Desenoeimplementacion}
-\vspace{0.5cm}
+% \label{chap:Desenoeimplementacion}
+% \vspace{0.5cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Objetivo:                        %
@@ -15,36 +15,67 @@
     Componentes, actions, stores...
     \subsection{Fluxo das aplicacións}
     Explicación práctica do fluxo
+    \subsection{App híbrida con Apache Cordova}
+
     \subsection{Estructura do código}
 
-  \section{Interface gráfica}
-  Estructura a nivel de deseño da aplicación. Reutilización de compoñentes xenéricos.
-
-  \section{Unhosted APP}
+  \section{PouchDB e funcionamento offline}
   Creación de actas offline e de xogadores
 
-  \section{Inicio e fin do partido}
-  Non se poden engadir eventos ata o de inicio pero si despois do fin...
-  
-  \section{Deporte}
+  \section{Interface gráfica e usabilidade}
+  Estructura a nivel de deseño da aplicación. Reutilización de compoñentes xenéricos.
+
+    \subsection{Elementos comúns}
+
+      \subsubsection{Menú lateral esquerdo}
+      Cómo se estructura e se engaden novos elementos.
+
+      \subsubsection{Enlaces do menu superior dereito}
+      Cómo se estructura e se engaden novos.
+
+      \subsubsection{Información e axustes}
+
+      \subsubsection{SnackBar}
+      Para xestión de erros
+
+    \subsection{Listado de actas}
+
+
+    \subsection{Acta}
+
+      \subsubsection{Convocar xogadores}
+
+      \subsubsection{Inicio e fin do partido}
+      Non se poden engadir eventos ata o de inicio pero si despois do fin...
+
+      \subsubsection{Cronómetro}
+
+      \subsubsection{Tipos de eventos}
+    Control o de deporte
+      \paragraph{Eventos de control}
+      \paragraph{Eventos de deporte}
+        \subparagraph{Eventos de puntuación (Score events)}
+        Que actualizan tamén a acta e o estado da aplicación.
+
+    \subsection{Finalización do encontro}
+
+      \subsubsection{Incidencias}
+
+      \subsubsection{Sinatura con PIN}
+
+  \section{Multideporte}
   Almacénase nunha Store e compártese xa que ten a lóxica das accións que dependen do 
-deporte como os eventos que poden utilizarse.
-  
+  deporte como os eventos que poden utilizarse.
+
   \section{Redeseño da DB}
   API de VACmatch ten unha BD relacional e tívose que realizar un redeseño para a DB no 
 móbil.
-  
-  \section{Enlaces do menu superior dereito}
-  Cómo se estructura e se engaden novos.
 
-  \section{Tipos de eventos}
-  Control o de deporte
-    \subsection{Eventos de control}
-    \subsection{Eventos de deporte}
-      \subsubsection{Enventos de puntucación (Score events)}
-      Que actualizan tamén a acta e o estado da aplicación.
+  \section{I18n}
 
-  \section{Resolución de conflictos???}
-  Aplicación mobil offline con conflictos a resolver
+  \section{Injección de dependencias}
+  Dependencias circulares entre servicios.
 
-  \section{Integración con VACmatch}
+  \section{Integración continua}
+  Jest y Travis CI
+
