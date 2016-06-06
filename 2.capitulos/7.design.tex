@@ -104,7 +104,7 @@ Action.
 
      Vexamos un exemplo práctico:
 
-     \begin{lstlisting}
+     \begin{lstlisting}[frame=single]
       let TextActions = Reflux.createActions([
         "updateText"
       ])
@@ -114,7 +114,7 @@ Action.
 escoite as TextActions e que implemente unha función onUpdateText que será a 
 que reciba o novo valor e actualizará o estado.
 
-     \begin{lstlisting}
+     \begin{lstlisting}[frame=single]
         let TextStore = Reflux.createStore({
           listenables: TextActions,
           init: function () {
@@ -144,7 +144,7 @@ o estado e React renderice de novo, únicamente o que cambiou.
 
 
 
-     \begin{lstlisting}
+     \begin{lstlisting}[frame=single]
       let EndReport = React.createClass({
         mixins: [
           Reflux.connect(TextStore, 'text')
@@ -295,46 +295,334 @@ engadir os ficheiros da aplicación, as plataformas para as que se desexe xerar
 o proxecto e construilo.
 
   \section{Interface gráfica e usabilidade}
-  Estructura a nivel de deseño da aplicación. Reutilización de compoñentes xenéricos.
+  A importancia da interface gráfica en este proxecto é crucial, debido a que a 
+aplicación será utilizada por persoas de un amplísimo rango de idades, a 
+usabilidade é o valor máis importante.
+
+  A nivel de deseño a aplicación separase en catro grandes bloques:
+
+  \begin{figure}[h!]
+    \begin{center}
+    \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+    \caption{Estructura da aplicación gráficamente.}
+    \end{center}
+  \end{figure}
 
     \subsection{Elementos comúns}
+    Para facilitar o desenvolvemento da aplicación creáronse varios 
+compoñentes de React xenéricos que permiten realizar tarefas comúns a múliples 
+partes da aplicación e polo tanto que son utilizados dende outros compoñentes 
+de React.
 
       \subsubsection{Menú lateral esquerdo}
-      Cómo se estructura e se engaden novos elementos.
+      É o menú principal da aplicación e que se mostra ao pulsar no botón 
+superior esquerdo da aplicación dende a maior parte de vistas da aplicación.
+
+      Este menú desplegable mostra actualmente o logotipo de VACmatch e unha 
+serie de enlaces entre os que se atopan as páxinas de configuración e de 
+''acerca de``.
+
+      Para xestionar os enlaces que se mostran en cada páxina de forma 
+internacionalizada e para permitir dispoñer dos elementos nun sitio 
+centralizado creouse o compoñente ''LeftMenuItems''.
+      Este compoñente contén varias listas con items para introducir dentro do 
+menú lateral esquerdo e que se poden editar ou engadir outras se é 
+preciso.
+
+      Utilizase tamén a ``MenuStore'' para xestionar os elementos que se atopan 
+en cada momento no menú e pódese utilizar a Action ``setLeftMenu'' para 
+modificar os elementos que o compoñen en calquera momento, por exemplo, ao 
+entrar en unha nova vista.
+
+      \begin{figure}[h!]
+        \begin{center}
+        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \caption{Menú lateral esquerdo.}
+        \end{center}
+      \end{figure}
 
       \subsubsection{Enlaces do menu superior dereito}
-      Cómo se estructura e se engaden novos.
+      O funcionamento de este menú é moi similar ao anterior só que este 
+non dispón de compoñente propio e únicamente é preciso chamar a Action 
+``setRightMenu'' para colocar a listaxe cos novos elementos a mostrar no menú 
+desplegable.
+
+      A función debe recibir unha lista de obxectos que deben contar cos 
+seguintes atributos:
+
+      \begin{description}
+       \item [text] Texto a mostrar polo item.
+       \item [url] Url a donde ir ao facer click no botón.
+       \item [callback] Función de callback a executar unha vez se 
+redirixa a aplicación a url indicada (Opcional).
+      \end{description}
+
+      \begin{figure}[h!]
+        \begin{center}
+        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \caption{Menú desplegable dereito.}
+        \end{center}
+      \end{figure}
+
 
       \subsubsection{Información e axustes}
+      Toda aplicación debe conter un apartado de información sobre a mesma, e 
+en este caso móstrase ademáis as diversas redes sociais do proxecto e o 
+repositorio de código en GitHub para que calquera poida contribuir ao proxecto.
+
+      Por outro lado tamén se ten en conta que toda aplicación debe ser 
+personalizable en certa medida, de momento non se dispón de opcións máis ca 
+cambiar de idioma pero cando exista a necesidade de incorporar 
+novos elementos de configuración, este será o apartado onde os usuarios poderán 
+modificar ditas opcións.
+
+      \begin{figure}[h!]
+        \begin{center}
+        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \caption{Ventanas de información e axustes.}
+        \end{center}
+      \end{figure}
 
       \subsubsection{SnackBar}
-      Para xestión de erros
+      Inicialmente xurdíu a necesidade de comunicarlle ao usuario os erros que 
+se producen na aplicación, casos concretos como introducir un usuario 
+incorrecto ou tratar de eliminar un evento de comezo de partido antes de 
+eliminar o de fin do mesmo, deben mostrar un aviso ao usuario.
+
+      É por iso que se decidíu crear unha ``SnackBar'', unha pequena barra que 
+xurde a modo de aviso na parte inferior da pantalla durante uns segundos para 
+mostrar información.
+
+      Inicialmente pensouse para mostrar os erros pero tamén resulta de 
+utilidade a hora de mostrarlle outra información ao usuario como cando un 
+evento é engadido correctamente.
+
+      \begin{figure}[h!]
+        \begin{center}
+        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \caption{SnackBar para informar ao usuario.}
+        \end{center}
+      \end{figure}
+
+      \subsubsection{Autenticación}
+      A autenticación é fundamental en esta aplicación xa que únicamente os 
+usuarios con acceso poden crear ou modificar actas, neste contexto foi preciso 
+crear un compoñente de autenticación que se encargue de realizar esta tarefa de 
+comprobar se o usuario iniciou sesión na aplicación, sempre que se carguen os 
+compoñentes.
+
+      Unha clase sinxela que deben extender aqueles compoñentes que so poidan 
+ser accedidos se o usuario está autenticado, o ``AuthenticatedComponent'' e que 
+redirixe a aplicación a páxina de iniciar sesión en caso de non poder atopar un 
+usuario na sesión.
+
+    \begin{lstlisting}[frame=single, caption=Compoñente de autenticación.]
+export default (ComposedComponent) => {
+  let AuthenticatedComponent = React.createClass({
+    mixins: [
+      Reflux.connect(AuthStore, 'auth'),
+      History
+    ],
+
+    componentWillMount: function (transition) {
+      if (config._env !== 'development') {
+      // This method is called before transitioning to this component.
+      // If the user is not logged in, we’ll send him or her to the Login page.
+        if (!AuthStore.isLoggedIn()) {
+          this.history.pushState(null, urls.login.show)
+        }
+      }
+    },
+
+    render: function () {
+      return (
+        <ComposedComponent
+        {...this.props} />
+      )
+    }
+  })
+  return AuthenticatedComponent
+}
+    \end{lstlisting}
+
+    Ao mesmo tempo, este compoñente permítenos aportar unha funcionalidade 
+diferente en caso de atoparnos en modo ``desenvolvemento'', saltando a 
+comprobación de se o usuario ten sesión iniciada e permitíndonos acceder a 
+calquera páxina sen ter que iniciar sesión cada vez que se recarga a páxina.
+
+      \subsubsection{Lista de tabs}
+      \todo{Revisar titulo e definición de lapelas}
+      Durante o desenvolvemento percatámonos de que é habitual a necesidade de 
+utilizar unha lista de elementos divididos en varias lapelas, tanto á hora de 
+mostrar a lista de xogadores dos equipos como a hora de asinar un acta ou 
+engadir novos eventos.
+
+      É por isto que se creou un compoñente xenérico que permite incorporar 
+unha lista de lapelas e unha lista de elementos para cada unha de elas, 
+xenerando de xeito sinxelo e xenérico estas vistas xa que é posible 
+pasarlle calquera tipo de elemento de tipo Item a esta lista.
+
+    \subsection{Iniciar sesión}
+    Aquí podemos atopar a páxina inicial da aplicación que mostra a 
+posibilidade de que un usuario da aplicación poidan iniciar sesión cos seus 
+datos de acceso así como, pulsando o botón de rexistro, pode crearse un novos 
+usuario dentro da aplicación que lle permita crear actas de xeito manual.
+
+    Entre os múltiples parámetros que o usuario pode cubrir atópase un código 
+PIN que lle permitirá asinar as actas dos encontros que arbitre.
+
+    Cómpre mencionar que, aparte das páxinas de configuración da aplicación e 
+de ``acerca de'', esta é a única vista accesible para usuarios sen autenticar e 
+calquera intento de acceso a algunha de esas páxinas redirecionará ao usuario a 
+esta páxina de inicio de sesión.
+
+      \begin{figure}[h!]
+        \begin{center}
+        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \caption{Vista de inicio de sesión.}
+        \end{center}
+      \end{figure}
 
     \subsection{Listado de actas}
+    En esta sección poderemos ver a lista de actas que un árbitro ten 
+asignadas, divididas en dúas lapelas, por un lado as de próximos partidos a 
+arbitrar e por outro aquelas nas que o encontro xa rematóu e que non é habitual 
+que sexan accedidas.
 
+    Cada un dos elementos que se mostra permítenos modificar a información 
+básica da acta, tanto o nome dos equipos como o lugar de celebración ou a data 
+por se é preciso e incluso se podería eliminar a acta e todos os elementos 
+que a compoñen se é preciso.
+
+    Ademáis, esta páxina danos a opción de engadir unha nova acta se é preciso, 
+un caso fundamental xa que por múltiples razóns poderíase dar o caso de que a 
+aplicación de un árbitro non sincronice as súas actas coas existentes na base 
+de datos da federación, polo que o árbitro debe poder crear un acta baleira de 
+xeito manual incluso sen ter conexión a internet.
+
+      \begin{figure}[h!]
+        \begin{center}
+        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \caption{Listado de actas.}
+        \end{center}
+      \end{figure}
 
     \subsection{Acta}
-      Falar do campo primario e secundario.
+    Esta é a parte central da aplicación, con total seguridade será o lugar 
+onde os usuarios pasarán a gran maioría do seu tempo de uso da aplicación xa 
+que é o punto central do desenvolvemento dun partido.
+
+    A acta dun encontro deportivo é un elemento con gran cantidade de 
+información e que pode ser visualizada sen apenas esforzo xa que se atopa 
+toda representada únicamente en unha folla de papel.
+
+    É por iso que dende o primeiro momento se tiña claro que había que tratar 
+de manter esa sinxeleza de uso pero, evidentemente, era imposible acceder a 
+toda esa información en unha sola vista dentro de un soporte de un tamaño tan 
+pequeno como é un teléfono móbil.
+
+    Entón o enfoque foi un pouco diferente e tratouse de facer que o proceso de 
+cubrir un acta resultase o máis interactivo posible, mostrando na pantalla 
+central únicamente a información indispensable para o árbitro que está a 
+cubrila.
+
+    Finalmente móstranse os nomes dos equipos que están a competir con un 
+enlace para ver os seus xogadores, dóus campos de resultados, un 
+cronómetro, un botón de edición, un botón para mostrar os eventos que 
+ocorreron e os diversos eventos que poden ser utilizados para este encontro.
+
+    \begin{figure}[h!]
+      \begin{center}
+      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+      \caption{Vista principal de un acta.}
+      \end{center}
+    \end{figure}
 
       \subsubsection{Convocar xogadores}
+      Nas accións habituais que debe realizar un árbitro, habitualmente o 
+primeiro paso é cubrir no papel os nomes dos xogadores que se atopan presentes 
+no encontro coas fichas identificativas de cada un de eles aporta.
+
+      Como o obxectivo é eliminar o papel e simplificar o traballo do árbitro 
+e da federación, a acta do encontro contén todos os xogadores que 
+se atopan inscritos no equipo correspondente coa sua foto polo que xa non son 
+precisas as fichas en papel de cada un de eles e o árbitro non ten que escribir 
+os nomes dos integrantes dos equipos, se non que únicamente debe seleccionar 
+cales se atopan no campo.
+
+      Tamén ten a posibilidade de editar o dorsal do xogador para este encontro 
+en concreto xa que en algunhas competicións é habitual que cambien de camiseta 
+segundo o partido.
+
+      Por último existe a opción de engadir un novo xogador de xeito 
+manual, útil para o caso no que o árbitro teña que crear un acta manualmente ou 
+para cando un novo xogador é engadido a un clube pero non é dado de alta na 
+aplicación a tempo, e se o árbitro accede, este pode ser engadido a acta de 
+xeito manual e competir sen problemas
+
+    \begin{figure}[h!]
+      \begin{center}
+      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+      \caption{Seleccionar xogadores presentes no encontro.}
+      \end{center}
+    \end{figure}
 
       \subsubsection{Inicio e fin do partido}
-      Non se poden engadir eventos ata o de inicio pero si despois do fin...
+      O seguinte paso a hora de xestionar a acta dun encontro é indicar cando 
+comeza o mesmo, para isto disponse de un botón que só se mostra cando non 
+comezou aínda o mesmo e que se encarga de introducir un evento de comezo.
 
-      \subsubsection{Cronómetro}
+      En este momento atoparase dispoñible o boton que permite arrancar e deter 
+o \textbf{cronómetro} co fin de poder xestionar o encontro de xeito interactivo 
+e que todos os eventos introducidos, leven incorporado o momento no que se 
+produciron.
 
-      \subsubsection{Tipos de eventos}
-    Control o de deporte
-      \paragraph{Eventos de control}
-      \paragraph{Eventos de deporte}
-        \subparagraph{Eventos de puntuación (Score events)}
-        Que actualizan tamén a acta e o estado da aplicación.
+      Non é obrigatorio utilizar o cronómetro polo que os eventos poden ser 
+engadidos en calquera momento e non se almacenará o minuto no que se produciron.
+
+      Do mesmo xeito, pódese engadir un evento de fin de encontro nunha das 
+opcións desplegables do menú superior dereito e que redirixirá ao árbitro a 
+páxina de asinado de acta.
 
     \subsection{Finalización do encontro}
+    Cando un árbitro decide rematar un encontro, accederá a esta última vista 
+da aplicación onde poderá engadir un texto coa información de posibles 
+\textbf{incidencias} que ocorreran durante o encontro e que deben ser postas en 
+coñecemento da federación como algún tipo de agresión ou o motivo polo que un 
+partido tivo que ser finalizado antes de tempo.
 
-      \subsubsection{Incidencias}
+    \begin{figure}[h!]
+      \begin{center}
+      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+      \caption{Fin de encontro.}
+      \end{center}
+    \end{figure}
 
-      \subsubsection{Sinatura con PIN}
+    Dende o menú superior dereito pódese acceder directamente aos eventos que 
+ocorreron durante o partido para mostrarlle as persoas que asinarán de cada 
+equipo co fin de que poidan confirmar que realmente os eventos gardados na 
+acta, son certos.
+
+    A vista ten varias lapelas, unha para o árbitro e outra para cada un dos 
+equipos onde poderán asinar a acta tantas persoas como sexa preciso.
+
+    Unha vez se faga click no botón de asinar de algunha das lapelas, 
+mostrarase unha listaxe coas persoas que poden asinar de cada equipo ou do 
+equipo arbitral.
+
+    Para realizar a sinatura, a persoa debe dispoñer de conta creada na base de 
+datos da federación na que debeu de indicar un código PIN previamente que é o 
+que permite asinar a acta.
+
+    No caso de xogadores creados dende a propia aplicación móbil, poderase 
+asinar a acta sen dispoñer de código PIN, deixando o oco baleiro.
+
+    \begin{figure}[h!]
+      \begin{center}
+      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+      \caption{Sinatura de un acta.}
+      \end{center}
+    \end{figure}
 
   \section{Multideporte}
   Un dos obxectivos iniciais era conseguir que a aplicación puidera adaptarse 
@@ -382,7 +670,7 @@ de un novo deporte resultase o máis trivial posible.
 ou comezar un encontro que non é habitual que vaian a cambiar xa que son 
 habitualmente os mesmos en todos os deportes.
     \item [De deporte] Son eventos concretos de cada deporte como engadir un gol 
-ou unha tarxeta e que dispoñen, a súa vez divídense en:
+ou unha tarxeta, a súa vez divídense en:
       \begin{description}
        \item [Evento] É un tipo de evento de deporte que únicamente permite ser 
 engadido ou eliminado, non dispón de un comportamento especial.
@@ -390,6 +678,8 @@ engadido ou eliminado, non dispón de un comportamento especial.
 eventos xa que é habitual que se precise indicar o motivo polo que se producíu 
 un evento como por exemplo cando o árbitro expulsa a un xogador con unha 
 tarxeta vermella.
+         \item [Evento de puntuación] Tipo de evento que permite actualizar os 
+campos de resultados, primario e secundario de forma automática ao ser engadido.
       \end{description}
 
   \end{description}
@@ -452,7 +742,8 @@ atributos como se mostra no código seguinte e a propia ferramenta xenera
 ficheiros .json seguindo o esquema de carpetas e ficheiros da aplicación con 
 toca a información recopilada.
 
-     \begin{lstlisting}[caption=Exemplo de internacionalización na label de un 
+     \begin{lstlisting}[frame=single, caption=Exemplo de internacionalización 
+na label de un 
 botón.]
         <RaisedButton label={
             <FormattedMessage
@@ -488,7 +779,8 @@ resolvemos o problema de xeito sinxelo.
   A continuación pódese ver un exemplo da factoría que se encarga de crear os 
 servizos:
 
-       \begin{lstlisting}[caption=Exemplo de internacionalización na label de 
+       \begin{lstlisting}[frame=single, caption=Exemplo de internacionalización 
+na label de 
 un botón.]
 
 let ServiceFactory = {
@@ -605,7 +897,7 @@ cambiando un pouco a forma de traballar habitualmente, aquí débese definir ao
 comezo do ficheiro aqueles que non van a ser mockeados a través da 
 seguinte sentencia:
 
-    \begin{lstlisting}
+    \begin{lstlisting}[frame=single]
      jest.dontMock('../../src/app/models/report/status/StartedStatus')
     \end{lstlisting}
 
@@ -616,10 +908,10 @@ parámetro, que o obxecto devolva un callback cos parámetros indicados, neste
 caso unha Acta por defecto (defaultReport) e un valor nulo como segundo 
 parámetro.
 
-    \begin{lstlisting}
-spyOn(reportService, 'findById').andCallFake(function (anyReportId, callback) {
-  callback(defaultReport, null)
-})
+    \begin{lstlisting}[frame=single]
+  spyOn(reportService, 'findById').andCallFake(function (anyReportId, callback){
+    callback(defaultReport, null)
+  })
     \end{lstlisting}
 
     Unha vez definido o comportamento que queremos que teñan os mocks, debemos 
@@ -632,14 +924,14 @@ que a chamada ao método findById de reportService foi realizada pero tamén é
 posible indicar valores que debe devolver, negacións ou outras validacións 
 incluso máis complexas.
 
-    \begin{lstlisting}
+    \begin{lstlisting}[frame=single]
       expect(reportService.findById).toHaveBeenCalled()
     \end{lstlisting}
 
     A continuación mostramos o caso de test anterior completo a modo de exemplo.
 
-    \begin{lstlisting}[caption=Exemplo de test no módulo e eventos utilizando 
-Jest.]
+    \begin{lstlisting}[frame=single, caption=Exemplo de test no módulo e eventos 
+utilizando Jest.]
       describe('create Sport Event', function () {
 
         beforeEach(function () {
@@ -699,7 +991,7 @@ expect(personService.findByPersonIdReportIdAndTeamId).toHaveBeenCalled()
           expect(teamService.findById).toHaveBeenCalled()
           expect(EventDao.create).toHaveBeenCalled()
         })
-  \end{lstlisting}[
+  \end{lstlisting}
 
     \subsection{Travis CI}
     A medida que a aplicación foi medrando, xurdíu a necesidade de simplificar 
