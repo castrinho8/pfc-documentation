@@ -7,20 +7,39 @@
 % Objetivo:                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \lettrine{E}{n} este capítulo veremos os detalles de deseño e implementación 
+  \lettrine{N}{este} capítulo veremos os detalles de deseño e implementación 
 de diversas partes do proxecto e falaremos das decisións tomadas con 
-respecto a utilización das tecnoloxías.
+respecto a utilización das múltiples tecnoloxías utilizadas.
+
+  Comezaremos facendo unha pequena introducción á terminoloxía e ás tecnoloxías 
+utilizadas no proxecto na Sección~\ref{sec:design:react}, xa que resulta 
+fundamental para comprender as diversas explicacións técnicas sobre o deseño e 
+a implementación.
+
+  Falaremos tamén das bases de datos non relacionais na 
+Sección~\ref{sec:design:db}, comentaremos a necesidade da creación da 
+aplicación como App híbrida e todo isto seguido dunha extensa análise sobre a 
+usabilidade e as múltiples decisións que se tomaron ao respecto, debido a gran 
+importancia que ten este campo dentro do proxecto.
+
+  Por último tamén comentaremos algún conflito que xurdíu durante o 
+desenvolvemento a nivel de dependencias de paquetes ou testing e as decisións 
+que se tomaron para solventalos.
 
   \section{ReactJS e Flux}
+  \label{sec:design:react}
     \subsection{Introdución e elección da tecnoloxía}
     Actualmente o mundo das aplicacións móbiles está en pleno crecemento e cada 
 vez é máis sinxelo ver cómo pequenos comercios ou incluso eventos de ocio 
-como festivais de música ou conferencias, teñen a súa propia aplicación móbil.
+como festivais de música ou conferencias, teñen a súa propia aplicación 
+móbil\footnote{Eventos como o FOSDEM, a LibreCon ou OpenExpo xa dispoñen de 
+aplicacións móbiles para facilitar os asistentes organicen as actividades ás 
+que asistirán.}.
 
-    A sociedade está a cambiar un soporte tradicional como é o papel en todas 
-os aspectos da vida, dende a publicidade ata a propia xestión do traballo e 
-todo estase a dixitalizar, facilitando o traballo humano e reducindo os custes a 
-medio prazo.
+    A sociedade está a eliminar un soporte tradicional como é o papel, en 
+tódolos aspectos da vida, dende a publicidade ata a propia xestión do traballo, 
+e todo estase a dixitalizar, facilitando o traballo humano e reducindo os custes 
+a medio prazo.
 
     Neste contexto decidíuse optar por realizar unha aplicación móbil 
 híbrida, con tecnoloxías web, xa que se pode observar un movemento nos últimos 
@@ -66,12 +85,14 @@ renderizar únicamente a parte da vista que cambiou, polo que é tremendamente
 eficiente.
 
       \subsubsection{Arquitectura Flux}
-      Flux é unha arquitectura que básicamente propón o seguinte esquema:
+      Flux\cite{book:flux} é unha arquitectura que básicamente propón o esquema 
+mostrado na Figura~\ref{fig:img:flux}.
 
         \begin{figure}[h!]
           \begin{center}
           \includegraphics[width=\textwidth]{./img/flux.png}
           \caption{Esquema da arquitectura Flux}
+          \label{fig:img:flux}
           \end{center}
         \end{figure}
 
@@ -81,7 +102,8 @@ seguintes compoñentes:
         \paragraph{Actions}
         A vista atópase formada por unha serie de compoñentes de React que son 
 capaces de disparar as Actions, por exemplo ao pulsar un botón, e que funcionan 
-de xeito similar a eventos notificando ao Dispatcher a súa execución.
+de xeito similar a eventos, notificando ao Dispatcher cando se produce a súa 
+execución.
         \paragraph{Dispatcher}
         O Dispatcher é o encargado de recibir e enrutar as Actions disparadas 
 cara as Stores.
@@ -99,75 +121,81 @@ encargarase de volver a pintar o novo valor do estado, dentro do seu compoñente
       \subsubsection{Implementación de Flux. Reflux.}
       Flux é unha arquitectura, unha especie de patrón de desenvolvemento pero 
 existen diversas implementacións da mesma e neste proxecto decidímonos por 
-utilizar Reflux.
+utilizar Reflux\cite{web:reflux}.
 
-      O funcionamento é moi similar pero con algúns matices, por exemplo o 
-feito de que non existe un único Dispatcher central que enruta as 
-Actions se non que todas as Stores están escoitando e reaccionan cando teñen un 
-método para responder a Action.
+      O funcionamento é moi similar pero con algúns matices; por exemplo,
+non existe un único Dispatcher central que enruta as Actions se non que todas as 
+Stores están escoitando e reaccionan cando teñen un método para responder a 
+Action.
 
      Vexamos un exemplo práctico:
 
-     \begin{lstlisting}[frame=single]
-      let TextActions = Reflux.createActions([
-        "updateText"
-      ])
+    \lstset{}
+     \begin{lstlisting}[caption=Exemplo de Action., label=fig:design:action]
+let TextActions = Reflux.createActions([
+  "updateText"
+])
     \end{lstlisting}
 
-    Definiríamos unha Action que queremos lanzar para tratar de actualizar o 
-texto e crearíamos unha Store que escoite as TextActions e que implemente unha 
-función onUpdateText que será a que reciba o novo valor e actualizará o estado.
+    Definiríamos unha Action (Fragmento de código~\ref{fig:design:action}). que 
+queremos lanzar para tratar de actualizar o texto e crearíamos unha Store 
+(Fragmento de código~\ref{fig:design:store}) que escoite as TextActions e que 
+implemente unha función onUpdateText que será a que reciba o novo valor e 
+actualizará o estado.
 
-     \begin{lstlisting}[frame=single]
-        let TextStore = Reflux.createStore({
-          listenables: TextActions,
-          init: function () {
-            this.state = ''
-          },
-          getInitialState: function () {
-            return this.state
-          },
-          onUpdateText: function (newText) {
-            this.state = newText
-            this.trigger(this.state)
-          }
-        })
+    \lstset{}
+     \begin{lstlisting}[caption=Exemplo de Store., label=fig:design:store]
+let TextStore = Reflux.createStore({
+  listenables: TextActions,
+  init: function () {
+    this.state = ''
+  },
+  getInitialState: function () {
+    return this.state
+  },
+  onUpdateText: function (newText) {
+    this.state = newText
+    this.trigger(this.state)
+  }
+})
     \end{lstlisting}
 
-    Por último definir o compoñente. Este deberá incluir unha lista de mixins 
+    Por último definir o compoñente (Fragmento de 
+código~\ref{fig:design:component}). Este deberá incluir unha lista de mixins 
 onde indicarlle cales son as Stores que reaccionan ante eventos lanzados 
 dende este compoñente, neste caso, a TextStore.
 
     O compoñente tamén terá un método render no que definir o que poderíamos 
-chamar informalmente o ``modelo'' do que queremos renderizar, e que inclúe un 
+chamar informalmente a ``vista'' do que queremos renderizar, e que inclúe un 
 enlace para cambiar o texto mostrado.
 
     Dito enlace reacciona cando se fai click e chama ao método 
 handleChangeTextClick que lanza a Action para que a Store a intercepte, cambie 
 o estado e React renderice de novo, únicamente o que cambiou.
 
-
-     \begin{lstlisting}[frame=single]
-      let EndReport = React.createClass({
-        mixins: [
-          Reflux.connect(TextStore, 'text')
-        ],
-        handleChangeTextClick: function () {
-          TextActions.updateText('Nuevo texto a renderizar')
-        }
-      render: function () {
-          return (
-            <p>{this.state}</p>
-            <a onClick={this.handleChangeTextClick}>Change text</a>
-          )
-        }
-      })
+    \lstset{}
+     \begin{lstlisting}[caption=Exemplo de compoñente de React., 
+label=fig:design:component]
+let EndReport = React.createClass({
+  mixins: [
+    Reflux.connect(TextStore, 'text')
+  ],
+  handleChangeTextClick: function () {
+    TextActions.updateText('Nuevo texto a renderizar')
+  }
+render: function () {
+    return (
+      <p>{this.state}</p>
+      <a onClick={this.handleChangeTextClick}>Change text</a>
+    )
+  }
+})
     \end{lstlisting}
 
 
     \subsection{Estructura da aplicación}
 
-    A continuación mostranse os diversos elementos xenerais que contén a 
+    A continuación móstranse os diversos elementos xerais que contén a 
 aplicación, as carpetas principais e certos ficheiros fundamentais na execución 
 da aplicación.
 
@@ -177,13 +205,13 @@ momento só se dispón de tests da capa de servizos.
         \item [i18n] Nesta localización pódese atopar a internacionalización, 
 coas cadeas dentro da subcarpeta de ``messages`` e coa descrición das mesmas 
 para cada compoñente de React dentro de ''descriptors``, coa idea de darlle 
-contexto e facilitarlle ao traductor a súa labor.
+contexto e facilitarlle ao tradutor a súa labor.
         \item [cordova app] Aquí podemos atopar a configuración para compilar a 
-aplicación aos diversos dispositivios móbiles.
-        \item [src/app] Estructura principal da aplicación
+aplicación aos diversos dispositivos móbiles.
+        \item [src/app] Estrutura principal da aplicación
         \begin{description}
-          \item [Actions] Lista de ficheiros de accións a disparar, agrupados 
-cada un, pola store que o implementa.
+          \item [Actions] Lista de ficheiros con accións a disparar, agrupados 
+cada un pola store que o implementa.
           \item [API] Contén a configuración, as urls da aplicación e a 
 factoría utilizada para a inxección de dependencias dos servizos que 
 explicaremos máis adiante.
@@ -215,8 +243,10 @@ tamén, a información sobre a internacionalización.
 
 
   \section{Bases de datos e funcionamento offline}
+  \label{sec:design:db}
   O mundo das bases de datos está a cambiar enormemente nos últimos anos coa 
-aparición das bases de datos non relacionáis, neste caso concreto, era preciso 
+aparición das bases de datos non relacionais\cite{book:nosql}, neste caso 
+concreto, era preciso 
 dispoñer de unha base de datos no cliente que permitise almacenar os 
 datos das actas dos encontros de forma offline xa que o árbitro do encontro, 
 pode non ter cobertura e debería poder cubrir a súa acta da mesma forma.
@@ -224,23 +254,25 @@ pode non ter cobertura e debería poder cubrir a súa acta da mesma forma.
   Ante este requisito cabe pensar en bases de datos lixeiras como SQLite que 
 se utilizan habitualmente nas aplicacións móbiles pero ditas bases de datos non 
 poden ser executadas directamente nun navegador web, polo que finalmente se 
-optóu por utilizar PouchDB, unha base de datos orientada a documentos e creada 
-sobre o LocalStorage do navegador, pensada dende o primeiro momento para 
-crear aplicacións web que funcionen de forma desconectada.
+optou por utilizar PouchDB, unha base de datos orientada a documentos e creada 
+sobre o GlobalStorage\footnote{Un obxecto que mantén múltiples áreas de 
+almacenamento privado para almacenar datos durante un largo periodo de tempo} 
+do navegador, pensada dende o primeiro momento para crear aplicacións web que 
+funcionen de forma desconectada.
 
     \subsection{PouchDB}
     As actas electrónicas son documentos que unha vez sexan creadas, apenas 
 serán modificadas e neste tipo de información, son as bases de datos orientadas 
 a documentos as que presentan un mellor rendemento.
 
-    A elección de PouchDB foi sobre todo motivada por ser tremendamente lixeira, 
-multinavegador e sobre todo, facilitar a sincronización contra unha base de 
-datos remota, neste caso, CouchDB.
+    A elección de PouchDB\cite{web:pouchdb} foi sobre todo motivada por ser 
+tremendamente lixeira, multinavegador e sobre todo, facilitar a sincronización 
+contra unha base de datos remota, neste caso, CouchDB.
 
     \subsection{CouchDB}
-    CouchDB é a base de datos non relacional que se utiliza como base de datos 
-central en remoto, e coa cal sincronizará PouchDB que se atopa 
-na aplicación.
+    CouchDB\cite{web:couchdb} é a base de datos non relacional que se utiliza 
+como base de datos central en remoto, e coa cal sincronizará PouchDB que se 
+atopa no navegador web do cliente.
 
     Esta base de datos é tremendamente versatil e sinxela de utilizar xa que 
 implementa unha API REST e, a forma de interactuar con ela basease simplemente 
@@ -273,7 +305,8 @@ co fin de facilitar que calquera árbitro poida utilizala independentemente do
 sistema operativo que teña o seu teléfono ou tableta.
 
   É por isto que é fundamental a utilización dun sistema que permita este 
-desenvolvemento multiplataforma como é o caso de Apache Cordova que, ademáis, 
+desenvolvemento multiplataforma como é o caso de Apache 
+Cordova\cite{web:apachecordova} que, ademáis, 
 facilita o acceso aos elementos do dispositivo como sensores, datos, estado de 
 rede... a través dunha serie de APIs estandar.
 
@@ -283,13 +316,14 @@ que si precisen o acceso a este tipo de elementos como pode ser por exemplo, o
 micrófono, para que o árbitro poida gardar as incidencias dun partido como 
 notas de voz en lugar de escribilas.
 
-  A continuación podemos ver un esquema da arquitectura dunha aplicación 
-sobre Apache Córdova:
+  Na Figura~\ref{fig:design:cordova_arquitectura} podemos ver un esquema da 
+arquitectura dunha aplicación sobre Apache Córdova.
 
     \begin{figure}[h!]
       \begin{center}
       \includegraphics[width=0.8\textwidth]{./img/cordova_arquitectura.png}
       \caption{Arquitectura de unha aplicación con Apache Cordova}
+      \label{fig:design:cordova_arquitectura}
       \end{center}
     \end{figure}
 
@@ -300,7 +334,7 @@ do dispositivo a través dunha serie de plugins que Cordova provee.
   Para executar a aplicación únicamente é preciso crear un proxecto de Cordova, 
 engadir os ficheiros da aplicación, as plataformas para as que se desexe xerar 
 o proxecto e construilo.
-
+\clearpage
   \section{Interface gráfica e usabilidade}
   A importancia da interface gráfica en este proxecto é crucial, debido a que a 
 aplicación será utilizada por persoas de un amplísimo rango de idades, a 
@@ -317,7 +351,7 @@ usabilidade é o valor máis importante.
 
     \subsection{Elementos comúns}
     Para facilitar o desenvolvemento da aplicación creáronse varios 
-compoñentes de React xenéricos que permiten realizar tarefas comúns a múliples 
+compoñentes de React xenéricos que permiten realizar tarefas comúns a múltiples 
 partes da aplicación, e polo tanto, que son utilizados dende outros compoñentes 
 de React.
 
@@ -325,49 +359,53 @@ de React.
       É o menú principal da aplicación e que se mostra ao pulsar no botón 
 superior esquerdo dende a maior parte de vistas.
 
-      Este menú desplegable mostra actualmente o logotipo de VACmatch e unha 
-serie de enlaces entre os que se atopan as páxinas de configuración e páxina 
+      Como se pode ver na Figura~\ref{fig:design:leftmenu}, este 
+menú desplegable mostra actualmente o logotipo de VACmatch e unha 
+serie de enlaces entre os que se atopan as páxinas de configuración e a páxina 
 ''acerca de``.
 
       Para xestionar os enlaces que se mostran en cada páxina de forma 
 internacionalizada, e para permitir dispoñer dos elementos nun sitio 
-centralizado, creouse o compoñente ''LeftMenuItems''.
+centralizado, creouse o compoñente \lstinline{LeftMenuItems}.
       Este compoñente contén varias listas con items para introducir dentro do 
 menú lateral esquerdo e que se poden editar ou engadir outras se é 
 preciso.
 
-      Utilizase tamén a ``MenuStore'' para xestionar os elementos que se atopan 
-actualmente no menú e pódese utilizar a Action ``setLeftMenu'' para 
-modificar os elementos que o compoñen en calquera momento, por exemplo, ao 
+      Utilizase tamén a MenuStore para xestionar os elementos que 
+se atopan actualmente no menú e pódese utilizar a Action 
+\lstinline{setLeftMenu} para modificar os elementos que o compoñen en calquera 
+momento, por exemplo, ao 
 entrar en unha nova vista.
 
       \begin{figure}[h!]
         \begin{center}
-        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \includegraphics[width=0.5\textwidth]{./img/demo/1_left_menu.png}
         \caption{Menú lateral esquerdo.}
+        \label{fig:design:leftmenu}
         \end{center}
       \end{figure}
 
       \subsubsection{Enlaces do menu superior dereito}
       O funcionamento de este menú é moi similar ao anterior só que este 
 non dispón de compoñente propio e únicamente é preciso chamar a Action 
-``setRightMenu'' para colocar a listaxe cos novos elementos a mostrar no menú 
-desplegable.
+\lstinline{setRightMenu} para colocar a listaxe cos novos elementos a mostrar 
+no menú desplegable como se ve na Figura~\ref{fig:design:rightmenu}
 
       A función debe recibir unha lista de obxectos que conterán os 
 seguintes atributos:
 
       \begin{description}
        \item [text] Texto a mostrar polo item.
-       \item [url] Url a donde ir ao facer click no elemento.
+       \item [url] Url a onde ir ao facer click no elemento.
        \item [callback] Función de callback que se executará unha vez se 
 redirixa a aplicación á url indicada (Opcional).
       \end{description}
 
       \begin{figure}[h!]
         \begin{center}
-        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \includegraphics[width=0.5\textwidth]{./img/demo/2_right_menu.png}
         \caption{Menú desplegable dereito.}
+        \label{fig:design:rightmenu}
         \end{center}
       \end{figure}
 
@@ -385,8 +423,10 @@ modificar ditas opcións.
 
       \begin{figure}[h!]
         \begin{center}
-        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
-        \caption{Ventanas de información e axustes.}
+        \includegraphics[width=0.4\textwidth]{./img/demo/3_about.png}
+        \includegraphics[width=0.4\textwidth]{./img/demo/4_settings.png}
+        \caption{Ventás de información e axustes.}
+        \label{fig:design:settings}
         \end{center}
       \end{figure}
 
@@ -396,26 +436,31 @@ se producen na aplicación, casos concretos como introducir un usuario
 incorrecto ou tratar de eliminar un evento de comezo de partido antes de 
 eliminar o de fin do mesmo, deben mostrar un aviso ao usuario.
 
-      É por iso que se decidíu crear unha ``Barra de notificacións'', unha 
+      É por iso que se decidíu crear unha ``Barra de notificacións'' 
+(Figura~\ref{fig:design:notifications}), unha 
 pequena ventá que xurde a modo de aviso na parte inferior da pantalla durante 
 uns segundos para mostrar información.
+
+      \begin{figure}[h!]
+        \begin{center}
+        \includegraphics[width=0.5\textwidth]{./img/demo/5_notifications.png}
+        \caption{Barra de notificacións.}
+        \label{fig:design:notifications}
+        \end{center}
+      \end{figure}
 
       Inicialmente pensouse para mostrar os erros pero tamén resulta de 
 utilidade a hora de mostrarlle outra información ao usuario como cando un 
 evento é engadido correctamente.
 
-      \begin{figure}[h!]
-        \begin{center}
-        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
-        \caption{Barra de notificacións.}
-        \end{center}
-      \end{figure}
-
       As novas mensaxes son almacenadas na SnackBarStore creada para o caso, 
 que permite diferenciar as mensaxes de erro e as de información, facendo que a 
-implementación da barra sexa moi sinxela como se mostra no código seguinte.
+implementación da barra sexa moi sinxela como se mostra no Fragmento de 
+código~\ref{fig:design:notificationscode}.
 
-      \begin{lstlisting}[frame=single, caption=Barra de notificacións.]
+    \lstset{}
+      \begin{lstlisting}[caption=Barra de notificacións., 
+label=fig:design:notificationscode]
 let SnackBarItem = React.createClass({
   mixins: [
     Reflux.connect(SnackBarStore, 'snackBar')
@@ -446,12 +491,15 @@ crear un compoñente de autenticación que se encargue de realizar a comprobaci�
 de se o usuario iniciou sesión na aplicación sempre que se carguen os 
 compoñentes.
 
-      Unha clase sinxela que deben extender aqueles compoñentes que so poidan 
-ser accedidos se o usuario está autenticado, o ``AuthenticatedComponent'' 
-redirixe a aplicación cara páxina de iniciar sesión, no caso de non poder 
+      Creouse unha clase sinxela que deben extender aqueles compoñentes que só 
+poidan ser accedidos se o usuario está autenticado, o 
+``AuthenticatedComponent'' (Fragmento de código~\ref{fig:design:authcode}) e 
+que redirixe a aplicación cara páxina de iniciar sesión, no caso de non poder 
 atopar un usuario activo na sesión.
 
-    \begin{lstlisting}[frame=single, caption=Compoñente de autenticación.]
+    \lstset{}
+    \begin{lstlisting}[caption=Compoñente de autenticación., 
+label=fig:design:authcode]
 export default (ComposedComponent) => {
   let AuthenticatedComponent = React.createClass({
     mixins: [
@@ -493,11 +541,13 @@ engadir novos eventos.
 
       É por isto que se creou un compoñente xenérico que permite incorporar 
 unha lista de pestanas e unha lista de elementos para cada unha de elas, 
-xenerando de xeito sinxelo e xenérico, estas vistas podendo introducir en ela 
-calquera calquera tipo de elemento de tipo Item.
+xenerando de xeito sinxelo e xenérico estas vistas. Pódense introducir 
+en elas calquera calquera tipo de elemento sempre que se encontre envolto 
+dentro de un tipo xenérico definido como Item.
 
     \subsection{Iniciar sesión}
-    Aquí podemos atopar a páxina inicial da aplicación que permite a un 
+    Na Figura~\ref{fig:design:login} podemos atopar a 
+páxina inicial da aplicación que permite a un 
 usuario iniciar sesión cos seus datos de acceso así como, pulsando o botón de 
 rexistro, crear un novo usuario dentro da aplicación que lle permita xestionar
 actas de xeito manual.
@@ -505,42 +555,45 @@ actas de xeito manual.
     Entre os múltiples parámetros que o usuario pode cubrir, atópase un código 
 PIN que lle permitirá asinar as actas dos encontros que arbitre.
 
-    Cómpre mencionar que, aparte das páxinas de configuración da aplicación e 
+    Cómpre mencionar que, á parte das páxinas de configuración da aplicación e 
 de ``acerca de'', esta é a única vista accesible para usuarios sen autenticar e 
 calquera intento de acceso a algunha do resto de páxinas, redirecionará ao 
 usuario cara esta páxina de inicio de sesión.
 
       \begin{figure}[h!]
         \begin{center}
-        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+        \includegraphics[width=0.4\textwidth]{./img/demo/6_login.png}
         \caption{Vista de inicio de sesión.}
+        \label{fig:design:login}
         \end{center}
       \end{figure}
 
     \subsection{Listado de actas}
-    En esta sección podemos ver a lista de actas que un árbitro ten 
-asignadas, divididas en dúas pestanas, por un lado as de próximos partidos a 
+    Nesta sección podemos ver a lista de actas que un árbitro ten 
+asignadas na Figura~\ref{fig:design:listreports}, divididas en dúas pestanas, 
+por un lado as de próximos partidos a 
 arbitrar e por outro aquelas nas que o encontro xa rematóu e que non é habitual 
 que sexan accedidas.
 
-    Cada un dos elementos que se mostra permítenos modificar a información 
-básica da acta, tanto o nome dos equipos como o lugar de celebración ou a data 
-por se é preciso edita ditos datos, permitindo do mesmo xeitor eliminar a acta e 
-todos os elementos que a compoñen.
+      \begin{figure}[h!]
+        \begin{center}
+        \includegraphics[width=0.4\textwidth]{./img/demo/7_reportlist.png}
+        \caption{Listado de actas.}
+        \label{fig:design:listreports}
+        \end{center}
+      \end{figure}
 
-    Ademáis, esta páxina danos a opción de engadir unha nova acta se é preciso, 
+    Cada un dos elementos permítenos modificar a información 
+básica da acta, tanto o nome dos equipos como o lugar de celebración ou a data 
+por se é preciso edita ditos datos, permitindo do mesmo xeito eliminar a acta e 
+tódolos elementos que a compoñen.
+
+    Ademais, esta páxina danos a opción de engadir unha nova acta se é preciso, 
 unha funcionalidade imprescindible xa que por múltiples razóns 
 poderíase dar o caso de que a aplicación de un árbitro non sincronice as súas 
 actas coas existentes na base 
 de datos da federación, polo que o árbitro debe poder crear un acta baleira de 
 xeito manual incluso sen ter conexión a internet.
-
-      \begin{figure}[h!]
-        \begin{center}
-        \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
-        \caption{Listado de actas.}
-        \end{center}
-      \end{figure}
 
     \subsection{Acta}
     Esta é a parte central da aplicación, con total seguridade será o lugar 
@@ -561,15 +614,27 @@ cubrir un acta resultase o máis interactivo posible, mostrando na pantalla
 central únicamente a información indispensable para o árbitro que está a 
 cubrila.
 
-    Finalmente móstranse os nomes dos equipos que están a competir con un 
-enlace para ver os seus xogadores, dóus campos de resultados, un 
-cronómetro, un botón de edición, un botón para mostrar os eventos que 
-ocorreron e os diversos eventos que poden ser utilizados para este encontro.
+    O deseño final pódese ver na Figura~\ref{fig:design:showreport} na que se 
+mostran os seguintes campos:
+    \begin{itemize}
+     \item Os nomes dos equipos que están a competir con un enlace para ver os 
+seus xogadores.
+     \item Dóus campos de resultados.
+     \item Un cronómetro.
+     \item Un botón para comezar o encontro e xestionar o cronómetro unha vez 
+comezou.
+     \item Un botón de edición
+     \item Un botón para mostrar os eventos que 
+ocorreron.
+     \item Botóns para engadir un dos diversos eventos que poden ser utilizados 
+para este encontro
+    \end{itemize}
 
     \begin{figure}[h!]
       \begin{center}
-      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+      \includegraphics[width=0.5\textwidth]{./img/demo/8_report.png}
       \caption{Vista principal de un acta.}
+      \label{fig:design:showreport}
       \end{center}
     \end{figure}
 
@@ -579,11 +644,20 @@ primeiro paso é cubrir no papel os nomes dos xogadores que se atopan presentes
 no encontro coas fichas identificativas que cada un de eles aporta.
 
       Como o obxectivo é eliminar o papel e simplificar o traballo do árbitro 
-e da federación, a acta do encontro contén todos os xogadores que 
-se atopan inscritos no equipo correspondente coa sua foto, polo que xa non son 
+e da federación, a acta do encontro contén tódolos xogadores que 
+se atopan inscritos no equipo correspondente coa sua foto como se pode ver na 
+Figura~\ref{fig:design:callplayers}, polo que xa non son 
 precisas as fichas en papel de cada un de eles e o árbitro non ten que escribir 
 os nomes dos integrantes dos equipos, se non que únicamente debe seleccionar 
 cales de eles se atopan no campo.
+
+    \begin{figure}[h!]
+      \begin{center}
+      \includegraphics[width=0.5\textwidth]{./img/demo/9_calllist.png}
+      \caption{Seleccionar xogadores presentes no encontro.}
+      \label{fig:design:callplayers}
+      \end{center}
+    \end{figure}
 
       Tamén ten a posibilidade de editar o dorsal do xogador para este encontro 
 en concreto xa que en algunhas competicións é habitual que os xogadores cambien 
@@ -595,21 +669,15 @@ para cando un novo xogador é engadido a un clube pero non é dado de alta na
 aplicación a tempo, e se o árbitro accede, este pode ser engadido a acta de 
 xeito manual e competir sen problemas
 
-    \begin{figure}[h!]
-      \begin{center}
-      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
-      \caption{Seleccionar xogadores presentes no encontro.}
-      \end{center}
-    \end{figure}
-
       \subsubsection{Inicio e fin do partido}
       O seguinte paso á hora de xestionar a acta dun encontro é indicar cando 
 comeza o mesmo, para isto o usuario dispón de un botón que só se mostra cando 
-non comezou aínda o mesmo e que se encarga de introducir un evento de comezo.
+non comezou aínda dito partido e que se encarga de introducir un evento de 
+comezo.
 
       No momento en que se comece o partido, atoparase dispoñible o botón 
-que permite arrancar e deter o \textbf{cronómetro} co fin de poder xestionar o 
-encontro de xeito interactivo e que todos os eventos introducidos, leven 
+que permite arrancar e deter o \textbf{cronómetro}, co fin de poder xestionar o 
+encontro de xeito interactivo e que tódolos eventos introducidos leven 
 incorporado o momento no que se produciron.
 
       Non é obrigatorio utilizar o cronómetro polo que os eventos poden ser 
@@ -621,29 +689,31 @@ páxina de asinado de acta.
 
     \subsection{Finalización do encontro}
     Cando un árbitro decide rematar un encontro, accederá a esta última vista 
-da aplicación onde poderá engadir un texto coa información de posibles 
+da aplicación que podemos ver na Figura~\ref{fig:design:endmatch} onde 
+poderá engadir un texto coa información de posibles 
 \textbf{incidencias} que ocorreran durante o encontro e que deben ser postas en 
 coñecemento da federación, como algún tipo de agresión ou o motivo polo que un 
 partido tivo que ser finalizado antes de tempo.
 
     \begin{figure}[h!]
       \begin{center}
-      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+      \includegraphics[width=0.5\textwidth]{./img/demo/10_endmatch.png}
       \caption{Fin de encontro.}
+      \label{fig:design:endmatch}
       \end{center}
     \end{figure}
 
     Dende o menú superior dereito pódese acceder directamente aos eventos que 
-ocorreron durante o partido para mostrarlle as persoas que asinarán de cada 
-equipo, únicamente co fin de que poidan confirmar que realmente os eventos 
-gardados na acta, son certos.
+ocorreron durante o partido. Isto resulta útil para mostrarlle as persoas que 
+asinan a acta toda a información da acta para que poidan confirmar que 
+realmente os eventos gardados na mesma, son certos.
 
     A vista ten varias pestanas, unha para o árbitro e outra para cada un dos 
 equipos, onde poderán asinar a acta tantas persoas como sexa preciso.
 
     Unha vez se faga click no botón de asinar de algunha das pestanas, 
 mostrarase unha listaxe coas persoas que poden asinar de cada equipo ou do 
-equipo arbitral.
+equipo arbitral como podemos ver na Figura~\ref{fig:design:signreport}.
 
     Para realizar a sinatura, a persoa debe dispoñer de conta creada na base de 
 datos da federación na que debeu de indicar previamente código PIN que lle 
@@ -654,8 +724,9 @@ poderase asinar a acta sen dispoñer de código PIN, deixando o oco baleiro.
 
     \begin{figure}[h!]
       \begin{center}
-      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+      \includegraphics[width=0.5\textwidth]{./img/demo/11_sign.png}
       \caption{Sinatura de un acta.}
+      \label{fig:design:signreport}
       \end{center}
     \end{figure}
 
@@ -665,40 +736,63 @@ aplicacións web habituais polo que é importante facer unha pequena reseña.
 
     Certa parte da comunidade de React defende que o estilo das aplicacións 
 web, que tradicionalmente se xestiona a través de follas CSS, debe mudar e 
-pasar a realizarse directamente en javascript.
+pasar a realizarse directamente en Javascript.
 
     Os estilos son inxectados directamente no compoñente de xeito ``inline'' a 
-través do atributo ``style'' de HTML, coa idea de acabar con diversos erros de 
-deseño en CSS.
+través do atributo ``style'' de HTML\footnote{A diferencia da maneira 
+tradicional na que os estilos se compoñen en clases CSS a través do atributo 
+''class'' e pódense anidar unhas con outras de forma declarativa}, coa idea de 
+acabar con diversos erros de deseño en CSS, algúns dos cales se comentan a 
+continuación.
 
     O feito de que os estilos sexan código global accesible dende calquera 
-parte das aplicacións tradicionáis, fai que esta sexa pouco consistente ante os 
+parte das aplicacións tradicionais, fai que esta sexa pouco consistente ante os 
 cambios, unha pequena modificación pode cambiar gran parte da aplicación e pode 
 ser dificil de atopar dito cambio cando os proxectos adquiren un certo 
 tamaño polo que a xestión de xeito máis localizado a través de variables 
-javascript, facilitaría este mantemento.
+Javascript, facilitaría este mantemento.
 
     A eliminación de código morto tamén é outra das vantaxes de utilizar 
-javascript para este propósito xa que, agora os estilos serán variables locales 
-que os ``minifiers'' de javascript eliminarán automáticamente.
+Javascript para este propósito xa que, agora os estilos serán variables locales 
+que os ``minifiers''\footnote{Programas que eliminan código e 
+caracteres inecesarios como os espacios ou tabulacións} de Javascript 
+eliminarán automáticamente.
 
     Por último tamén aporta unha total flexibilidade, dando incluso a 
 posibilidade de tratar os estilos como parte do estado da aplicación e 
 convertilos de este xeito, en totalmente dinámicos.
 
   \section{Multideporte}
-  Un dos obxectivos iniciais era conseguir que a aplicación puidera adaptarse 
+  Un dos obxectivos iniciais era conseguir que a aplicación poidera adaptarse 
 de xeito moi sinxelo a novos deportes, inicialmente comezaríase co fútbol pero 
 todo o deseño debía estar orientado cara esta finalidade.
 
   \subsection{Deporte}
-  Para iso creouse unha Store que contén a información do deporte que a 
-aplicación está xestionando actualmente, e que pode ser actualizado e cambiado 
-por outro de xeito moi sinxelo.
+  Para iso creouse unha \lstinline{SportStore} que contén a información do 
+deporte 
+que a aplicación está xestionando actualmente, e que pode ser actualizado e 
+cambiado por outro, de xeito moi sinxelo.
 
-  Por outro lado, cada deporte debe extender a unha clase xenérica Sport que 
-define unha serie de métodos que todos os deportes deben implementar e que 
-indican cómo se realizan certas accións sobre os datos en cada deporte.
+  Dende múltiples compoñentes como por exemplo o \lstinline{PersonList}, pódese 
+obter o deporte actual que está almacenado na Store e as múltiples propiedades 
+que o definen, como se pode ver na Figura~\ref{fig:design:strategy}.
+
+    \begin{figure}[h!]
+      \begin{center}
+      \includegraphics[width=0.8\textwidth]{./img/diagrams/sport_diagram.png}
+      \caption{Patron estratexia para o deporte.}
+      \label{fig:design:strategy}
+      \end{center}
+    \end{figure}
+
+  Cada deporte debe extender a unha clase xenérica \lstinline{Sport} nun 
+patrón Strategy\cite{book:patterns} que se pode observar na 
+Figura~\ref{fig:design:strategy} e que define unha serie de métodos que tódolos 
+deportes deben implementar, métodos que indican cómo se realizan certas accións 
+sobre os datos en cada deporte.
+
+  A continuación móstranse os parámetros que ten un \lstinline{Sport} 
+actualmente:
 
   \begin{description}
    \item [Eventos] A lista de eventos que se poden realizar en ese deporte.
@@ -732,11 +826,11 @@ encontros dende a aplicación móbil.
 unha forma de engadir eventos novos de xeito sinxelo, co fin de que a 
 incorporación de un novo deporte resultase o máis trivial posible.
 
-  Actualmente podemos dividir os eventos en dóus tipos:
+  Actualmente podemos dividir os eventos en dous tipos:
 
   \begin{description}
     \item [De control] Son eventos xenéricos de xestión como cambiar de parte, 
-ou comezar un encontro que non é habitual que vaian a cambiar xa que son 
+ou comezar un encontro, que non é habitual que vaian a cambiar xa que son 
 compartidos pola inmensa maioría de deportes.
     \item [De deporte] Son eventos concretos de cada deporte como engadir un gol 
 ou unha tarxeta, a súa vez divídense en:
@@ -752,103 +846,137 @@ campos de resultados, primario e secundario de forma automática ao ser engadido
 
   \end{description}
 
-  Existe un compoñente de React para incorporar os eventos de control dentro 
-da vista que lista os eventos dun partido e que calquera evento de este tipo, 
-definindo unha clase como a establecida para os eventos de control cos detalles 
-do seu funcionamento, pode utilizar.
-\todo{engadir imaxe de exemplo}
+  Na Figura~\ref{fig:design:eventviewdiagram} podemos ver a relación existente 
+entre a \lstinline{EventStore} que contén o estado dos eventos e os compoñentes 
+da vista que os renderizan.
 
-  Por outra banda temos tamén un compoñente de React para introducir os eventos 
-deportivos na lista de eventos dun partido, e cada evento novo, debe crear un 
-novo compoñente que defina a vista a mostrar cando se desexe engadir un evento 
-de este tipo no encontro.
+  Temos dous compoñentes de React para renderizar os eventos dentro da vista 
+que lista tódolos eventos que suceden durante o partido, os compoñentes 
+\lstinline{SportEvent} e \lstinline{ControlEvent}.
+
+  Por outra banda temos tamén dous compoñentes de React que definen a vista que 
+se ten que mostrar cando se desexe engadir un evento de este tipo dende a 
+aplicación, son \lstinline{Event} e \lstinline{EventWithCause} que ademais 
+mostrará unha lista de causas que poden ser engadidas ao evento.
+
+    \begin{figure}[h!]
+      \begin{center}
+  \includegraphics[width=0.8\textwidth]{./img/diagrams/events_view_diagram.png}
+      \caption{Diagrama parcial da vista dos eventos.}
+      \label{fig:design:eventviewdiagram}
+      \end{center}
+    \end{figure}
+
 
   En definitiva, para crear un novo evento débese definir unha clase Javascript 
-coas propiedades do mesmo e que extenda ao SportEvent.
+coas propiedades do mesmo e que implemente ao \lstinline{SportEvent} como se 
+pode ver na Figura~\ref{fig:design:eventsdiagram} a través dos exemplos de 
+\lstinline{GoalEvent} ou \lstinline{FoulEvent}.
 
-  Tamén é preciso engadir unha clase de React que defina a vista que se 
-mostrará ao intentar engadir o evento durante o encontro (habitualmente unha 
-ventá modal) e por último débese engadir o evento creado anteriormente, dentro 
-da lista de eventos que ten ese deporte, e que se atopan na clase que define as 
-propiedades de dito deporte.
+  Tamén é preciso engadir unha clase de React que defina as vistas que se 
+mostrarán ao intentar engadir e listar un evento durante o encontro ou 
+utilizar as xa definidas previamente que se poden ver na 
+Figura~\ref{fig:design:eventviewdiagram}.
+
+  Por último, como podemos observar de novo na 
+Figura~\ref{fig:design:eventsdiagram}, débese engadir o evento creado 
+anteriormente, dentro da lista de eventos que ten ese deporte, e que se atopan 
+na clase que implementa dito deporte concreto.
+
+    \begin{figure}[h!]
+      \begin{center}
+  \includegraphics[width=\textwidth]{./img/diagrams/events_diagram.png}
+      \caption{Diagrama de clases para a xestión de eventos.}
+      \label{fig:design:eventsdiagram}
+      \end{center}
+    \end{figure}
+
 
   \section{Deseño da DB}
-  VACmatch Mobile pensóuse inicialmente para integrarse co sistema de 
+  VACmatch Mobile pensóuse inicialmente para ser integrado co sistema de 
 xestión de competicións que estamos a desenvolver con VACmatch Web e que dispón 
 dunha API de comunicacións que se atopa montada sobre unha base de datos 
 relacional.
 
-  É por iso que o modelo de datos estába pensado para unha base de 
+  É por iso que o modelo de datos inicial estaba plantexado para unha base de 
 datos relacional e tivo que ser adaptado para utilizar unha non relacional 
 orientada a documentos como é PouchDB.
 
   Prácticamente todas as entidades foron desnormalizadas para incluir 
-información necesaria e en algún caso comprimironse dúas entidades en unha soa 
-como é, o de Call e Member que foron unidas dentro de Person como se indica 
-no gráfico seguinte.
+información necesaria e en algún caso comprimíronse dúas entidades en unha soa 
+como por exemplo en \lstinline{Call}\footnote{Convocatoria de un xogador para 
+un partido en concreto} e \lstinline{Member} \footnote{Membro de un equipo} que 
+foron unidas 
+dentro de \lstinline{Person} como se pode ver na 
+Figura~\ref{fig:design:persondbdiagram}
 
     \begin{figure}[h!]
       \begin{center}
-      \includegraphics[width=0.2\textwidth]{./img/cordova_arquitectura.png}
+      \includegraphics[width=0.8\textwidth]{./img/diagrams/person_diagram.png}
       \caption{Esquema base de datos de Person.}
+      \label{fig:design:persondbdiagram}
       \end{center}
     \end{figure}
 
   \section{I18n}
   Para a xestión da internacionalización da aplicación utilizouse a librería 
-React Intl que provee unha serie de compoñentes de React e unha API sinxela 
+React Intl que provee dunha serie de compoñentes de React e unha API sinxela 
 para formatear datas, números e strings, incluindo pluralización e xestión de 
-traduccións.
+traducións.
 
   Esta librería dá a posibilidade de engadir un contexto aos textos que se 
-internacionalizan, o cal facilita a labor do traductor que se encargue de 
+internacionalizan, o cal facilita a labor do tradutor que se encargue de 
 engadir ou modificar un idioma, proporcionándolle unha información extra sobre 
 o texto que debe traducir.
 
   Únicamente é preciso definir os compoñentes cos seus correspondentes 
-atributos como se mostra no código seguinte e a propia ferramenta xenera 
-ficheiros .json seguindo o esquema de carpetas e ficheiros da aplicación con 
-toda a información recopilada.
+atributos como se mostra no Fragmento de código~\ref{fig:design:i18n} e a 
+propia ferramenta xenera 
+ficheiros \emph{.json} seguindo o esquema de carpetas e ficheiros da aplicación 
+con toda a información recopilada.
 
-     \begin{lstlisting}[frame=single, caption=Exemplo de internacionalización 
-na label de un 
-botón.]
-        <RaisedButton label={
-            <FormattedMessage
-                id='report.show.events'
-                description='Events button'
-                defaultMessage='Events'/>
-        } secondary={true} style={style.button}/>
+    \lstset{}
+     \begin{lstlisting}[caption=Exemplo de internacionalización 
+na label de un botón., label=fig:design:i18n]
+<RaisedButton label={
+    <FormattedMessage
+        id='report.show.events'
+        description='Events button'
+        defaultMessage='Events'/>
+} secondary={true} style={style.button}/>
     \end{lstlisting}
 
   Do mesmo xeito, a librería permite facer internacionalización de xeito 
-programático sen utilizar compoñentes de react, a través de unha serie de 
-funcións de javascript.
+programático sen utilizar compoñentes de React, a través de unha serie de 
+funcións de Javascript.
 
-  Ademáis é preciso realizar as traduccións aos diferentes idiomas, cada unha 
-en un ficheiro de javascript diferente e con un formatado de pares cadea/valor.
+  Por último, é preciso realizar as traduccións aos diferentes idiomas, cada 
+unha en un ficheiro de Javascript diferente, seguindo un formateado de 
+pares cadea/valor.
 
   \section{Inxección de dependencias}
   Durante o realización do proxecto xurdíu problema entre os servizos xa que 
 moitos precisan dos outros para realizar comprobacións de forma circular.
 
-  A existencia destas dependencias circulares leva a que sexa imposible de
+  A existencia de estas dependencias circulares leva a que sexa imposible de
 determinar a relación entre eles polo que é preciso deseñar un pequeno sistema 
-de inxección de dependencias.
+de inxección de dependencias que permite solventar esta problemática.
 
-  A solución atópase inspirada na implementación que realiza o framework 
-Spring, e na que dispoñemos dunha factoría que se encarga de crear un obxecto 
-para cada servizo e a continuación inxéctanse uns dentro dos outros.
+  A solución escollida finalmente consiste en crear unha factoría seguindo o 
+patrón Singleton\cite{book:patterns} que se encarga de crear un obxecto para 
+cada servizo e a continuación inxéctanse uns dentro dos outros.
 
   Cada vez que se chama a factoría para recuperar un servizo, esta
 devolve o servizo coas súas dependencias inxectadas no seu interior polo que 
 resolvemos o problema de xeito sinxelo.
 
-  A continuación pódese ver o código que implementa parte da factoría que se 
-encarga de crear os servizos:
+  Na Figura~\ref{fig:design:dependency} pódese ver parcialmente o código que 
+implementa a factoría que se encarga de crear os servizos e devolvelos cando é 
+preciso.
 
-       \begin{lstlisting}[frame=single, caption=Fragmento da ServiceFactory.]
-
+    \lstset{}
+    \begin{lstlisting}[caption=Fragmento da ServiceFactory., 
+label=fig:design:dependency]
 let ServiceFactory = {
   isInitialized: false,
   _servicesList: new Map(),
@@ -900,16 +1028,17 @@ integridade da mesma.
 
     \subsection{TDD e BDD}
   Neste proxecto seguironse diversas prácticas de Test Driven Development 
-(TDD) e Behaviour Driven Development (BDD) comezando por unha definición das 
+(TDD)\cite{book:cleancode} e Behaviour Driven Development 
+(BDD)\cite{book:cucumber} comezando por unha definición das 
 diversas tarefas do proxecto como tests de aceptación das funcionalidades e 
 rematando pola realización de tests unitarios.
 
       \paragraph{Tests de aceptación} Estos tests son destinados a determinar 
-se foron cumplidos os requisitos de unha certa funcionalidade, sempre 
+se foron cumplidos os requisitos dunha certa funcionalidade, sempre 
 centrándose na parte funcional e alonxándose dos detalles de implementación.
 
       Para isto utilízanse unha linguaxe simple de dominio co fin de definir os 
-requisitos funcionáis, en este proxecto baseámonos no seguinte:
+requisitos funcionais, en este proxecto baseámonos no seguinte:
 
         \begin{description}
          \item [Como ....] afectado ou realizador da funcionalidade.
@@ -932,142 +1061,147 @@ definen a lóxica de negocio.
 
       Para a realización de este tipo de tests é fundamental a utilización de 
 mocks, obxectos que imitan o comportamento de obxectos reais de xeito 
-controlado o cal permiten simular o comportamento dos obxectos dependentes.
+controlado e que permiten simular o comportamento dos obxectos dependentes.
 
-      Esto é fundamental para asegurar o illamento da funcionalidade e eliminar 
+      Isto é fundamental para asegurar o illamento da funcionalidade e eliminar 
 a dependencia de outros elementos a hora de realizar as probas unitarias.
 
     \subsection{Jest}
     É unha librería para realización de testing automático en aplicacións 
-ReactJS que facilita...
+ReactJS que facilita automatizar a creación de mocks ou executar os tests con 
+unha implementación falsa do DOM\footnote{Modelo en Obxectos para a 
+Representación de Documentos}.
 
-    A continuación imos mostrar un test de exemplo do módulo de eventos no que 
-se pode observar os diversos compoñentes que o forman. Pódese observar o código 
-de exemplo na figura \todo{engadir figura}
+    No Fragmento de código~\ref{fig:dia_class:test6} pódese observar un test 
+de exemplo do módulo de eventos e os diversos compoñentes que o forman. 
 
-    Inicialmente defínese dentro da sección ''describe`` unha ''historia de 
-usuario`` que contén a información xeral sobre o caso de uso, dentro da cal 
-pódense realizar diversos tests, no exemplo que vemos, o caso de uso é ''Crear 
-un evento deportivo''.
+    Inicialmente defínese dentro da sección \lstinline{describe} unha 
+''historia de usuario`` que contén a información xeral sobre o caso de uso, 
+dentro da cal pódense realizar diversos tests, no exemplo que vemos, o caso de 
+uso é ''Crear un evento deportivo''.
 
-    \begin{lstlisting}[frame=single]
-  describe('create Sport Event', function () {
-  ...
+    \lstset{}
+    \begin{lstlisting}[caption=Definición de unha historia de usuario en Jest., 
+label=fig:design:test1]
+describe('create Sport Event', function () {
+...
     \end{lstlisting}
 
-    Dentro do caso de uso vemos un bloque ``beforeEach'' que permite 
+    Dentro do caso de uso vemos un bloque \lstinline{beforeEach} que permite 
 inicializar variables para cada novo test que se realice, eliminando de este 
-xeito a dependencia entre os tests das variables que utilizan.
+xeito a dependencia entre os tests que as utilizan.
 
-    Dentro do bloque ``describe'' defínense os diversos tests de esta historia 
-de usuario, concretamente dentro dos bloques ``it''.
+    Dentro do bloque \lstinline{describe} defínense os diversos tests desta 
+historia de usuario, concretamente dentro dos bloques \lstinline{it}.
 
-    \begin{lstlisting}[frame=single]
-  it('Create a new Sport Event with valid parameters', function () {
-  ...
+    \lstset{}
+    \begin{lstlisting}[caption=Definición de un test en Jest., 
+label=fig:design:test2]
+it('Create a new Sport Event with valid parameters', function () {
+...
     \end{lstlisting}
 
     Como comentábamos anteriormente, ao realizar tests unitarios é habitual a 
 utilización de obxectos mock que imitan a funcionalidade de outros.
-    En Jest todos os obxectos son mocks e non é preciso definilos todos así, 
-cambiando un pouco a forma de traballar habitualmente, aquí débese definir ao 
-comezo do ficheiro aqueles que non van a ser mockeados a través da 
-seguinte sentencia:
+    En Jest todos os obxectos son mocks e non é preciso definilos todos así.
+Cambiando un pouco a forma de traballar habitualmente, aquí débese definir ao 
+comezo do ficheiro aqueles que non van a ser mockeados a través da sentencia 
+definida no Fragmento de Código~\ref{fig:design:test3}.
 
-    \begin{lstlisting}[frame=single]
-     jest.dontMock('../../src/app/models/report/status/StartedStatus')
+    \lstset{}
+    \begin{lstlisting}[caption=Sentencia para indicar que non se creen un 
+mock., label=fig:design:test3]
+jest.dontMock('../../src/app/models/report/status/StartedStatus')
     \end{lstlisting}
 
     Tamén é habitual querer darlle un comportamento por defecto aos mocks que 
-se utilizan, por exemplo no seguinte trozo de código estamos facendo que cando 
-se chame a función ``findById'' do obxecto ``reportService''  co un só 
-parámetro, o obxecto devolverá un callback cos parámetros indicados, neste 
-caso unha Acta por defecto (defaultReport) e un valor nulo como segundo 
-parámetro.
+se utilizan, por exemplo no Fragmento de Código~\ref{fig:design:test4} estamos 
+facendo que cando se chame a función \lstinline{findById} do obxecto 
+\lstinline{reportService}  co un só parámetro, o obxecto devolverá un callback 
+cos parámetros indicados, neste caso unha Acta por defecto 
+(\lstinline{defaultReport}) e un valor nulo como segundo parámetro.
 
-    \begin{lstlisting}[frame=single]
-  spyOn(reportService, 'findById').andCallFake(function (anyReportId, callback){
-    callback(defaultReport, null)
-  })
+    \lstset{}
+    \begin{lstlisting}[caption=Sentencia para asignar comportamento a un mock., 
+label=fig:design:test4]
+spyOn(reportService, 'findById').andCallFake(function (anyReportId, callback){
+  callback(defaultReport, null)
+})
     \end{lstlisting}
 
     Unha vez definido o comportamento que queremos que teñan os mocks, debemos 
 chamar ao método real do obxecto que estamos testeando e así teremos totalmente 
 illado o comportamento de dito método.
 
-    Finalmente utilizamos a cláusula ``expect'' para indicar resultados 
-esperados, no caso de exemplo que mostramos a continuación, estamos a indicar 
-que a chamada ao método findById de reportService foi realizada. Tamén é 
-posible indicar valores que debe devolver, negacións ou outras validacións 
-incluso máis complexas.
+    Finalmente utilizamos a cláusula \lstinline{expect} para indicar 
+resultados esperados, no caso de exemplo que mostramos a continuación, estamos 
+a indicar que a chamada ao método \lstinline{findById} de 
+\lstinline{reportService} foi realizada. Tamén é posible indicar valores que 
+debe devolver, negacións ou outras validacións incluso máis complexas.
 
-    \begin{lstlisting}[frame=single]
-      expect(reportService.findById).toHaveBeenCalled()
+    \lstset{}
+    \begin{lstlisting}[caption=Sentencia para comprobar a execución de un 
+test., label=fig:design:test5]
+expect(reportService.findById).toHaveBeenCalled()
     \end{lstlisting}
 
     A continuación mostramos o caso de test anterior completo a modo de exemplo.
 
-    \begin{lstlisting}[frame=single, caption=Exemplo de test no módulo e eventos 
-utilizando Jest.]
-      describe('create Sport Event', function () {
-
-        beforeEach(function () {
-          defaultPerson = new Person(null, '', '', '', '', false, false, '', 
-'',   '')
-          defaultTeam = new Team(null, 'Team name')
-          defaultReport = new Report(null, '', '', ReportStatus.READY, 
-defaultTeam, defaultTeam, [])
-          defaultEvent = new EventElements.Event('event', '1', defaultPerson, 
+    \lstset{}
+    \begin{lstlisting}[caption=Exemplo de test no módulo de eventos 
+utilizando Jest., label=fig:design:test6]
+describe('create Sport Event', function () {
+  beforeEach(function () {
+    defaultPerson = new Person(null, '', '', '', '', false, false, '', '',   '')
+    defaultTeam = new Team(null, 'Team name')
+    defaultReport = new Report(null, '', '', ReportStatus.READY, 
+      defaultTeam, defaultTeam, [])
+    defaultEvent = new EventElements.Event('event', '1', defaultPerson, 
       defaultTeam, 'goal', 1, 'cause', 1)
-          reportService = new ReportService(jasmine.createSpy('PersonService'), 
+    reportService = new ReportService(jasmine.createSpy('PersonService'), 
       jasmine.createSpy('TeamService'), jasmine.createSpy('EventService'), 
       jasmine.createSpy('SignService'))
-          personService = new PersonService(jasmine.createSpy('ReportService'), 
+    personService = new PersonService(jasmine.createSpy('ReportService'), 
       jasmine.createSpy('TeamService'), jasmine.createSpy('AuthService'))
-          teamService = new TeamService()
-          eventService = new EventService(reportService, personService, 
-  teamService)
-        })
+    teamService = new TeamService()
+    eventService = new EventService(reportService, personService, 
+      teamService)
+  })
 
-        it('Create a new Sport Event with valid parameters', function () {
+  it('Create a new Sport Event with valid parameters', function () {
+    spyOn(reportService, 'findById').andCallFake(function(anyReportId,callback){
+        callback(defaultReport, null)
+      })
 
-          spyOn(reportService, 'findById').andCallFake(function (anyReportId, 
-      callback) {
-            callback(defaultReport, null)
-          })
+    spyOn(personService, 'findByPersonIdReportIdAndTeamId').andCallFake(function 
+      (anyPersonId, anyReportId, anyTeamId, callback) {
+        callback(defaultPerson, null)
+      })
 
-          spyOn(personService, 
-    'findByPersonIdReportIdAndTeamId').andCallFake(function   (anyPersonId, 
-    anyReportId, anyTeamId, callback) {
-            callback(defaultPerson, null)
-          })
+    spyOn(teamService, 'findById').andCallFake(function (anyTeamId, callback) {
+      callback(defaultTeam, null)
+    })
 
-          spyOn(teamService, 'findById').andCallFake(function (anyTeamId, 
-  callback)  {
-            callback(defaultTeam, null)
-          })
+    spyOn(EventDao, 'create').andCallFake(function (reportId, person, team, 
+      eventType, matchTime, cause, timestamp, callback) {
+        callback(defaultEvent, null)
+      })
 
-          spyOn(EventDao, 'create').andCallFake(function (reportId, person, 
-team, eventType, matchTime, cause, timestamp, callback) {
-            callback(defaultEvent, null)
-          })
+    eventService.create(defaultEvent.reportId, defaultEvent.person, 
+      defaultEvent.team, defaultEvent.type, defaultEvent.matchTime, 
+      defaultEvent.text, defaultEvent.timestamp,
+      (event, err) => {
+        expect(event).toEqual(defaultEvent)
+        expect(event).not.toBe(null)
+        expect(err).toBe(null)
+      })
 
-          eventService.create(defaultEvent.reportId, defaultEvent.person, 
-      defaultEvent.team,
-            defaultEvent.type, defaultEvent.matchTime, defaultEvent.text, 
-      defaultEvent.timestamp,
-            (event, err) => {
-              expect(event).toEqual(defaultEvent)
-              expect(event).not.toBe(null)
-              expect(err).toBe(null)
-          })
+    expect(reportService.findById).toHaveBeenCalled()
+    expect(personService.findByPersonIdReportIdAndTeamId).toHaveBeenCalled()
+    expect(teamService.findById).toHaveBeenCalled()
+    expect(EventDao.create).toHaveBeenCalled()
+  })})
 
-          expect(reportService.findById).toHaveBeenCalled()
-          
-expect(personService.findByPersonIdReportIdAndTeamId).toHaveBeenCalled()
-          expect(teamService.findById).toHaveBeenCalled()
-          expect(EventDao.create).toHaveBeenCalled()
-        })
   \end{lstlisting}
 
     \subsection{Travis CI}
@@ -1082,11 +1216,12 @@ fin de garantizar que a aplicación xerada na rama de producción é funcional,
 compila en todo momento e pasa tódolos tests.
 
     Para isto utilizóuse Travis CI como sistema integración para o que se 
-engadíu un ficheiro ``.travis.yml'' no que se lle indican diversos 
+engadíu un ficheiro \emph{``.travis.yml''} no que se lle indican diversos 
 parámetros de configuración, como as versións de Javascript coas que debe poñer 
 a proba o funcionamento do programa, os scripts a executar para instalar 
-dependencia e para executar o programa, as ramas de desenvolvemento sobre as 
-que debe actuar, no noso caso ``master'' e ``development`` ou as notificacións 
+dependencias e para executar o programa, as ramas de desenvolvemento sobre as 
+que debe actuar, no noso caso \lstinline{master} e \lstinline{development} ou 
+as notificacións 
 que debe enviar ao finalizar un traballo, por exemplo a través de correo 
 electrónico ou utilizando un servizo de mensaxería instantánea como Slack.
 

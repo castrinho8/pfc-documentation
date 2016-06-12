@@ -1,13 +1,17 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Preamble                                                                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,spanish,10p,titlepage]{report}
 
+\usepackage[utf8]{inputenc}
 \usepackage{estilo_pfc}
 
 \author{Pablo Castro Valiño}
 \date{14 de xaneiro de 2016}
+
+\usepackage[obeyFinal]{todonotes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Body                                                                         %
@@ -79,9 +83,9 @@
  \include{3.apendices/acronym-glossary}
  \include{3.apendices/term-glossary}
 
- \nocite*
- \bibliography{bibliography}
- \bibliographystyle{abbrv}
+ \nocite{*}
+ \bibliography{3.apendices/bibliography}
+ \bibliographystyle{alpha}
 
 \end{document}
 
