@@ -26,6 +26,40 @@ importancia que ten este campo dentro do proxecto.
 desenvolvemento a nivel de dependencias de paquetes ou testing e as decisións 
 que se tomaron para solventalos.
 
+  \santiagosays{Deseño e implementación son o mesmo capítulo.
+    Dependendo de como o queiras enfocar, pode ser o correcto, ou
+    podes dividilo en dous. Do mesmo xeito, fixeches realtivo fincapé
+    no TDD, e en ningunha parte da implementaión falas do esting. En
+    particular, non nomeas como facer testing máis aló das probas
+    unitarias automáticas, cousas como cales son os test de aceptación
+    por parte das federacións e usuarios para co sistema, ou como se
+    axustan aos estándares de calidade cousas tipo Cordova.
+
+    Se o testing é importante, faino ver cun capítulo no que se conten
+    cousas. Se pola contra \emph{non hai moito que contar}, merece
+    polo menos unha sección aquí. Tamén cómpre dividir o capítulo
+    entre as decisións relativas ao deseño e á implementación, se se
+    vai a plantexar así: por un lado, \textbf{é unha decisión de
+      deseño} empregar a arquitectura Flux, mentres que programar as
+    vistas en Javascript, ou a xestión asíncrona das accións usando
+    Reflux particularmente, son detalles de implementación.
+
+    Do mesmo xeito, é unha decisión de deseño desenvolver o proxecto
+    empregando tecnoloxías web, e é un dealle de implementación
+    utilizar Apache Cordova para facilitar a experiencia a usuarios
+    móbiles proporcionando unha interface (un pelín) máis amigable.
+
+    Tamén é unha decisión de deseño empregar unha DB non relacional
+    para gardar os datos. Sen embargo, é un requisito funcional que
+    funcionase offline. Por iso se empregou PouchDB no cliente
+    (detalle de implementación) para facer iso posible sen ter que
+    implementar nós o ``caché'' de CouchDB.
+
+    Que a signtatura se faga con PIN é un detalle de implementación,
+    xa que se pode cambiar, e o deseño segue a ser o mesmo: que o
+    usuario/capitan/blah ten a capacidade de firmar e estar dacordo ou
+    non co reflictido na acta.}
+
   \section{ReactJS e Flux}
   \label{sec:design:react}
     \subsection{Introdución e elección da tecnoloxía}
@@ -510,7 +544,7 @@ export default (ComposedComponent) => {
     componentWillMount: function (transition) {
       if (config._env !== 'development') {
       // This method is called before transitioning to this component.
-      // If the user is not logged in, we’ll send him or her to the Login page.
+      // If the user is not logged in, we'll send him or her to the Login page.
         if (!AuthStore.isLoggedIn()) {
           this.history.pushState(null, urls.login.show)
         }

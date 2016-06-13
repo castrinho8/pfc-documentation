@@ -24,6 +24,29 @@ que tamén se indica para rematar o capítulo.
 lanzamento de negocios e produtos a través da validación, a experimentación e a 
 iteración no lanzamento dos mesmos co fin de acortar o ciclo de desenvolvemento.
 
+\santiagosays{Non fixeches caso ao meu esbozo?}
+
+O proceso de enxeñería comeza coa elección dunha metodoloxía de traballo que
+guíe o proceso de desenvolvemento. Ademais, dentro da iniciativa empresarial da
+que forma parte o proxecto, ten sentido falar tamén de metodoloxías ao respecto,
+e tratamos de seguir a filosofía de Lean Startup, que introduce este capítulo.
+Respecto á parte máis técnica de Enxeñería do Software, existen diversas
+metodoloxías ampliamente probadas e das que se demostrou a súa eficacia. Para a
+elaboración deste proxecto tivéronse en conta diversas metodoloxías: pola parte
+do desenvolvemento software tívose especial consideración nas propostas pola
+vertente áxil de desenvolvemento \santiagosays[]{Referencia a algún libro de
+  aglie programming}, e centrámonos nas indicacións para Extreme Programming,
+que introducimos na Sección~\ref{todo}, e Scrum, que se expón na
+Sección~\ref{todo}. Despois de introducir brevemente cada unha destas,
+concluímos o capítulo cunha exposición da nosa interpretación sobre as mesmas, e
+que corresponde á metodoloxía que se seguiu para o desenvolvemento do proxecto.
+
+\santiagosays{Fin do esbozo}
+
+\ProTip{Cando referencies unha sección en \LaTeX, faino escribindo explicitamente %
+  Sección\~{~}\textbackslash ref\{blah\} (ver ficheiro tex). %% <<-- Sección~\ref{blah}
+  Se non o fas así, \LaTeX pode romper o parágrafo entre Sección e o número, e eso non queda nada ben estilísticamente.}
+
   É unha metodoloxía de traballo moi habitual nas startups que se centra na 
 idea de \emph{Crear - Medir - Aprender}, desenvolvendo pequenos produtos e 
 realizando tests de mercado reais con verdadeiros clientes co fin de medir o 
@@ -50,7 +73,7 @@ parte do mesmo.
 importancia de introducir a programación en parellas para reducir o número de 
 erros que se producen ao programar.
 
-  Por último aboga por introducir o TDD (Test Driven Development), 
+  Por último aboga por introducir o TDD (Test Driven Development)\santiagosays{Cita requerida}, 
 implementando primeiro os tests, verificando que fallan, para a continuación 
 implementar o código que fai que pasen correctamente os mesmos.
   A idea é que os requisitos sexan convertidos a probas e de este modo cando os 
@@ -111,7 +134,7 @@ unha maior flexibilidade e liberdade.
     \subsection{Reunións semanais}
     Todas as semanas faise unha reunión de 30/45 minutos de duración na que 
 analizar o realizado na semana anterior e comprobar o seguimento da iteración 
-co fin de atopar desviacións e correxilas.
+co fin de atopar desviacións e corrixilas.
 
     Cando unha reunión semanal coincide co fin de un sprint, dita reunión 
 sirve para realizar a planificación do seguinte sprint de xeito moi similiar as 
@@ -130,21 +153,22 @@ unha serie de pequenos entregables en cada iteración.
 pero non todas son versións entregables reais para ser postas en produción.
 
     Durante o desenvolvemento producíronse 3 entregas (\emph{releases}) 
-totalmente funcionáis, a primeira foi un prototipo, a segunda foi a versión 
+totalmente funcionais, a primeira foi un prototipo, a segunda foi a versión 
 real do proxecto e a terceira incorporou tests e diversas características para 
 asegurar unha primeira versión estable.
 
     \subsection{Simplicidade}
-    Utilizouse o principio de simplicidade que promove \emph{eXtreme 
-Programming} durante todo o desenvolvemento baixo a máxima de implementar 
-únicamente o imprescindible en cada momento, sempre pensando en programar para 
-hoxe e non para mañá.
+    Utilizouse o principio de simplicidade que promove \emph{eXtreme Programming}
+    durante todo o desenvolvemento baixo a máxima de implementar únicamente o
+    imprescindible en cada momento, sempre pensando en programar para hoxe e non para
+    mañá.%
+    \santiagosays[]{Jajaja, gústame a frase (borra este comentario cando o leas)}
 
     A idea fundaméntase en realizar refactorizacións de código para engadir 
 novas funcionalidades a medida que son necesarias en lugar de invertir 
 demasiado tempo na planificación e implementación de funcións que se supoñen 
-necesarias e, algunhas das cales, é probable que non sexan utilizadas 
-finalmente.
+necesarias e, algunhas das cales, é probable que non sexan utilizadas
+finalmente.\santiagosays{Hei, esto deberías de argumentalo con algo máis de detalle. Pensa en quen o vai a ler!}
 
     \subsection{Tests}
     A importancia de creación de tests automatizados está totalmente 
@@ -162,7 +186,7 @@ realizando probas unitarias nos servicios utilizados.
     \subsection{Fluxo de traballo}
     O fluxo de traballo utilizado dende o primeiro día trata de simular o 
 traballo diario de equipo e permite controlar a evolución do código de xeito 
-máis ordenado.
+máis ordenado.\santiagosays{Non dis nada de como se xestiona o deseño vs. implementación. Non houbo deseño? Foi todo anterior á implementación? É interesante decilo, porque aquí dis como se implementa unha funcionalidade, pero non como se deseñou nin que pasou para chegar á implementación. Code \& Fix? :P}
 
     Disponse de unha rama \emph{master} na que se atopa a versión estable de 
 desenvolvemento así como de unha rama \emph{development} que é máis inestable e 
@@ -191,6 +215,12 @@ integrar a funcionalidade creada no sprint actual e que se atopa na rama de
 desenvolvemento, dentro da rama estable.
 
     Dende a introducción de tests no proxecto, todo código subido ao 
-repositorio é analizado a través dun sistema de integración continua que 
+repositorio é analizado a través dun sistema de integración continua\santiagosays[]{Oh, non contas nada de Travis?} que 
 comproba se os cambios engadidos pasan os tests ou non, e avisan por correo 
 electrónico do resultado.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../root"
+%%% End:
