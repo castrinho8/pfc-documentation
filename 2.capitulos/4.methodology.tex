@@ -10,10 +10,21 @@
   \lettrine{N}{este} capítulo imos analizar as diversas metodoloxías utilizadas para a 
 xestión do proxecto e explicar a adaptación das mesmas que finalmente se utilizóu.
 
-\santiagosays{Tes que introducir o capítulo con \emph{moooarrr} cousas. (E.g.,
-  neste capítulo falaremos de X na sección Y, onde se introduce bla bla e porque
-  nos resulta relevante. A continuación, na sección Z falaremos de X+1, outra
-  cousa interesante para os nosos propósitos. Déixoche un esbozo, a ver que che parece.}
+  Comezaremos falando da metodoloxía orientada ao modelo de negocio xa que, 
+como se indica na introdución, este proxecto xurdíu dentro de unha iniciativa 
+empresarial e polo tanto dende o primeiro momento se traballou orientado cara o 
+cliente, convertíndoo nun dos pilares do desenvolvemento.
+
+  Seguidamente comentaremos as metodoloxías áxiles que serviron de base para 
+definir a metodoloxía utilizada finalmente, unha adaptación das mencionadas e 
+que tamén se indica para rematar o capítulo.
+
+  \section{Lean Startup}
+  Lean Startup\cite{book:leanstartup} é unha metodoloxía para abordar o 
+lanzamento de negocios e produtos a través da validación, a experimentación e a 
+iteración no lanzamento dos mesmos co fin de acortar o ciclo de desenvolvemento.
+
+\santiagosays{Non fixeches caso ao meu esbozo?}
 
 O proceso de enxeñería comeza coa elección dunha metodoloxía de traballo que
 guíe o proceso de desenvolvemento. Ademais, dentro da iniciativa empresarial da
@@ -30,63 +41,64 @@ Sección~\ref{todo}. Despois de introducir brevemente cada unha destas,
 concluímos o capítulo cunha exposición da nosa interpretación sobre as mesmas, e
 que corresponde á metodoloxía que se seguiu para o desenvolvemento do proxecto.
 
+\santiagosays{Fin do esbozo}
+
 \ProTip{Cando referencies unha sección en \LaTeX, faino escribindo explicitamente %
   Sección\~{~}\textbackslash ref\{blah\} (ver ficheiro tex). %% <<-- Sección~\ref{blah}
   Se non o fas así, \LaTeX pode romper o parágrafo entre Sección e o número, e eso non queda nada ben estilísticamente.}
-
-  \section{Lean Startup}
-  Lean Startup \santiagosays[]{cita requerida} é unha metodoloxía para abordar o lanzamento de negocios e 
-produtos a través da validación, a experimentación e a iteración no lanzamento 
-dos mesmos para acortar o ciclo de desenvolvemento.
 
   É unha metodoloxía de traballo moi habitual nas startups que se centra na 
 idea de \emph{Crear - Medir - Aprender}, desenvolvendo pequenos produtos e 
 realizando tests de mercado reais con verdadeiros clientes co fin de medir o 
 seu grao de satisfación e aprender para mellorar o produto en seguintes 
 iteracións.
-  
-  Habitualmente céntrase na idea de crear un MPV (Mínimo Producto Viable), unha 
-versión do producto que permite os desenvolvedores recoller co mínimo esforzo a 
-máxima cantidade de coñecemento validado por parte dos clientes, evaluando as 
-hipóteses de se os clientes realmente estarían dispostos a pagar polo 
-producto e implicando a dito cliente no desenvolvemento de dito produto.
-  
-  \section{eXtreme Programming}
-  eXtreme Programming é unha metodoloxia de desenvolvemento áxil e incremental 
-baseada na integración do cliente no desenvolvemento así como na simplicidade 
-do código, apostando por facer cousas sinxelas e ter que facer un pequeno 
-traballo por modificalo se é preciso, fronte a facer un gran traballo para 
-quizáis nunca utilizalo.\santiagosays{Frase demasiado longa como introducción. Esto tes que partilo en dúas, machiño; e a primeira desas frases, ponlle unha cita a un libro, anda ;-)}
 
-  As entregas funcionáis son frecuentes e outras características como a 
+  Habitualmente céntrase na idea de crear un MVP (Minimum Viable Product), 
+unha versión do producto que permite os desenvolvedores recoller co mínimo 
+esforzo a máxima cantidade de coñecemento validado por parte dos clientes, 
+evaluando as hipóteses de se os clientes realmente estarían dispostos a pagar 
+polo producto e implicando a dito cliente no desenvolvemento do produto.
+
+  \section{eXtreme Programming}
+  eXtreme Programming\cite{book:agile} é unha metodoloxia de desenvolvemento 
+áxil e incremental baseada na integración do cliente no desenvolvemento así como 
+na simplicidade do código.
+
+  A metodoloxia aposta por facer as cousas sinxelas, sen preocuparse por ter 
+que facer un pequeno traballo por adaptalas se é preciso, fronte a idea 
+tradicional de facer un gran traballo para quizáis nunca chegar a utilizar 
+parte do mesmo.
+
+  As entregas funcionais son frecuentes e outras características como a 
 importancia de introducir a programación en parellas para reducir o número de 
 erros que se producen ao programar.
 
-  Por último aboga por introducir o TDD (Test Driven Development) \santiagosays[]{Seguro que hai libros escritos sobre isto que hai que citar}, 
-implementando primeiro os tests, verificar que fallan e a continuación 
-implementar o código que fai que pasen os tests.
+  Por último aboga por introducir o TDD (Test Driven Development)\santiagosays{Cita requerida}, 
+implementando primeiro os tests, verificando que fallan, para a continuación 
+implementar o código que fai que pasen correctamente os mesmos.
   A idea é que os requisitos sexan convertidos a probas e de este modo cando os 
 tests se pasen, poderemos garantizar que o código cumple os requisitos.
 
   \section{Scrum}
-  Scrum\santiagosays[]{Cita requerida} tamén é unha metodoloxía incremental de desenvolvemento cunha serie de 
-roles definidos para o proceso, cada un coas súas responsabilidades e que divide 
-o proxecto en varios \emph{Sprints} que son ciclos de desenvolvemento.
+  Scrum\cite{book:scrum} tamén é unha metodoloxía incremental de desenvolvemento 
+cunha serie de roles definidos para o proceso, cada un coas súas 
+responsabilidades e que divide o proxecto en varios \emph{Sprints} que son 
+ciclos de desenvolvemento.
 
-  Cada un de eles ten unha duración de entre unha e catro semanas\santiagosays[]{\scriptsize Eu creo que esto é totalmente personalizable; igual mellor dicir que ``suele ser'', ou que esta plantexada para ciclos curtos, sen especificar duración, ou entre parénteses} e que é 
-definida polo equipo e cada unha das cales proporciona un incremento de 
-software entregable.
+  Cada un de eles ten unha duración definida polo equipo de, habitualmente, 
+entre unha e catro semanas, proporcionando un incremento de software entregable 
+ao final de cada \emph{Sprint}.
 
-  A totalidade das tarefas do proxecto atópanse definidas e priorizadas no 
-\emph{Product Backlog}\santiagosays[]{Definir con máis precisión} e para cada sprint selecciónanse aquelas que determinarán 
-o \emph{Sprint Backlog}, que serán implementadas durante dito sprint e que non 
-poden variar ata rematar.
-
-\santiagosays{Xa sei que é o que queres contar, pero es que contalo dun xeito no que esteas definindo as cousas, non introducir \emph{keywords} que hai que entender por contexto. O lector que non saiba o que é Scrum ten que quedar cunha idea razoable do que é para entender porqué che interesa.}
+  A totalidade das tarefas do proxecto atópanse definidas e priorizadas en unha 
+lista chamada \emph{Product Backlog}. Para cada sprint, selecciónanse aquelas 
+tarefas que determinarán a lista a implementar durante a presente iteración, o
+\emph{Sprint Backlog}, e que non pode variar ata rematar o sprint.
 
   Durante todo o ciclo de traballo realízanse reunións diarias para comprobar o 
-estado do proxecto así como outras ao fin e ao comezo dos sprints co fin de 
-analizar o anterior e planificar o seguinte.
+estado do proxecto así como outras ao finalizar e ao comezar os sprints, co 
+fin de analizar a iteración anterior e planificar a seguinte, facendo un 
+seguimento continuo do proxecto e facilitando a adaptación do mesmo a posibles 
+novos requisitos.
 
   \section{Adaptación da metodoloxía}
 
@@ -101,24 +113,24 @@ coñecer os problemas e a súa prioridade a hora de resolvelos.
 
     Do mesmo modo realizáronse dous prototipos, un primeiro únicamente 
 con plantillas HTML para testear a organización da interfaz de usuario e un 
-segundo xa funcional para comprobar a resposta dos usuarios reais %
-\santiagosays[]{Se hai usuarios reais, ¿hai tamén usuarios que non o
-  son? Que quere dicir usuarios reais?} %
-ante o seu funcionamento.
+segundo xa funcional para comprobar a resposta dos usuarios finais ante o seu 
+funcionamento.
 
     \subsection{Sprints con backlog adaptable}
     A organización do desenvolvemento organizouse de xeito moi similar a idea 
 proposta en \emph{Scrum}, dividindo o proceso en sprints, pequenas iteracións 
-de dúas semanas de duración e que cada unha proporciona unha serie de novas 
-funcións totalmente .
+de dúas ou tres semanas de duración e que cada unha proporciona unha serie de 
+novas funcións.
 
     Cada sprint comeza con unha reunión de aproximadamente 30/45 minutos de 
 duración na que realizar a planificación do mesmo en función do 
-traballo realizado no sprint anterior o que permite realizar melloras nas 
-previsións según o aprendido nos anteriores.
+traballo realizado no sprint anterior, o que permite realizar melloras nas 
+previsións segundo o aprendido dos anteriores.
 
-  \todo{falar do backlog que se adapta durante o sprint, non como en scrum que 
-é fixo}
+    A diferencia do proposto por Scrum, decidíuse optar por sprints de duración 
+variable e con un backlog adaptable según as necesidades xa que proporciona 
+unha maior flexibilidade e liberdade.
+
     \subsection{Reunións semanais}
     Todas as semanas faise unha reunión de 30/45 minutos de duración na que 
 analizar o realizado na semana anterior e comprobar o seguimento da iteración 
@@ -136,14 +148,13 @@ se vai facer ese mesmo día.
     \subsection{Releases}
     Durante o desenvolvemento do proxecto trátase de aplicar a idea de realizar 
 unha serie de pequenos entregables en cada iteración.
-    
+
     Todas as entregas ao finalizar unha iteración son totalmente funcionais 
-pero non todas son versións entregables reais para ser postos en producción.
+pero non todas son versións entregables reais para ser postas en produción.
 
     Durante o desenvolvemento producíronse 3 entregas (\emph{releases}) 
-totalmente\santiagosays[]{Totalmente todas? Entón porqué houbo tres?} %
- funcionais, a primeira foi un prototipo, a segunda foi a versión 
-real do proxecto e a terceira incorporóu tests e diversas características para 
+totalmente funcionais, a primeira foi un prototipo, a segunda foi a versión 
+real do proxecto e a terceira incorporou tests e diversas características para 
 asegurar unha primeira versión estable.
 
     \subsection{Simplicidade}
@@ -153,46 +164,55 @@ asegurar unha primeira versión estable.
     mañá.%
     \santiagosays[]{Jajaja, gústame a frase (borra este comentario cando o leas)}
 
-    A idea fundamentase en realizar refactorizacións de código para engadir 
+    A idea fundaméntase en realizar refactorizacións de código para engadir 
 novas funcionalidades a medida que son necesarias en lugar de invertir 
 demasiado tempo na planificación e implementación de funcións que se supoñen 
-necesarias e, algunhas das cales, é probable que non sexan necesarias 
+necesarias e, algunhas das cales, é probable que non sexan utilizadas
 finalmente.\santiagosays{Hei, esto deberías de argumentalo con algo máis de detalle. Pensa en quen o vai a ler!}
 
     \subsection{Tests}
     A importancia de creación de tests automatizados está totalmente 
-demostrada, atopándose en auxe metodoloxías como \emph{TDD (Test Driven 
-Development)} ou \emph{BDD (Behaviour Driven Development)} que tratan de 
-dirixir o desenvolvemento a través dos tests, que son realizados antes do mesmo.
-    
+demostrada, atopándose en auxe metodoloxías como \emph{TDD} \footnote{(Test 
+Driven Development) Desenvolvemento dirixido polos tests.} ou 
+\emph{BDD}\footnote{(Behaviour Driven Development) Desenvolvemento dirixido 
+polo comportamento} que tratan de dirixir o desenvolvemento a través dos tests e
+que son realizados antes da implementación da funcionalidade.
+
     Durante a primeira parte do desenvolvemento non se aplicóu ningunha de 
 estas metodoloxías pero a partir da primeira \emph{release} e da integración 
-dos primeiros tests, decidíuse optar por aplicar TDD no desenvolvemento 
+dos primeiros tests, decidíuse optar por aplicar TDD no desenvolvemento, 
 realizando probas unitarias nos servicios utilizados.
 
     \subsection{Fluxo de traballo}
     O fluxo de traballo utilizado dende o primeiro día trata de simular o 
-traballo diario de equipo y permite controlar a evolución do código de xeito 
+traballo diario de equipo e permite controlar a evolución do código de xeito 
 máis ordenado.\santiagosays{Non dis nada de como se xestiona o deseño vs. implementación. Non houbo deseño? Foi todo anterior á implementación? É interesante decilo, porque aquí dis como se implementa unha funcionalidade, pero non como se deseñou nin que pasou para chegar á implementación. Code \& Fix? :P}
-    
-    Unha nova funcionalidade ou erro son resoltos nunha nova rama 
-independente e creada a partir de \emph{master},\santiagosays[]{\footnotesize, que é a rama principal/na que están as versión estables/as de desnvolvemento..?} tratando que todas estas novas 
+
+    Disponse de unha rama \emph{master} na que se atopa a versión estable de 
+desenvolvemento así como de unha rama \emph{development} que é máis inestable e 
+que ao final de cada sprint, é integrada dentro de \emph{master}.
+
+    Unha nova funcionalidade ou erro é resolto nunha nova rama independente,
+creada a partir de \emph{development} e tratando que todas estas novas 
 funcionalidades sexan independentes entre si.
 
-Así mesmo tratase de que todos os \emph{commits} sexan o máis
-independentes~\santiagosays[fancyline]{queres dicir autocontidos?} posible e todos
-funcionais\santiagosays{Os commits non son funcionais. Se o que queres dicir é que
-  non rompen funcionalidades, ou que se tratan de evitar regresións, e que tras cada
-  un o código siga sendo entregable... podes dicir iso, ou ``de xeito que ningún
-  cambio depende doutro cambio \emph{futuro}''}, evitando ter algún que non compile
-ou que non pase os tests.
+    Así mesmo tratase de que todos os \emph{commits} sexan funcionais e o máis 
+independentes posibles, evitando ter algún que non compile ou que non pase 
+os tests.
 
-Posteriormente realizase unha \emph{Pull Request}\santiagosays[]{Define brevemente} a
-través do mecanismo que proporciona o repositorio de código GitHub, esperando a unha
-revisión de código para ser integrado na rama principal do proxecto.
+    Posteriormente realizase unha \emph{pull request}\footnote{Unha pull 
+request é unha petición para integrar unha rama de Git en outra a través de 
+GitHub, un mecanismo habitual para engadir novas funcionalidades ou correxir 
+erros.} a través do mecanismo que proporciona o repositorio 
+de código de GitHub, esperando que alguén revise o código para ser 
+integrado na rama de desenvolvemento.
 
-    Cada certo tempo revísanse as \emph{Pull Requests} abertas, analízase o 
-codigo e se todo é correcto, acéptase para integrar na rama principal.
+    Cada certo tempo revísanse as \emph{rull requests} abertas, analízase o 
+codigo e se todo é correcto, acéptase.
+
+    Ao final de cada sprint realízase una nova \emph{rull request} para 
+integrar a funcionalidade creada no sprint actual e que se atopa na rama de 
+desenvolvemento, dentro da rama estable.
 
     Dende a introducción de tests no proxecto, todo código subido ao 
 repositorio é analizado a través dun sistema de integración continua\santiagosays[]{Oh, non contas nada de Travis?} que 

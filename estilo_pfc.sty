@@ -5,7 +5,6 @@
 %% Paquetes a incluir por defecto    %%
 %%                                   %%
 
-\RequirePackage[utf8]{inputenc}
 \RequirePackage[spanish]{babel}
 
 \usepackage{indentfirst}
@@ -29,11 +28,19 @@
 \usepackage{eurosym}
 \usepackage[hmargin={4cm,2.5cm},tmargin=3cm,bmargin=4cm]{geometry}
 \usepackage{hyperref}
-    
+\usepackage{listings}
+
 \hypersetup{
   colorlinks=true,
   linkcolor=blue
 }
+
+
+  % Personalizamos la separaci? entre p?rafos...
+\parskip=6pt
+
+% Personalizamos el identado en la primera l?ea del nuevo p?rafo...
+\parindent=10pt
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % minitoc options                      %
@@ -88,4 +95,54 @@
 \addtocontents{lof}{\small\textsf{\textbf{Figura}}\hfill\textsf{\textbf{P\'agina}}\endgraf}
 \addtocontents{lot}{\small\textsf{\textbf{Tabla}}\hfill\textsf{\textbf{P\'agina}}\endgraf}
 
+
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+\usepackage{listings}
+\usepackage{courier}
+
+
+\lstset{
+  basicstyle=\footnotesize\ttfamily, % Standardschrift
+  numberstyle=\tiny,          % Stil der Zeilennummern
+  numbersep=5pt,              % Abstand der Nummern zum Text
+  tabsize=2,                  % Groesse von Tabs
+  extendedchars=true,         %
+  breaklines=true,            % Zeilen werden Umgebrochen
+  keywordstyle=\textbf,
+  frame=b,
+  stringstyle=\textit, % Farbe der String
+  showspaces=false,           % Leerzeichen anzeigen ?
+  showtabs=false,             % Tabs anzeigen ?
+  xleftmargin=17pt,
+  framexleftmargin=17pt,
+  framexrightmargin=5pt,
+  framexbottommargin=4pt,
+  %backgroundcolor=\color{lightgray},
+  showstringspaces=false      % Leerzeichen in Strings anzeigen ?
+}
+
+ \lstset{literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
+ }
+
+ %Cite color
+ \hypersetup{
+  colorlinks,
+  citecolor=gray}
 \endinput

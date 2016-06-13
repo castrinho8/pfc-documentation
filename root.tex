@@ -1,4 +1,5 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Preamble                                                                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -10,10 +11,9 @@
 \author{Pablo Castro Valiño}
 \date{14 de xaneiro de 2016}
 
-%% Esto é para poñer comentarios sobre o texto. Para eliminalas do
-%% texto, engade ás propiedaes da documentclass o atributo "final".
+%% Para eliminar as todonotes do texto, engade ás propiedaes da
+%% documentclass o atributo "final".
 \usepackage[obeyFinal]{todonotes}
-\usepackage{listings}
 \newcommand{\santiagosays}[2][inline]{\todo[author=Santiago,color=yellow,#1]{#2}}
 \newcommand{\ProTip}[2][inline]{\todo[author={\bf ProTip}™,color=cyan,#1]{#2}}
 
@@ -87,9 +87,9 @@
  \include{3.apendices/acronym-glossary}
  \include{3.apendices/term-glossary}
 
- \nocite*
- \bibliography{bibliography}
- \bibliographystyle{abbrv}
+ \nocite{*}
+ \bibliography{3.apendices/bibliography}
+ \bibliographystyle{alpha}
 
 \end{document}
 
