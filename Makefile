@@ -7,10 +7,10 @@ all: root.pdf
 
 root.pdf: root.tex
 	pdflatex $(INTERACTION) root.tex || true
+	pdflatex $(INTERACTION) root.tex || true
+	bibtex root
+	pdflatex $(INTERACTION) root.tex || true
 	pdflatex $(INTERACTION) root.tex
-#	biblatex bibliography
-#	pdflatex $(INTERACTION) root.tex
-#	pdflatex $(INTERACTION) root.tex
 
 root-diff.tex: latexdiff
 	PATH=$(PWD)/latexdiff:$(PATH) latexdiff-vc --git -r $(REVIEW_BRANCH) --flatten=1 --exclude-textcmd=chapter,section,subsection,subsubsection root.tex
