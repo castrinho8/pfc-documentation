@@ -12,38 +12,44 @@ empregadas durante o desenvolvemento do proxecto así como ferramentas de
 xestión, bases de datos, repositorios de código e ferramentas documentais, 
 todas, tecnoloxías Software Libre.
 
-\santiagosays{Confundiume que vai primeiro a metodoloxía pero sin embargo están
-  numerados os ficheiros fonte \texttt{.tex} ao revés}
-
   \section{Linguaxes e frameworks empregados}
 
   \begin{description}
-   \item [ReactJS]\cite{web:react} React é unha librería de Javascript para a 
+   \item [ReactJS] 
+\href{https://facebook.github.io/react/}{facebook.github.io/react} \\ React é 
+unha librería de Javascript para a 
 creación de Single Page Aplications (SPAs), permitindo crear aplicacións 
 completas que se executen no navegador de forma sinxela a través de diversos 
 compoñentes que se agrupan e que permiten crear aplicacións multiplataforma.
 
-   \item [Reflux]\cite{web:reflux} É unha implementación da 
+   \item [Reflux] \href{https://github.com/reflux/refluxjs}{
+github.com/reflux/refluxjs}\\ É unha implementación da 
 arquitectura Flux e que permite un fluxo de datos unidireccional, en lugar do 
 bidireccional que é habitual nas aplicacións web.
     Permite tamén a creación de Stores nas que se mantén o estado das aplicacións e que 
 permite compartir dito estado entra os diversos compoñentes da aplicación.
 
-   \item [Jest]\cite{web:jest} É unha ferramente sinxela creada sobre o 
+   \item [Jest] 
+\href{https://facebook.github.io/jest/}{facebook.github.io/jest}\\ É unha 
+ferramente sinxela creada sobre o 
 framework de testing para Jasvascript, Jasmine, que facilita a utilización de 
 mocks e a creación de tests unitarios.
 
-   \item [React Intl (i18n)]\cite{web:reactintl} React Intl é unha 
+   \item [React Intl (i18n)]\href{http://formatjs.io/}{formatjs.io}\\ React 
+Intl é unha 
 ferramenta para facilitar a internacionalización de aplicacións Javascript e 
 concretamente as 
 aplicacións baseadas en React.
 
-   \item [React Router]\cite{web:reactrouter} Unha 
+   \item [React 
+Router]\href{https://github.com/reactjs/react-router}{
+github.com/reactjs/react-router}\\ Unha 
 librería para o enrutado de aplicacións baseadas en ReactJS 
 proveendo unha API sinxela con funcionalidades de gran potencia como a carga preguiceira 
 de código ou o enrutado dinámico.
 
-   \item [Material UI]\cite{web:materialui} Un conxunto de 
+   \item [Material UI] 
+\href{http://www.material-ui.com/}{material-ui.com}\\ Un conxunto de 
 compoñentes para React que implementan o Material 
 Design impulsado por Google, unha nova linguaxe visual baseada na representación en 3D 
 dos obxectos que non deben intersecarse se non que a través de sombras para simular 
@@ -53,10 +59,22 @@ diferentes profundidades, os obxectos debe superpoñerse uns sobre os outros.
 
   \section{Bases de datos}
 
-  \santiagosays{Introduce a sección cun miniparágrafo}
-
   \begin{description}
-     \item [PouchDB]\cite{web:pouchdb} Unha base de datos NoSQL 
+
+     \item [CouchDB] \href{http://couchdb.apache.org/}{couchdb.apache.org} É 
+unha base de datos 
+pensada para web que permite almacenar 
+os datos en formato JSON e acceder aos mesmos a través dun navegador via HTTP, 
+funcionando como unha API REST (Representational state 
+transfer).
+
+  Permite múltiples funcionalidades pouco habituais entre os sistemas de 
+xestión de bases de datos como servir aplicacións directamente dende 
+CouchDB así como un sistema de replicación incremental e de detección de 
+conflictos.
+
+     \item [PouchDB] \href{https://pouchdb.com/}{pouchdb.com}\\ Unha base de 
+datos NoSQL 
 baseada en Javascript e inspirada 
 en CouchDB, pensada para facilitar o funcionamento de aplicacións web de forma 
 offline.
@@ -64,41 +82,14 @@ offline.
 PouchDB permite almacenar os datos localmente no navegador web cando non 
 hay conexión a internet e sincronizar de forma sinxela ditos datos en remoto con 
 CouchDB e outros servidores compatibles.%
-\santiagosays{PouchDB é unha base de datos non relacional \emph{implementada} en
-  Javascript, pero porque non hai outro xeito. Implementa o esquema de
-  replicación de CouchDB, o que a fai moi conveniente para ter unha copia local
-  dos datos remotos, de xeito que permita unha experiencia máis fluida e
-  \emph{seamlessly offline}. Como CouchDB emprega un paradigma distribuido,
-  sincronizar datos dende ou cara unha implementación PouchDB resulta sinxelo.}
-
-   \item [CouchDB]\cite{web:couchdb} É unha base de datos 
-pensada para web que permite almacenar 
-os datos en formato JSON e acceder aos mesmos a través dun navegador via HTTP, 
-funcionando como unha API REST.\santiagosays{Que é REST? Eso é parte das tecnoloxías.
-    Ademais, non é simplemente unha base de datos pensada para web: é
-    unha base de datos non relacional, orientada a documentos, que
-    implementa o paradigma Map-Reduce para a busca de elementos, dun
-    xeito eficiente para a distribución en cluster/cloud/como lle
-    queiras chamar.}
-
-  Permite gran cantidade\santiagosays[]{Xuízo de valor} de funcionalidades como servir aplicacións 
-directamente desde CouchDB así como un sistema de replicación incremental e de 
-detección de conflictos.
-
-\ProTip{En lugar de calificar de ``gran cantidade'' e nomear algunha;
-  cabe describilo como que \emph{ten funcionalidades \textbf{que
-      habitualmente non forman parte dos sistemas de xestión de bases
-      de datos}, como a replicación incremental, a detección de
-    conflitos, ou o acceso mediante unha interface REST aos datos}.}
 
   \end{description}
 
   \section{Estándares de comunicación}
 
-  \santiagosays{Introduce a sección cun miniparágrafo}
-
   \begin{description}
-   \item [JSON] \cite{web:json} É un formato estándar para o 
+   \item [JSON] \href{http://couchdb.apache.org/}{couchdb.apache.org}\\ É un 
+formato estándar para o 
 intercambio de datos e que pola súa 
 simplicidade estase a impoñer como formato habitual por exemplo, para a comunicación con 
 APIs Rest e debido a súa similitude coa definición de obxectos en Javascript, permite que 
@@ -107,16 +98,16 @@ sexa tremendamente sinxelo traballar con él dende esta linguaxe.
 
   \section{Repositorios de código}
 
-  \santiagosays{Introduce a sección cun miniparágrafo}
-
   \begin{description}
-   \item [Gerrit]\cite{web:gerrit} Gerrit é 
+   \item [Gerrit] 
+\href{https://www.gerritcodereview.com/}{gerritcodereview.com}\\ Gerrit é 
 un repositorio de código baseado no sistema de control de 
 versións Git e centrado en proveer un xeito sinxelo de realizar revisións de 
 código dende unha plataforma web. Foi utilizado durante o desenvolvemento do 
 prototipo da aplicación pero finalmente decidíuse trasladar o código a GitHub 
 para facilitar a colaboración de outros posibles desenvolvedores.
-   \item [GitHub]\cite{web:github} GitHub é un repositorio de 
+   \item [GitHub] \href{http://github.com/}{github.com}\\ GitHub é un 
+repositorio de 
 código que se está a convertir no lugar máis 
 importante de publicación de aplicacións Software Libre e que permite aloxar proxectos 
 como o presente, de forma totalmente gratuita.
@@ -127,43 +118,49 @@ comunidade de gran importancia neste tipo de proxectos.
 
   \section{Ferramentas de xestión}
 
-  \santiagosays{Introduce a sección cun miniparágrafo}
-
   \begin{description}
-   \item [Git]\cite{web:git} É un sistema de control de 
+   \item [Git] \href{https://git-scm.com/}{git-scm.com}\\ É un sistema de 
+control de 
 versións software libre con grandes funcionalidades e que é utilizado en 
 millóns de proxectos. Aporta unha versatilidade enorme ao ser distribuido, 
 permitindo traballar incluso de forma offline.
-   \item [Gulp]\cite{web:gulp} Un sistema que permite a 
+   \item [Gulp] \href{http://gulpjs.com/}{gulpjs.com}\\ Un sistema que permite 
+a 
 automatización de tarefas durante o desenvolvemento de aplicacións como por 
 exemplo compilar automáticamente o código Javascript escrito na súa última 
 versión á versión máis antiga para que poida ser executada por calquera 
 navegador web.
-    \item [Babel]\cite{web:babel} É un compilador de 
+    \item [Babel] \href{https://babeljs.io/}{babeljs.io}\\ É un compilador de 
 Javascript que permite a traducir código fonte escrito no estándar ECMAScript 6 
 a ECMAScript 2015, soportado pola gran maioría de navegadores.
-    \item [Browserify]\cite{web:browserify} É unha ferramenta 
+    \item [Browserify] \href{http://browserify.org/}{browserify.org}\\ É unha 
+ferramenta 
 que permite escribir os módulos da aplicación como se fosen módulos para unha 
 aplicación escrita en Node.js e que os compila para poder ser utilizados no 
 navegador web.
-   \item [Redmine]\cite{web:redmine} É unha ferramenta de 
+   \item [Redmine] \href{http://www.redmine.org/}{redmine.org}\\ É unha 
+ferramenta de 
 xestión de proxectos flexible, multiplataforma e software libre con diversos 
 plugins para facilitar a planificación de iteracións e traballar con 
 metodoloxías áxiles de desenvolvemento.
-   \item [Travis CI]\cite{web:travis} É unha ferramenta de 
+   \item [Travis CI] \href{https://travis-ci.org/}{travis-ci.org}\\ É unha 
+ferramenta de 
 integración continua que permite automatizar a execución de tests ou o 
 despregamento automático de código. Ademáis dispón dunha integración con Github 
 polo que resulta moi sinxelo automatizar estas tarefas.
-   \item [Docker]\cite{web:docker} É un sistema que permite 
+   \item [Docker] \href{https://www.docker.com/}{docker.com}\\ É un sistema 
+que permite 
 empaquetar e despregar de xeito sinxelo aplicacións coas súas dependencias en 
 unidades estándar chamadas contenedores, abstraendo e automatizando a 
 virtualización da plataforma na que correrá a aplicación.
-   \item [Atom]\cite{web:atom} Un editor de texto software libre 
+   \item [Atom] \href{https://atom.io/}{atom.io}\\ Un editor de texto software 
+libre 
 deseñado inicialmente por GitHub e centrado na súa extensibilidade gracias a un 
 sinxelo sistema de plugins. Ademais, no ecosistema de ReactJS, existen 
 compoñeentes para Atom co obxectivo de facilitar a edición de aplicacións React, 
 elaboradas polos mesmos impulsores da propia librería.
-   \item [Apache Cordova]\cite{web:apachecordova} Unha 
+   \item [Apache Cordova] 
+\href{https://cordova.apache.org/}{cordova.apache.org}\\ Unha 
 ferramenta de desenvolvemento que permite usar tecnoloxías web estándar (HTML, 
 CSS3 e Javascript) para crear aplicacións móbiles múltiplataforma.
 
@@ -171,14 +168,14 @@ CSS3 e Javascript) para crear aplicacións móbiles múltiplataforma.
 
   \section{Ferramentas documentais}
 
-  \santiagosays{Introduce a sección cun miniparágrafo}
-
   \begin{description}
-   \item [LaTeX]\cite{web:latex} Un sistema para a 
+   \item [LaTeX] \href{https://www.latex-project.org/}{latex-project.org}\\ 
+Un sistema para a 
 composición de documentos que inclúe todo tipo de funcionalidades para a edición 
 de textos científicos ou técnicos, moi adecuado para este proxecto e que xenera 
 documentos de xeito sinxelo e automáticamente estructurados.
-   \item [Dia]\cite{web:dia} É unha aplicación para a 
+   \item [Dia] \href{http://dia-installer.de/}{dia-installer.de}\\ É unha 
+aplicación para a 
 creación de diagramas entre os que se atopan os diagramas UML e que permite a 
 exportación dos mesmos a imáxenes vectoriais.
   \end{description}
