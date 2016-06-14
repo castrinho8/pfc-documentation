@@ -1,8 +1,14 @@
 language: cpp
 compiler: clang
 script:
+  - git remote add reviewer https://github.com/ssaavedra/pfc-vacmatch.git
+  - git fetch reviewer latest-review
+  - git branch -f latest-review reviewer/latest-review
   - make all
   - pdf2djvu --no-page-titles -j2 -o root.djvu root.pdf
+  - make root-diff.pdf || true
+  - pdf2djvu --no-page-titles -j2 -o root-diff.djvu root-diff.pdf
+  
 addons:
   apt:
     packages:
@@ -32,8 +38,10 @@ cache:
 before_install:
   - curl -L https://github.com/yihui/ubuntu-bin/releases/download/latest/texlive.tar.gz | tar zxC ~
   - curl -L https://bitbucket.org/jwilk/pdf2djvu/downloads/pdf2djvu-0.9.4.tar.xz | tar xJC ~
+  - git clone --depth=1 https://github.com/ssaavedra/latexdiff.git ~/latexdiff
 install:
   - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
+  - PATH=$HOME/latexdiff:$PATH
   - tlmgr install collection-langspanish
   - tlmgr install minitoc lettrine times rsfs cm-super
   - tlmgr install avantgar tex4ht
@@ -48,6 +56,8 @@ deploy:
   file:
     - root.pdf
     - root.djvu
+    - root-diff.pdf
+    - root-diff.djvu
   skip_cleanup: true
   on:
     tags: true
