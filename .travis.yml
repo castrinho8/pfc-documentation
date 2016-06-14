@@ -2,7 +2,7 @@ language: cpp
 compiler: clang
 script:
   - make all
-  - pdf2djvu -o root.djvu root.pdf
+  - pdf2djvu --no-page-titles -j2 -o root.djvu root.pdf
 addons:
   apt:
     packages:
@@ -45,7 +45,9 @@ deploy:
   provider: releases
   api_key:
     secure: jBdUmKPvTnGVHhQ4TK6btEyyI1ozeSOceAQ4fuCRm267WuMd7VXlJ60/nV+ntDNUwyOt03kV+O3ZN8+XmdtWU/SOKa+Jm1Icj3hS7oxItENRrnld8oS4YVLYMyhXJxVccYCtvL/A57R23qro/t6xuJVdv5bna7JihOQPLFt8Q98wOVEwrHcbzzD4jHIH27OBfZp/i0iO6PjQywOalq1P5Vf8GXI9AtGW9i8n1jKOCf0bJSnwSAR+O4KjGll0GFf/1bbJ8ZaOpPpKVolHf3s6MsnlB0YELEjgeANkaovTT0N+ecKnzEgEs9AWKAL27oC7pREi7oiMfGNdiL7dJDKGT5EI+aLzqunXWBg1zpYKjMBg8I2FYI1Gjy+GZD3OxjC9d27OtE0B4vtaqbiEdJyoRGhespMrRuHUIBIWSEcX3OnMtQ+8/RiDQcFDPleFI9EwWAQJEsUI5Jse21z5uK93J5pnjO597Jvi+OkvdlnYQMteSSuQAnqhaSnwNuU6/31v1lfCT4Je7nk4Vq4dy11qhRAYO/HjiuP2ysHDxE9eKPiStL9dgOqVtYGMQEo4WYr8uLcbfWbvPVKPg0l5OdxIib5NhNI1E8QAhwL4kYj1xgh7VIWofEGeuB0KpagjLCc5J6uw36Z4duyrC9yHmLoW93Vu7DLG7oO/Xp08Ez/c1us=
-  file: root.pdf
+  file:
+    - root.pdf
+    - root.djvu
   skip_cleanup: true
   on:
     tags: true
