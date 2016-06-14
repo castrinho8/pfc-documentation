@@ -21,8 +21,7 @@ root-diff.pdf: root-diff.tex
 	pdflatex $(INTERACTION) root-diff.tex
 
 latexdiff:
-	rm -rf latexdiff
-	git clone "https://github.com/ssaavedra/latexdiff.git"
+	[ -d latexdiff ] || git clone "https://github.com/ssaavedra/latexdiff.git"
 
 clean:
 	rm -f *.aux *.lof *.log *.lot *.maf *.mtc* *.out *.toc *-diff*

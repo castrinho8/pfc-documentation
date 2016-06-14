@@ -32,13 +32,17 @@ addons:
     - uuid-dev
 
 cache:
+  ccache
   directories:
-  - $HOME/.ccache
+    - $HOME/texlive
+    - $HOME/latexdiff
+    - $HOME/pdf2djvu
+    - $HOME/.ccache
 
 before_install:
-  - curl -L https://github.com/yihui/ubuntu-bin/releases/download/latest/texlive.tar.gz | tar zxC ~
-  - curl -L https://bitbucket.org/jwilk/pdf2djvu/downloads/pdf2djvu-0.9.4.tar.xz | tar xJC ~
-  - git clone --depth=1 https://github.com/ssaavedra/latexdiff.git ~/latexdiff
+  - [[ -d ~/texlive ]] || curl -L https://github.com/yihui/ubuntu-bin/releases/download/latest/texlive.tar.gz | tar zxC ~
+  - [[ -d ~/pdf2djvu ]] || curl -L https://bitbucket.org/jwilk/pdf2djvu/downloads/pdf2djvu-0.9.4.tar.xz | tar xJC ~
+  - [[ -d ~/latexdiff ]] || git clone --depth=1 https://github.com/ssaavedra/latexdiff.git ~/latexdiff
 install:
   - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
   - PATH=$HOME/latexdiff:$PATH
@@ -46,8 +50,7 @@ install:
   - tlmgr install minitoc lettrine times rsfs cm-super
   - tlmgr install avantgar tex4ht
   - export PATH="/usr/lib/ccache:$PATH"
-  - mkdir ~/pdf2djvu
-  - (cd ~/pdf2djvu-0.9.4 && ./configure --prefix=$HOME/pdf2djvu && make && make install)
+  - [[ -d ~/pdf2djvu ]] || mkdir -p ~/pdf2djvu && (cd ~/pdf2djvu-0.9.4 && ./configure --prefix=$HOME/pdf2djvu && make && make install)
   - export PATH=$HOME/pdf2djvu/bin:$PATH
 deploy:
   provider: releases
