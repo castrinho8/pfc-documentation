@@ -35,8 +35,8 @@ before_install:
 install:
   - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
   - tlmgr install collection-langspanish
-  - tlmgr install minitoc
-  - tlmgr install lettrine
+  - tlmgr install minitoc lettrine times rsfs cm-super
+  - tlmgr install avantgar tex4ht
   - export PATH="/usr/lib/ccache:$PATH"
   - mkdir ~/pdf2djvu
   - (cd ~/pdf2djvu-0.9.4 && ./configure --prefix=$HOME/pdf2djvu && make && make install)
