@@ -7,28 +7,37 @@
 
 \RequirePackage[spanish]{babel}
 
+\usepackage[hmargin={4cm,2.5cm},tmargin=3cm,bmargin=4cm]{geometry}
+\usepackage{hyperref}
+
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+
 \usepackage{indentfirst}
 
 \usepackage{latexsym}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{courier}
 
-\usepackage[pdftex]{graphicx}
 \usepackage{hhline}
 \usepackage{subfigure}
 \usepackage{longtable}
-\usepackage{minitoc}
 \usepackage{titlesec}
 \usepackage{fancyhdr}
 \usepackage{cite}
 \usepackage{lscape}
-\usepackage[nottoc,notlot,notlof,notindex]{tocbibind}
 \usepackage{setspace}
+
+\usepackage{caption}
+\usepackage{listings}
+
 \usepackage{lettrine}
 \usepackage{eurosym}
-\usepackage[hmargin={4cm,2.5cm},tmargin=3cm,bmargin=4cm]{geometry}
-\usepackage{hyperref}
-\usepackage{listings}
+\usepackage{minitoc}
+\usepackage[nottoc,notlot,notlof,notindex]{tocbibind}
+
 
 \hypersetup{
   colorlinks=true,
@@ -95,17 +104,9 @@
 \addtocontents{lof}{\small\textsf{\textbf{Figura}}\hfill\textsf{\textbf{P\'agina}}\endgraf}
 \addtocontents{lot}{\small\textsf{\textbf{Tabla}}\hfill\textsf{\textbf{P\'agina}}\endgraf}
 
-
-\usepackage{color}
-\usepackage{xcolor}
-\usepackage{caption}
 \DeclareCaptionFont{white}{\color{white}}
 \DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
 \captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
-
-\usepackage{listings}
-\usepackage{courier}
-
 
 \lstset{
   basicstyle=\footnotesize\ttfamily, % Standardschrift
