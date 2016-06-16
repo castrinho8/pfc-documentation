@@ -3,7 +3,7 @@
 % Preamble                                                                     %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[a4paper,spanish,10p,titlepage]{report}
+\documentclass[a4paper,galician,10p,titlepage]{report}
 
 \usepackage[utf8]{inputenc}
 \usepackage{estilo_pfc}
@@ -41,10 +41,10 @@
 %  \paginaenblanco
 %  \include{1.preliminares/3.director-agreement}
 %  \paginaenblanco
- \include{1.preliminares/4.dedication}
- \paginaenblanco
- \include{1.preliminares/5.gratefulnesses}
- \paginaenblanco
+% \include{1.preliminares/4.dedication}
+% \paginaenblanco
+% \include{1.preliminares/5.gratefulnesses}
+% \paginaenblanco
  \include{1.preliminares/6.abstract}
  \paginaenblanco
  \include{1.preliminares/7.keywords}
@@ -55,7 +55,7 @@
 
  \tableofcontents
  \listoffigures
- \listoftables
+% \listoftables
  \clearpage
  \mbox{}
  \clearpage
@@ -83,13 +83,14 @@
  \appendix
  \include{3.apendices/appendix}
 
-
  \include{3.apendices/acronym-glossary}
  \include{3.apendices/term-glossary}
 
  \nocite{*}
  \bibliography{3.apendices/bibliography}
  \bibliographystyle{alpha}
+
+ \include{3.apendices/license}
 
 \end{document}
 

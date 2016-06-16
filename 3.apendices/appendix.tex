@@ -2,14 +2,82 @@
 \chapter*{Apéndices}
 \thispagestyle{empty}
 \newpage
-\chapter{Configurar a aplicación.}
-\label{chap:configuracion_aplicacion}
-  \section{Base de datos remota.}
-  \section{Aplicación.}
 
-\clearpage
-\chapter{Executar a aplicación.}
-\label{chap:configuracion_aplicacion}
-  \section{Compilación e execución web.}
-  \section{Compilación para móbil.}
+\chapter{Compilación e execución da aplicación.}
+\label{chap:compilacion_aplicacion}
+VACmatch Mobile é Software Libre e o seu código fonte atópase publicado no 
+seguinte repositorio de código en GitHub 
+\href{https://github.com/vacmatch/vacmatch-mobile}{
+github.com/vacmatch/vacmatch-mobile}.
+
+Para poder executar a aplicación é preciso dispor das seguintes ferramentas:
+
+\begin{itemize}
+ \item Git
+ \item Gulp
+ \item NodeJS
+ \item NPM
+ \item CouchDB
+\end{itemize}
+
+  \section{Configuración e execución web.}
+
+  O primeiro paso é abrir o ficheiro de configuración da aplicación situado en 
+\lstinline{src/app/api/config.json} e nel atoparemos a configuración das bases 
+de datos remotas para os entornos de desenvolvemento e produción.
+
+  É preciso dispor dunha base de datos CouchDB funcionando ben en local ou ben 
+en remoto e no ficheiro de configuración indicado anteriormente podemos 
+introducir os datos de conexión e os nomes das coleccións que se van a 
+utilizar para a autenticación e para o resto da aplicación.
+
+  Modificando a variable \lstinline{_env} podemos cambiar de entorno e 
+a través de \lstinline{_type} podemos seleccionar se a compilación se vai a 
+realizar para unha aplicación web ou móbil.
+
+  Unha vez arrancada a aplicación, únicamente é preciso abrir un 
+navegador web e acceder a \lstinline{localhost:8080/#/login}.
+
+      \lstset{}
+      \begin{lstlisting}[caption=Configuración e execución web]
+// Instalar dependencias
+> npm install
+// Compilación
+> gulp build
+// Arrancar servidor
+> gulp run
+      \end{lstlisting}
+
+  \section{Configuración para móbil.}
+
+  Unha vez configurado proxecto, o comando \lstinline{gulp deploy} construe 
+e copia a aplicación dentro da carpeta de Apache Cordova.
+
+  Alí débese engadir a plataforma que se desexe utilizar, constuir a 
+aplicación para dita plataforma e arrancala de xeito sinxelo.
+
+    \lstset{}
+    \begin{lstlisting}[caption=Configuración e execución móbil]
+// Instalar dependencias
+> npm install
+
+// Compilación
+> gulp deploy
+
+// Entrar na carpeta de cordova, engadir plataforma android e construir a 
+// aplicación
+> cd cordova-app
+
+> cordova platform add android
+
+> cordova build android
+
+// Arrancar en móbil
+> cordova run android
+
+// Arrancar nun emulador
+> cordova emulate android
+
+    \end{lstlisting}
+
 \thispagestyle{empty}

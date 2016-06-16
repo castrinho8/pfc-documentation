@@ -122,7 +122,8 @@ encargarase de volver a pintar o novo valor do estado, dentro do seu compoñente
       \subsubsection{Implementación de Flux. Reflux.}
       Flux é unha arquitectura, unha especie de patrón de desenvolvemento pero 
 existen diversas implementacións da mesma e neste proxecto decidímonos por 
-utilizar Reflux\cite{web:reflux}.
+utilizar Reflux\footnote{Reflux 
+\href{https://github.com/reflux/refluxjs}{github.com/reflux/refluxjs}}.
 
       O funcionamento é moi similar pero con algúns matices; por exemplo,
 non existe un único Dispatcher central que enruta as Actions se non que todas as 
@@ -266,12 +267,16 @@ funcionen de forma desconectada.
 serán modificadas e neste tipo de información, son as bases de datos orientadas 
 a documentos as que presentan un mellor rendemento.
 
-    A elección de PouchDB\cite{web:pouchdb} foi sobre todo motivada por ser 
+    A elección de PouchDB\footnote{PouchDB 
+\href{https://pouchdb.com/}{pouchdb.com}} foi sobre 
+todo motivada por ser 
 tremendamente lixeira, multinavegador e sobre todo, facilitar a sincronización 
 contra unha base de datos remota, neste caso, CouchDB.
 
     \subsection{CouchDB}
-    CouchDB\cite{web:couchdb} é a base de datos non relacional que se utiliza 
+    CouchDB\footnote{CouchDB 
+\href{http://couchdb.apache.org/}{couchdb.apache.org}} é a base 
+de datos non relacional que se utiliza 
 como base de datos central en remoto, e coa cal sincronizará PouchDB que se 
 atopa no navegador web do cliente.
 
@@ -307,7 +312,8 @@ sistema operativo que teña o seu teléfono ou tableta.
 
   É por isto que é fundamental a utilización dun sistema que permita este 
 desenvolvemento multiplataforma como é o caso de Apache 
-Cordova\cite{web:apachecordova} que, ademáis, 
+Cordova\footnote{Apache Cordova 
+\href{https://cordova.apache.org/}{cordova.apache.org}} que, ademáis, 
 facilita o acceso aos elementos do dispositivo como sensores, datos, estado de 
 rede... a través dunha serie de APIs estandar.
 
@@ -1207,6 +1213,7 @@ describe('create Sport Event', function () {
   \end{lstlisting}
 
     \subsection{Travis CI}
+    \label{sec:travis}
     A medida que a aplicación foi medrando, xurdíu a necesidade de simplificar 
 traballos como a búsqueda de erros ou o mantemento da aplicación, buscando 
 garantir que se mantén a integridade da mesma en todo momento e non se 
