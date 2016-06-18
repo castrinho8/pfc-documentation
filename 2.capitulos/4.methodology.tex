@@ -8,12 +8,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \lettrine{N}{este} capítulo imos analizar as diversas metodoloxías utilizadas para a 
-xestión do proxecto e explicar a adaptación das mesmas que finalmente se utilizóu.
+xestión do proxecto e explicar a adaptación das mesmas que finalmente se 
+utilizou.
 
   Comezaremos falando da metodoloxía orientada ao modelo de negocio xa que, 
 como se indica na introdución, este proxecto xurdíu dentro de unha iniciativa 
-empresarial e polo tanto dende o primeiro momento se traballou orientado cara o 
-cliente, convertíndoo nun dos pilares do desenvolvemento.
+empresarial e polo tanto dende o primeiro momento traballouse orientado cara o 
+cliente, facendo que sexa nun dos piares do desenvolvemento.
 
   Seguidamente comentaremos as metodoloxías áxiles que serviron de base para 
 definir a metodoloxía utilizada finalmente, unha adaptación das mencionadas e 
@@ -37,6 +38,7 @@ evaluando as hipóteses de se os clientes realmente estarían dispostos a pagar
 polo producto e implicando a dito cliente no desenvolvemento do produto.
 
   \section{eXtreme Programming}
+  \label{sec:method:extreme}
   eXtreme Programming\cite{book:agile} é unha metodoloxia de desenvolvemento 
 áxil e incremental baseada na integración do cliente no desenvolvemento así como 
 na simplicidade do código.
@@ -52,9 +54,9 @@ erros que se producen ao programar.
 
   Por último aboga por introducir o TDD (Test Driven 
 Development)\cite{book:cleancode}, implementando primeiro os tests, 
-verificando que fallan, para a continuación implementar o código que fai que 
+verificando que fallan para a continuación implementar o código que fai que 
 pasen correctamente os mesmos.
-  A idea é que os requisitos sexan convertidos a probas e de este modo cando os 
+  A idea é que os requisitos sexan convertidos a probas e deste modo cando os 
 tests se pasen, poderemos garantizar que o código cumple os requisitos.
 
   \section{Scrum}
@@ -63,11 +65,11 @@ cunha serie de roles definidos para o proceso, cada un coas súas
 responsabilidades e que divide o proxecto en varios \emph{Sprints} que son 
 ciclos de desenvolvemento.
 
-  Cada un de eles ten unha duración definida polo equipo de, habitualmente, 
+  Cada un deles ten unha duración definida polo equipo de, habitualmente, 
 entre unha e catro semanas, proporcionando un incremento de software entregable 
 ao final de cada \emph{Sprint}.
 
-  A totalidade das tarefas do proxecto atópanse definidas e priorizadas en unha 
+  A totalidade das tarefas do proxecto atópanse definidas e priorizadas nunha 
 lista chamada \emph{Product Backlog}. Para cada sprint, selecciónanse aquelas 
 tarefas que determinarán a lista a implementar durante a presente iteración, o
 \emph{Sprint Backlog}, e que non pode variar ata rematar o sprint.
@@ -82,32 +84,33 @@ novos requisitos.
 
     \subsection{Desenvolvemento orientado ao cliente}
       O proxecto ten lugar dentro dunha iniciativa empresarial polo que se 
-decidíu utilizar un modelo de desenvolvemento orientado ao cliente en todo 
+decidiu utilizar un modelo de desenvolvemento orientado ao cliente en todo 
 momento, baseandose no pilar central da metodoloxia \emph{Lean Startup}.
 
     Para isto realizáronse diversas visitas as federacións para comprobar as 
 súas necesidades a través dunha serie de entrevistas estructuradas para 
-coñecer os problemas e a súa prioridade a hora de resolvelos.
+coñecer os problemas e a súa prioridade á hora de resolvelos.
 
     Do mesmo modo realizáronse dous prototipos, un primeiro únicamente 
-con plantillas HTML para testear a organización da interfaz de usuario e un 
+con plantillas HTML\footnote{\emph{HyperText Markup Language}.} para testear a 
+organización da interfaz de usuario e un 
 segundo xa funcional para comprobar a resposta dos usuarios finais ante o seu 
 funcionamento.
 
     \subsection{Sprints con backlog adaptable}
-    A organización do desenvolvemento organizouse de xeito moi similar a idea 
+    A organización do desenvolvemento organizouse de xeito moi similar á idea 
 proposta en \emph{Scrum}, dividindo o proceso en sprints, pequenas iteracións 
 de dúas ou tres semanas de duración e que cada unha proporciona unha serie de 
-novas funcións.
+novas funcionalidades.
 
-    Cada sprint comeza con unha reunión de aproximadamente 30/45 minutos de 
+    Cada sprint comeza cunha reunión de aproximadamente 30/45 minutos de 
 duración na que realizar a planificación do mesmo en función do 
 traballo realizado no sprint anterior, o que permite realizar melloras nas 
 previsións segundo o aprendido dos anteriores.
 
     A diferencia do proposto por Scrum, decidíuse optar por sprints de duración 
-variable e con un backlog adaptable según as necesidades xa que proporciona 
-unha maior flexibilidade e liberdade.
+variable e cun backlog adaptable ao longo do sprint según as necesidades xa que 
+proporciona unha maior flexibilidade e liberdade.
 
     \subsection{Reunións semanais}
     Todas as semanas faise unha reunión de 30/45 minutos de duración na que 
@@ -115,12 +118,12 @@ analizar o realizado na semana anterior e comprobar o seguimento da iteración
 co fin de atopar desviacións e corrixilas.
 
     Cando unha reunión semanal coincide co fin de un sprint, dita reunión 
-sirve para realizar a planificación do seguinte sprint de xeito moi similiar as 
+serve para realizar a planificación do seguinte sprint de xeito moi similiar ás 
 reunións de sprint que se realizan en \emph{Scrum}.
 
     \subsection{Reunións diarias}
     Ao comezar o día realízase unha análise duns 10 minutos de duración para 
-revisar o realizado no día anterior e planificar de forma máis concreta o que 
+revisalo realizado no día anterior e planificar de forma máis concreta o que 
 se vai facer ese mesmo día.
 
     \subsection{Releases}
@@ -130,14 +133,14 @@ unha serie de pequenos entregables en cada iteración.
     Todas as entregas ao finalizar unha iteración son totalmente funcionais 
 pero non todas son versións entregables reais para ser postas en produción.
 
-    Durante o desenvolvemento producíronse 3 entregas (\emph{releases}) 
+    Durante o desenvolvemento producíronse 4 entregas (\emph{releases}) 
 totalmente funcionais, a primeira foi un prototipo, a segunda foi a versión 
-real do proxecto e a terceira incorporou tests e diversas características para 
-asegurar unha primeira versión estable.
+real do proxecto, a terceira incorporou os tests e a cuarta correxiu diversas 
+características para asegurar unha primeira versión estable.
 
     \subsection{Simplicidade}
     Utilizouse o principio de simplicidade que promove \emph{eXtreme 
-Programming}durante todo o desenvolvemento baixo a máxima de implementar 
+Programming} durante todo o desenvolvemento baixo a máxima de implementar 
 únicamente o imprescindible en cada momento, sempre pensando en programar 
 para hoxe e non para mañá.
 
@@ -157,12 +160,12 @@ ou BDD~(Behaviour~Driven~Development)%
 que tratan de dirixir o desenvolvemento a través dos tests e
 que son realizados antes da implementación da funcionalidade.
 
-    Durante a primeira parte do desenvolvemento non se aplicou ningunha de 
-estas metodoloxías pero a partir da primeira \emph{release} e da integración 
+    Durante a primeira parte do desenvolvemento non se aplicou ningunha destas 
+metodoloxías pero a partir da terceira \emph{release} e da integración 
 dos primeiros tests, decidíuse optar por aplicar TDD no desenvolvemento, 
 realizando probas unitarias nos servicios utilizados.
 
-    \subsection{Fluxo de contibución ao proxecto}
+    \subsection{Fluxo de contribución ao proxecto}
     O fluxo de traballo utilizado dende o primeiro día trata de simular o 
 traballo diario de equipo e permite controlar a evolución do código de xeito 
 máis ordenado.

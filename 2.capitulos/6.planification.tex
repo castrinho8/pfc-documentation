@@ -8,15 +8,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \lettrine{N}{este} capítulo detallaremos a planificación e o seguimento 
-do proxecto, un proxecto que por diversas circunstancias se dividíu 
+do proxecto, un proxecto que por diversas circunstancias se dividiu 
 principalmente en tres grandes etapas, as dúas primeiras mentres VACmatch era 
 unha iniciativa emprendedora baseada nun proxecto software libre e a última 
 durante a cal se comezou unha conversión da iniciativa cara un proxecto 
 comunitario.
 
   Durante o desenvolvemento xuridiron tamén diversos acontecementos 
-relacionados co proxecto e que tamén é importante resaltar debido a súa 
-influencia no desenvolvemento.
+relacionados co proxecto que tamén é importante resaltar debido a súa 
+influencia no desenvolvemento e que se comentan durante este capítulo.
 
   \begin{description}
     \item [Agosto 2015 - Outubro 2015] VACmatch. Validación de negocio.
@@ -51,9 +51,9 @@ feedback e mostrarlle a evolución do prototipo.
       Durante este periodo planificouse o desenvolvemento dunha aplicación moi 
 sinxela e sen funcionalidade, que únicamente permitise analizar a usabilidade do 
 sistema e comprobar se é factible adaptar o proceso de creación de un acta 
-deportiva, a unha aplicación móbil.
+deportiva nunha aplicación móbil.
 
-    Así mesmo, ao longo do período realizaranse ata tres visitas a federación 
+    Así mesmo, ao longo do período realizaranse ata tres visitas á federación 
 coa que se traballou dende o primeiro momento para comprobar a experiencia de 
 un futuro usuario real da aplicación e obter feedback para futuras melloras.
 
@@ -114,7 +114,7 @@ poden ser as actas.
 xestionar un encontro, excluindo requisitos como a sinatura de actas ou a 
 creación offline das mesmas co fin de axilizar as primeiras probas.
 
-      Durante a iteración tamén se farán visitas a federación para mostrar o 
+      Durante a iteración tamén se farán visitas á federación para mostrar o 
 estado do desenvolvemento e para buscar que tamén árbitros reais vexan os 
 progresos e proporcionen feedback.
 
@@ -134,7 +134,7 @@ extrapolables a outras.
           \item Meter xogadores manualmente xa que poden non terse creado no 
 sistema de xestión.
           \item Poder ver os eventos de forma sinxela dende a vista de fin de 
-partido para que os equipos vexan o que están firmando.
+partido para que os equipos vexan o que están asinando.
          \item Editar dorsal dos xogadores xa que poden cambiar.
          \item Ter opción de non poñer motivo para as tarxetas.
          \item Mostrar foto de xogador ao engadir un evento.
@@ -193,8 +193,7 @@ erros que serán analizados e comentados na seguinte iteración.
         \caption{Web do I Torneo VACmatch}
         \end{center}
   \end{figure}
-
-
+\
   \section{Desenvolvemento de produto (Novembro 2015 -- Xaneiro 2016)}
   Tras analizar os problemas e os erros cometidos durante a realización do I 
 Torneo VACmatch, e concretamente no funcionamento da aplicación móbil durante o 
@@ -207,7 +206,7 @@ blog técnico, a través da conta de Medium\footnote{Medium é unha rede social
 que permite crear e seguir blogs de múltiples temáticas} de VACmatch, no que 
 contar os avances que suceden durante o desenvolvemento do proxecto.
 
-  En este periodo de 3 meses de duración planifícase adicar unha media de 4 
+  Neste periodo de 3 meses de duración planifícase adicar unha media de 4 
 horas diarias en VACmatch Mobile debido a que en paralelo se está a traballar 
 na versión de VACmatch Web.
 
@@ -229,14 +228,14 @@ datos.
 prototipos non utilizaban nin Reflux nin PouchDB e simplemente enviaban os 
 datos a un servizo web remoto.
 
-      Créase tamén o proxecto base engadindo a licencia e defínese o modelo de 
+      Crease tamén o proxecto base engadindo a licencia e defínese o modelo de 
 datos, que vai cambiar bastante do modelo inicial, pensando para unha base de 
 datos relacional que é a que podíamos atopar na API remota de VACmatch Web.
 
       É por iso que os datos serán desnormalizados e pasarán a almacenarse en 
 documentos en lugar de en táboas.
 
-      Por último comezase a implementación do listaxe de actas a cubrir e de un 
+      Por último comézase a implementación do listaxe de actas a cubrir e de un 
 boton para engadilas e eliminalas de xeito sinxelo para facer as primeiras 
 probas.
 
@@ -261,16 +260,17 @@ abordar.
 
       \subsubsection{Tarefas e seguimento}
 
-      Durante estas iteracións realizáronse as seguintes tarefas e que tamén se 
-poden ver nos Diagramas~\ref{fig:gant01} e ~\ref{fig:gant02}.
+      Durante estas iteracións realizáronse as seguintes tarefas que tamén 
+se poden observar a través dos Diagramas de Gant~\ref{fig:gant01} e 
+~\ref{fig:gant02}.
 
         \begin{description}
          \item [S1.1] Definir modelo de datos.
-         \item [S1.2] Definir arquitectura y tecnología.
+         \item [S1.2] Definir arquitectura e tecnoloxía.
          \item [S1.3] Deseñar mockups.
          \item [S1.4] Crear proxecto base.
          \item [S1.5] Crear modelos en PouchDB.
-         \item [S1.6] Estudio da tecnoloxía. React, Reflux, PouchDB, Redmine
+         \item [S1.6] Estudo da tecnoloxía. React, Reflux, PouchDB, Redmine
          \item [S1.7] Como árbitro quero poder obter a lista de actas a cubrir.
          \item [S1.8] Permitir crear e borrar actas para tarefas de test.
          \item [S1.9] Engadir licencia e Readme
@@ -349,7 +349,7 @@ cara o cliente.
       \subsubsection{Tarefas e seguimento}
 
       A continuación móstranse as diversas tarefas realizadas na iteración e 
-pódese ver o Gant correspondente no Diagrama~\ref{fig:gant03}:
+pódese ver o Diagrama de Gant correspondente na Figura~\ref{fig:gant03}:
 
         \begin{description}
           \item [S3.1] Como árbitro quero poder engadir un evento.
@@ -381,7 +381,7 @@ actualicen os
 resultados e as faltas na Acta.
           \item [S3.12] Erro: Cando non hai ningún evento de cambio de parte 
 hai un error.
-          \item [S3.13] Erro: Corexir erro cando se engade un evento con causa.
+          \item [S3.13] Erro: Correxir erro cando se engade un evento con causa.
         \end{description}
 
         \begin{figure}[h!]
@@ -405,7 +405,7 @@ edición manual de actas que en anteriores iteracións foi engadida únicamente
 para probas internas pero sen realizar as comprobacións necesarias.
 
       Tamén se planifican tarefas para comezar as primeiras partes da memoria 
-do proxecto que incluen a introdución, o estado da arte os fundamentos 
+do proxecto que incluen a introdución, o estado da arte e os fundamentos 
 tecnolóxicos.
 
       \subsubsection{Revisión e feedback}
@@ -434,7 +434,7 @@ desenvolvemento aos posibles interesados en colaborar no mesmo.
           \item [S4.9] Como árbitro quero poder editar un acta creada dende o 
 móbil.
           \item [S4.10] Erro: Correxir erro coa variable dialogIsOpen ao editar 
-o dorsal de un xogador.
+o dorsal dun xogador.
         \end{description}
 
         \begin{figure}[h!]
@@ -485,8 +485,10 @@ de cada equipo poidan asinar un acta.
          \item [S5.3] Como árbitro quero poder engadir comentarios a un acta.
          \item [S5.4] Como árbitro quero poder borrar un xogador da lista de 
 convocados.
-         \item Crear un árbitro ao crear un novo usuario na aplicación móbil.
-         \item Engadir o árbitro que ten o usuario asignado nas actas que crea.
+         \item [S5.5] Crear un árbitro ao crear un novo usuario na aplicación 
+móbil.
+         \item [S5.6] Engadir o árbitro que ten o usuario asignado nas actas 
+que crea.
         \end{description}
 
         \begin{figure}[h!]
@@ -497,7 +499,7 @@ convocados.
           \end{center}
         \end{figure}
 
-        Nesta iteración a planificación incial de 32 horas foi sobreestimada 
+        Nesta iteración a planificación incial de 32 horas foi sobrestimada 
 polo que finalmente sobraron 5 horas de desenvolvemento que foron reasignadas 
 ao outro proxecto.
 
@@ -562,7 +564,7 @@ base de datos.
           \end{center}
         \end{figure}
 
-    Para a realización de esta iteración planificóuse un total de 22 horas e 
+    Para a realización desta iteración planificóuse un total de 22 horas e 
 non se precisou ningunha hora extra para completar o traballo.
 
     \subsection{8ª iteración. Testing e integración continua}
@@ -587,10 +589,10 @@ do Concurso Universitario de Software Libre no que VACmatch se atopa inscrito
 dende o mes de Outubro aproximadamente.
 
       É por iso que se fixo unha entrada resumo para mostrar as tarefas 
-existentes no Redmine do proxecto donde se realiza toda a xestión de 
-incidencias así como se resaltou os seguintes pasos a seguir no mesmo, como por 
-exemplo, engadir a internacionalización ou permitir poñer en funcionamento a 
-aplicación nun dispositivo móbil.
+existentes no Redmine do proxecto onde se realiza toda a xestión de 
+incidencias así como se resaltaron os seguintes pasos a seguir no mesmo, como 
+por exemplo, engadir a internacionalización ou permitir poñer en funcionamento 
+a aplicación nun dispositivo móbil.
 
       \subsubsection{Tarefas e seguimento}
 
@@ -636,7 +638,7 @@ actas co fin de mostrar cando un encontro non comezou, cando se está a xogar e
 cando rematou.
 
       Pero a tarefa máis importante xurdíu ao aparecer un problema de 
-denpendencias circulares que obrigou a engadir unha factoría para realizar 
+dependencias circulares que obrigou a engadir unha factoría para realizar 
 inxección de dependencias entre os servizos da aplicación xa que varios, 
 dependían uns de outros.
 
@@ -681,8 +683,8 @@ existe algún outro evento creado.
         \end{figure}
 
     A estimación inicial de horas para esta iteración foi de un total de 78, 
-resultando unha vez máis optimista e permitindo que a diferencia de horas coas 
-reais, 66, poidesen ser reasignadas ao proxecto de VACmatch Web.
+resultando unha vez máis, optimista e permitindo que a diferencia de horas 
+coas reais, 66, poidesen ser reasignadas ao proxecto de VACmatch Web.
 
     \subsection{Release 0.2.0: Usabilidade en menús}
 
