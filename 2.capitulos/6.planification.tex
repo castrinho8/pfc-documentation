@@ -34,8 +34,9 @@ negocio.
 
   Durante o primeiro mes planifícase a realización dun prototipo visual co 
 fin de comprobar a usabilidade e consolidar os requisitos dos clientes.
-  De seguido, plantéxase crear un pequeno prototipo funcional, un MVP (Mínimo 
-Producto Viable) na metodoloxía Lean Startup, co obxectivo de testear as 
+  De seguido, plantéxase crear un pequeno prototipo funcional, un 
+MVP\footnote{\emph{Mínimo 
+Producto Viable}} na metodoloxía Lean Startup, co obxectivo de testear as 
 necesidades dos clientes e definir o produto final a desenvolver.
 
   En total realízanse dúas versións do prototipo da aplicación que son 
@@ -580,7 +581,8 @@ aplicación.
 
       Relacionado con este tema tamén se planificou a integración do 
 repositorio de código con unha ferramenta de integración continua que facilite 
-a execución de este tipo de probas, en este caso Travis CI.
+a execución de este tipo de probas, en este caso Travis CI do que falaremos na 
+Sección~\ref{sec:travis}.
 
       \subsubsection{Revisión e feedback}
       Durante esta iteración foi preciso publicar unha folla de ruta do 
@@ -796,21 +798,63 @@ realizouse en 1 hora máis do previsto que foi imputada como hora extra para non
 retrasar o desenvolvemento.
 
     \subsection{Release 0.2.2: Finalización da memoria e revisión de erros}
-    bugfix
-    Memoria a saco
-      \subsubsection{Planificación temporal}
-      \subsubsection{Definición da iteración}
-      \subsubsection{Revisión e feedback}
-      \subsubsection{Tarefas e seguimento}
-% 
-%     \subsection{Release 0.3.0: Usabilidade móbil e entrega continua}
-%     Por cordova: dialogos -> ventás, transición carga, migrar taiga.io, Travis + 
-% Docker
-%       \subsubsection{Planificación temporal}
-%       \subsubsection{Definición da iteración}
-%       \subsubsection{Revisión e feedback}
-%       \subsubsection{Tarefas e seguimento}
 
+      \subsubsection{Planificación e definición da iteración}
+      Esta última iteración comeza o 25 de Maio e exténdese finalmente ata o 
+día 19 de xuño.
+
+      Céntrase principalmente en engadir certas vistas da 
+aplicación como a de ''Acerca de`` ou a de configuración así como múltiples 
+detalles visuais como engadir unha transición mentras os datos non se atopan 
+cargados e solucionar diversos erros atopados na aplicación.
+
+      Así mesmo tamén se adicou un tempo considerable á finaliación da memoria.
+
+      \subsubsection{Revisión e feedback}
+      Durante esta iteración coñeceuse que VACmatch foi invitado a 
+participar na fase final do ''Certamen de Proyectos Libres de la Universidad de 
+Granada`` co presente proxecto pero non foi posible asistir polo que se decidiu 
+enviar un vídeo para realizar a presentación e polo tanto tampouco se puido 
+obter feedback.
+
+      \subsubsection{Tarefas e seguimento}
+
+      Ao longo da iteración realizáronse as seguintes tarefas:
+
+        \begin{description}
+        \item [S0.2.2-1] Error ao engadir un evento, cámbiase o nome dos equipos
+        \item [S0.2.2-2] Error ao tratar de asinar un acta como árbitro e como 
+xogador creado na app móbil
+        \item [S0.2.2-3] Eliminar páxina de home
+        \item [S0.2.2-4] Non se engaden ao menú lateral esquerdo en ningún 
+momento a lista de actas
+        \item [S0.2.2-5] Un xogador debe poder asinar un acta incluso si é 
+creado manualmente na acta 
+        \item [S0.2.2-6] Os links do menú lateral esquerdo non funcionan
+        \item [S0.2.2-7] [Memoria] Apendices
+        \item [S0.2.2-8] [Memoria] Conclusións
+        \item [S0.2.2-9] [Memoria] Deseño e implementación
+        \item [S0.2.2-10] [Memoria] Planificación e seguimento
+        \item [S0.2.2-11] [Memoria] Revisión xeral
+        \item [S0.2.2-12] Só mostrar/editar as actas do usuario que está 
+logueado
+        \end{description}
+
+        A estimación inicial para a realización desta iteración foi dun total 
+de 91 horas, cumpríndose correctamente e dispoñendo finalmente de 10,5 horas 
+libres para adicar a aprender tecnoloxías que é posible que se utilicen nun 
+futuro cercano como é o caso de Docker, para realizar entregas contínuas.
+
+        Na Figura~\ref{fig:gant22} pódese observar o Diagrama de Gant da 
+iteración.
+
+        \begin{figure}[h!]
+          \begin{center}
+          \includegraphics[width=\textwidth]{./img/gant_diagrams/022.png}
+          \caption{Diagramas de Gant da release 0.2.2}
+          \label{fig:gant22}
+          \end{center}
+        \end{figure}
 
 %%% Local Variables:
 %%% mode: latex

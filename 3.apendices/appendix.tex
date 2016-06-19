@@ -3,7 +3,7 @@
 \thispagestyle{empty}
 \newpage
 
-\chapter{Compilación e execución da aplicación.}
+\chapter{Configuración e execución da aplicación.}
 \label{chap:compilacion_aplicacion}
 VACmatch Mobile é Software Libre e o seu código fonte atópase publicado no 
 seguinte repositorio de código en GitHub 
@@ -20,7 +20,7 @@ Para poder executar a aplicación é preciso dispor das seguintes ferramentas:
  \item CouchDB
 \end{itemize}
 
-  \section{Configuración e execución web.}
+  \section{Execución dende plataforma Web.}
 
   O primeiro paso é abrir o ficheiro de configuración da aplicación situado en 
 \lstinline{src/app/api/config.json} e nel atoparemos a configuración das bases 
@@ -36,7 +36,7 @@ a través de \lstinline{_type} podemos seleccionar se a compilación se vai a
 realizar para unha aplicación web ou móbil.
 
   Unha vez arrancada a aplicación, únicamente é preciso abrir un 
-navegador web e acceder a \lstinline{localhost:8080/#/login}.
+navegador web e acceder a \lstinline{localhost:8080/#/login}
 
       \lstset{}
       \begin{lstlisting}[caption=Configuración e execución web]
@@ -48,7 +48,7 @@ navegador web e acceder a \lstinline{localhost:8080/#/login}.
 > gulp run
       \end{lstlisting}
 
-  \section{Configuración e execución para móbil.}
+  \section{Execución dende plataforma móbil.}
 
   Unha vez configurado proxecto, o comando \lstinline{gulp deploy} construe 
 e copia a aplicación dentro da carpeta de Apache Cordova.
